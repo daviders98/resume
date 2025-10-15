@@ -71,7 +71,7 @@ export default function NavBar() {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="px-3 lg:px-4 py-2 text-sm lg:text-base text-foreground/80 hover:text-accent relative font-medium hover:border-b-1"
+                className="px-3 lg:px-4 py-2 text-sm lg:text-xl text-foreground/80 hover:text-accent relative font-medium hover:border-b-1"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
