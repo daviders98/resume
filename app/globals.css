@@ -19,15 +19,21 @@
   --red: #EA526F;
   --wine: #792C38;
   --celestial-blue: #279AF1;
+  --ghost-white: #F5F5F5;
+  --smoky-black: #070600;
   
   /* Optional: semantic colors */
-  --color-primary: var(--beige);
+  --color-primary: var(--ghost-white);
   --color-secondary: var(--ash-gray);
   --color-accent: var(--celestial-blue);
   --color-muted: var(--red);
-  --foreground: var(--eerie-black);
+  --foreground: var(--smoky-black);
+  --color-hover: var(--red);
+  --color-idk: #23B5D3;
 
   /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+/* To-do define final colors */

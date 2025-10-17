@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import scrollToSection from "@/utils/scroller";
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,20 +17,13 @@ export default function NavBar() {
   }, []);
 
   const navItems = [
-    { name: "Home", href: "#Hero" },
+    { name: "Home", href: "#hero" },
     { name: "About me", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
     { name: "Portfolio", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <motion.nav
@@ -48,9 +42,9 @@ export default function NavBar() {
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection("#hero");
+              scrollToSection({href:"#hero"});
             }}
-            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold bg-gradient-to-r from-muted to-accent/80 bg-clip-text text-transparent hover:opacity-80 transition-opacity cursor-pointer"
+            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent bg-clip-text transition-opacity cursor-pointer hover:text-idk"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.4 }}
@@ -60,7 +54,7 @@ export default function NavBar() {
               alt={"logo"}
               style={{ maxHeight: 48, width: 48 }}
             />
-            {"DAGH"}
+            {"DevGarcia"}
           </motion.a>
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
@@ -69,9 +63,9 @@ export default function NavBar() {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(item.href);
+                  scrollToSection({href:item.href});
                 }}
-                className="px-3 lg:px-4 py-2 text-sm lg:text-base text-foreground/80 hover:text-accent relative font-medium hover:border-b-1"
+                className="px-3 lg:px-4 py-2 text-sm lg:text-xl text-foreground hover:text-idk relative font-medium hover:border-b-2 hover:font-semibold"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
@@ -93,8 +87,8 @@ export default function NavBar() {
             >
               <FontAwesomeIcon
                 icon={faGithub}
-                className="hover:text-accent"
-                size="xl"
+                className="hover:text-idk"
+                size="2xl"
               />
             </motion.a>
             <motion.a
@@ -107,8 +101,8 @@ export default function NavBar() {
             >
               <FontAwesomeIcon
                 icon={faLinkedin}
-                className="hover:text-accent"
-                size="xl"
+                className="hover:text-idk"
+                size="2xl"
               />
             </motion.a>
 
@@ -122,8 +116,8 @@ export default function NavBar() {
             >
               <FontAwesomeIcon
                 icon={faEnvelope}
-                className="hover:text-accent"
-                size="xl"
+                className="hover:text-idk"
+                size="2xl"
               />
             </motion.a>
           </div>
