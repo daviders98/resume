@@ -43,6 +43,7 @@ const Hero = () => {
     "Git",
     "GitHub",
     "GraphQL",
+    "CI/CD"
   ];
   const rowRef = useRef<HTMLDivElement>(null);
   const [rowWidth, setRowWidth] = useState(1);
@@ -78,8 +79,8 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="mb-4"
           >
-            <span className="inline-block px-4 py-2 bg-primary text-foreground rounded-full text-2xl  font-medium">
-              👋 Hi I am
+            <span className="inline-block px-4 py-2 bg-idk/30 text-foreground rounded-full text-2xl  font-medium">
+              👋 Hi, I am
             </span>
           </motion.div>
 
@@ -189,7 +190,7 @@ const Hero = () => {
                 }}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="hover:text-accent text-foreground "
+              className="hover:text-idk text-foreground "
             >
             <p className="text-lg mb-2">
               Discover more
