@@ -1,6 +1,7 @@
 "use client"
 import Hero from '@/components/Hero';
 import NavBar from '@/components/NavBar';
+import About from '@/components/About'
 import { useEffect } from 'react';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <div className="min-h-screen bg-primary text-foreground">
       <NavBar/>
       <Hero/>
+      <About/>
     </div>
   );
 }

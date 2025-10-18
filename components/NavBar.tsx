@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -7,11 +7,20 @@ import scrollToSection from "@/utils/scroller";
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isAboutAtTop, setIsAboutAtTop] = useState(false);
+  const aboutRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    aboutRef.current = document.querySelector("#about");
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      if (aboutRef.current) {
+        const top = aboutRef.current.getBoundingClientRect().top;
+        setIsAboutAtTop(top - 45 <= 0);
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -42,20 +51,20 @@ export default function NavBar() {
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection({href:"#hero"});
+              scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent bg-clip-text transition-opacity cursor-pointer hover:text-idk"
+            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.4 }}
           >
             <motion.img
               src={"/images/logo.png"}
               alt={"logo"}
               style={{ maxHeight: 48, width: 48 }}
             />
-            {"DevGarcia"}
+            {"DevGarcía"}
           </motion.a>
+
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
               <motion.a
@@ -63,12 +72,10 @@ export default function NavBar() {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection({href:item.href});
+                  scrollToSection({ href: item.href });
                 }}
-                className="px-3 lg:px-4 py-2 text-sm lg:text-xl text-foreground hover:text-idk relative font-medium hover:border-b-2 hover:font-semibold"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
+                className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${
+                  isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk" }`}
                 whileHover={{ scale: 1.1 }}
               >
                 {item.name}
@@ -77,49 +84,27 @@ export default function NavBar() {
           </nav>
 
           <div className="hidden md:flex items-center space-x-3">
-            <motion.a
-              href={"https://github.com/daviders98"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-foreground/70 hover:text-foreground transition-colors"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FontAwesomeIcon
-                icon={faGithub}
-                className="hover:text-idk"
-                size="2xl"
-              />
-            </motion.a>
-            <motion.a
-              href={"https://linkedin.com/"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-foreground/70 hover:text-foreground transition-colors"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FontAwesomeIcon
-                icon={faLinkedin}
-                className="hover:text-idk"
-                size="2xl"
-              />
-            </motion.a>
-
-            <motion.a
-              href={"mailto:email@example.com"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-foreground/70 hover:text-foreground transition-colors"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FontAwesomeIcon
-                icon={faEnvelope}
-                className="hover:text-idk"
-                size="2xl"
-              />
-            </motion.a>
+            {[faGithub, faLinkedin, faEnvelope].map((icon, i) => (
+              <motion.a
+                key={i}
+                href={
+                  icon === faGithub
+                    ? "https://github.com/daviders98"
+                    : icon === faLinkedin
+                    ? "https://linkedin.com/"
+                    : "mailto:email@example.com"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`p-2 ${
+                  isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk"
+                }  transition-colors`}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <FontAwesomeIcon icon={icon} size="2xl" />
+              </motion.a>
+            ))}
           </div>
         </div>
       </div>
