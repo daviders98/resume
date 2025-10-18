@@ -74,15 +74,22 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4"
-          >
-            <span className="inline-block px-4 py-2 bg-idk/30 text-foreground rounded-full text-2xl  font-medium">
-              👋 Hi, I am
-            </span>
-          </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  className="mb-4"
+>
+  <span className="inline-block px-4 py-2 bg-idk/30 text-foreground rounded-full text-2xl font-medium">
+    <motion.span
+      className="inline-block"
+      animate={{ rotate: [0, 20, -10, 20, 0] }}
+      transition={{ duration: 1.5 }}
+    >
+      👋
+    </motion.span>{" "}
+    Hi, I am
+  </span>
+</motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

@@ -45,7 +45,7 @@ export default function NavBar() {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <motion.a
             href="#hero"
@@ -53,7 +53,7 @@ export default function NavBar() {
               e.preventDefault();
               scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2"
+            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2 mr-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -62,7 +62,7 @@ export default function NavBar() {
               alt={"logo"}
               style={{ maxHeight: 48, width: 48 }}
             />
-            {"DevGarcía"}
+            <span>DevGarcía</span>
           </motion.a>
 
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">

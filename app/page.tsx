@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import NavBar from '@/components/NavBar';
 import About from '@/components/About'
 import { useEffect } from 'react';
+import Skills from '@/components/Skills';
 
 function App() {
   useEffect(() => {
@@ -10,10 +11,11 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-primary text-foreground">
+    <div className="min-h-screen min-w-screen bg-primary text-foreground">
       <NavBar/>
       <Hero/>
       <About/>
+      <Skills/>
     </div>
   );
 }
