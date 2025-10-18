@@ -40,7 +40,7 @@ const About = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             About <span className="text-primary">me</span>
@@ -114,7 +114,7 @@ const About = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.2}}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16"
         >
           {values.map((value, index) => {
             return (
@@ -129,8 +129,8 @@ const About = () => {
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <p className='text-4xl'>{value.icon}</p>
                 </div>
-                <h4 className="text-lg font-semibold mb-2">{value.title}</h4>
-                <p className="text-sm text-muted-foreground">{value.description}</p>
+                <h4 className="text-lg font-semibold mb-2 text-primary">{value.title}</h4>
+                <p className="text-sm text-muted-foreground text-foreground">{value.description}</p>
               </motion.div>
             );
           })}
