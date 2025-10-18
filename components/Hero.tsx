@@ -181,17 +181,19 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 1.5 }}
             className="flex flex-col items-center mt-20"
           >
-            <p className="text-lg text-foreground mb-2">
-              Discover more
-            </p>
             <motion.a
                 href="#about"
                 onClick={(e)=>{
                     e.preventDefault()
+                    scrollToSection({href:'#about'});
                 }}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
+              className="hover:text-accent text-foreground "
             >
+            <p className="text-lg mb-2">
+              Discover more
+            </p>
               <FontAwesomeIcon icon={faChevronDown} size={"xl"} />
             </motion.a>
           </motion.div>
