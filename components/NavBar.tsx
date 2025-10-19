@@ -8,16 +8,23 @@ import scrollToSection from "@/utils/scroller";
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutAtTop, setIsAboutAtTop] = useState(false);
+  const [isExperienceAtTop, setIsExperienceAtTop] = useState(false)
   const aboutRef = useRef<HTMLElement | null>(null);
+  const experienceRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     aboutRef.current = document.querySelector("#about");
+    experienceRef.current = document.querySelector('#experience');
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       if (aboutRef.current) {
         const top = aboutRef.current.getBoundingClientRect().top;
         setIsAboutAtTop(top - 45 <= 0);
+      }
+      if(experienceRef.current){
+        const top = experienceRef.current.getBoundingClientRect().top;
+        setIsExperienceAtTop(top-45 <=0);
       }
     };
 
@@ -75,6 +82,7 @@ export default function NavBar() {
                   scrollToSection({ href: item.href });
                 }}
                 className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${
+                  isExperienceAtTop ? "text-foreground hover:text-idk" :
                   isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk" }`}
                 whileHover={{ scale: 1.1 }}
               >
@@ -97,6 +105,7 @@ export default function NavBar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`p-2 ${
+                  isExperienceAtTop ? "text-foreground hover:text-idk" :
                   isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk"
                 }  transition-colors`}
                 whileHover={{ scale: 1.1, rotate: 5 }}

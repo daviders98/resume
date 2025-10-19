@@ -122,6 +122,7 @@ const Skills = () => {
     {
       title: "Front-end",
       skills: [
+        { name: "HTML5", pathToLogo: "/images/technologies/html5.png" },
         { name: "CSS3", pathToLogo: "/images/technologies/css3.png" },
         { name: "TailwindCSS", pathToLogo: "/images/technologies/tailwind.png" },
         { name: "Ant Design", pathToLogo: "/images/technologies/antd.jpg" },
