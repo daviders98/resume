@@ -124,7 +124,7 @@ const About = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5}}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="p-6 bg-background rounded-xl border border-border hover:border-primary/50 transition-all shadow-sm hover:shadow-md"
+                className="p-6 bg-background rounded-xl border border-border hover:border-primary/50 shadow-sm hover:shadow-md"
               >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                 <p className='text-4xl'>{value.icon}</p>
