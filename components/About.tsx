@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import moment from 'moment';
+import ScrollLettersText from './AnimateText';
 
 const About = () => {
   const ref = useRef(null);
@@ -34,8 +35,8 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={ref} className="py-20 md:py-20 bg-accent">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" ref={ref} className="py-20 md:py-20 bg-accent w-full overflow-x-hidden">
+      <div className="px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -53,11 +54,11 @@ const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            
           >
-            <div className="relative w-full max-w-md mx-auto">
+            <div className=" w-full max-w-md mx-auto">
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl blur-2xl opacity-20"
+                className=" -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl blur-2xl opacity-20"
                 animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.2, 1, 0.2],
@@ -96,9 +97,7 @@ const About = () => {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 {`My experience spans multiple areas of the software landscape, helping me stay adaptable in both my technical skills and problem-solving approach.`}
               </p><br/>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                {`Anyone can build a website with AI, but not everyone can create one that truly connects with your audience.`}
-              </p>
+              
             </div>
 
             <div className="flex gap-2">
@@ -109,12 +108,24 @@ const About = () => {
             </div>
           </motion.div>
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.2}}
+          className="mt-12 flex items-center px-8 md:px-16"
+        >
+          <ScrollLettersText
+  text={`“Anyone can build a website with AI, but not everyone can create one that truly connects with your audience.”`}
+  className="my-12"
+/>
+
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.2}}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-16"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
         >
           {values.map((value, index) => {
             return (
