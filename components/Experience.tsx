@@ -34,20 +34,15 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
   }, [startDelay]);
 
   return (
-    <div
-      className={`flex w-full mb-6 ${
-        isRight ? "justify-end" : "justify-start"
-      }`}
-    >
-      {/* Typing indicator */}
+    <div className={`flex w-full mb-6 ${isRight ? "justify-end":"justify-start"}`} style={{ minHeight: 120 }}>
       {showTyping && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className={`absolute flex items-center gap-2 ${
-            isRight ? "right-40" : "left-40"
+          className={`flex items-center gap-2 ${
+            isRight ? "justify-start" : "justify-end"
           } z-10`}
         >
           {isRight ? (
@@ -59,6 +54,7 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
                   alt="Me typing"
                   fill
                   className="rounded-full object-cover border border-border"
+                  sizes="(max-width: 768px) 64px, 128px"
                 />
               </div>
             </>
@@ -70,6 +66,7 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
                   alt="Me typing"
                   fill
                   className="rounded-full object-cover border border-border"
+                  sizes="(max-width: 768px) 64px, 128px"
                 />
               </div>
               <TypingIndicator />
@@ -77,10 +74,11 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
           )}
         </motion.div>
       )}
+      {!showTyping && 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: startDelay + 1.2, duration: 0.6 }}
+        transition={{ duration: 0.6 }}
         className={`hover:scale-102 relative max-w-[80%] rounded-2xl p-4 md:p-6 shadow-md border border-border ${
           isRight
             ? "bg-accent text-primary rounded-tr-none"
@@ -88,17 +86,15 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
         }`}
       >
         <div className="mb-3">
-          <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
-            <div className="w-16 h-16">
+            <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
               {" "}
-              {/* smaller size for the logo itself */}
               <Image
                 src={experience.pathToLogo}
                 alt={`Company logo ${index + 1}`}
                 fill
-                className="object-contain rounded-full" // object-contain keeps aspect ratio
+                sizes="(max-width: 768px) 64px, 128px"
+                className="object-contain rounded-full"
               />
-            </div>
           </div>
           <h3 className="text-lg sm:text-xl font-bold">
             {experience.position}
@@ -134,6 +130,7 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
           ))}
         </div>
       </motion.div>
+      }
     </div>
   );
 };
@@ -143,8 +140,8 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary min-h-800 w-full">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -160,7 +157,7 @@ const Experience = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto items-center">
           {[
             {
               id: 1,
@@ -417,13 +414,15 @@ const Experience = () => {
                   key={edu.id}
                   whileHover={{ y: -2 }}
                   className="p-4 bg-background rounded-lg border border-border hover:border-foreground/20"
+                  style={{ minHeight: 100 }} // reserve space while content animates
                 >
-                  <div className="w-16 h-16 relative mb-1">
+                  <div className="w-16 h-16 relative rounded-full border border-border mb-1">
                     <Image
                       src={edu.pathToLogo}
                       alt="Me typing"
                       fill
                       className="rounded-full object-cover border border-border"
+                      sizes="(max-width: 768px) 64px, 128px"
                     />
                   </div>
                   <h5 className="font-semibold mb-1">{edu.degree}</h5>
@@ -517,15 +516,14 @@ const Experience = () => {
                     target="_blank"
                     className="hover:text-idk"
                   >
-                    <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
-                      <div className="w-16 h-16">
+                      <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
                         <Image
                           src={cert.pathToLogo}
                           alt={`Issuer Company logo ${cert.id}`}
                           fill
                           className="object-contain rounded-full"
+                          sizes="(max-width: 768px) 64px, 128px"
                         />
-                      </div>
                     </div>
                     <h5 className="font-semibold mb-1">{cert.name}</h5>
                     <p className="text-sm text-accent mb-1">{cert.issuer}</p>

@@ -9,24 +9,39 @@ export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutAtTop, setIsAboutAtTop] = useState(false);
   const [isExperienceAtTop, setIsExperienceAtTop] = useState(false)
+  const [isPortfolioAtTop, setIsPortfolioAtTop] = useState(false)
   const aboutRef = useRef<HTMLElement | null>(null);
   const experienceRef = useRef<HTMLElement | null>(null);
+  const portfolioRef = useRef<HTMLElement | null>(null);
+
+  const getNavItemClasses = () => {
+    if (isPortfolioAtTop) return "text-white hover:text-foreground";
+    if (isExperienceAtTop) return "text-foreground hover:text-idk";
+    if (isAboutAtTop) return "text-white hover:text-foreground";
+    return "text-foreground hover:text-idk";
+  };
 
   useEffect(() => {
     aboutRef.current = document.querySelector("#about");
     experienceRef.current = document.querySelector('#experience');
+    portfolioRef.current = document.querySelector('#portfolio')
 
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      if (aboutRef.current) {
-        const top = aboutRef.current.getBoundingClientRect().top;
-        setIsAboutAtTop(top - 45 <= 0);
-      }
-      if(experienceRef.current){
-        const top = experienceRef.current.getBoundingClientRect().top;
-        setIsExperienceAtTop(top-45 <=0);
-      }
-    };
+    const sections = [
+  { ref: portfolioRef, setter: setIsPortfolioAtTop },
+  { ref: experienceRef, setter: setIsExperienceAtTop },
+  { ref: aboutRef, setter: setIsAboutAtTop },
+];
+
+const handleScroll = () => {
+  setIsScrolled(window.scrollY > 50);
+
+  sections.forEach(({ ref, setter }) => {
+    if (ref.current) {
+      const top = ref.current.getBoundingClientRect().top;
+      setter(top - 45 <= 0);
+    }
+  });
+};
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -37,7 +52,7 @@ export default function NavBar() {
     { name: "About me", href: "#about" },
     { name: "Skills", href: "#skills" },
     { name: "Experience", href: "#experience" },
-    { name: "Portfolio", href: "#projects" },
+    { name: "Portfolio", href: "#portfolio" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -81,9 +96,7 @@ export default function NavBar() {
                   e.preventDefault();
                   scrollToSection({ href: item.href });
                 }}
-                className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${
-                  isExperienceAtTop ? "text-foreground hover:text-idk" :
-                  isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk" }`}
+                className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1 }}
               >
                 {item.name}
@@ -104,10 +117,7 @@ export default function NavBar() {
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-2 ${
-                  isExperienceAtTop ? "text-foreground hover:text-idk" :
-                  isAboutAtTop ? "text-white hover:text-foreground" : "text-foreground hover:text-idk"
-                }  transition-colors`}
+                className={`p-2 ${getNavItemClasses()}  transition-colors`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
