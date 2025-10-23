@@ -114,7 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 {/* ---------- BACK ---------- */}
 {<div
-  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/80`}
+  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/90`}
   style={{
     transform: 'rotateY(180deg)',
     boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
