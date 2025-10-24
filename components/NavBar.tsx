@@ -112,10 +112,10 @@ const handleScroll = () => {
                   icon === faGithub
                     ? "https://github.com/daviders98"
                     : icon === faLinkedin
-                    ? "https://linkedin.com/"
-                    : "mailto:email@example.com"
+                    ? "https://www.linkedin.com/in/davidagarciahdez/"
+                    : "#contact"
                 }
-                target="_blank"
+                target={`${icon == faEnvelope ? '': '__blank'}`}
                 rel="noopener noreferrer"
                 className={`p-2 ${getNavItemClasses()}  transition-colors`}
                 whileHover={{ scale: 1.1, rotate: 5 }}

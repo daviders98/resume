@@ -114,7 +114,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 {/* ---------- BACK ---------- */}
 {<div
-  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/80`}
+  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/90`}
   style={{
     transform: 'rotateY(180deg)',
     boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
@@ -305,8 +305,8 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 md:py-20 bg-muted">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="py-20 bg-muted">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             My <span className="text-primary">Portfolio</span>
