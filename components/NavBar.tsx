@@ -9,7 +9,7 @@ export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isAtTop,setIsAtTop] = useState(true)
   const getNavItemClasses = () => {
-    return "text-foreground hover:text-idk";
+    return "text-foreground hover:text-highlight";
   };
 
   const navItems = [
@@ -34,7 +34,7 @@ export default function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-primary/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
+      className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-background/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
     >
       <div className="mx-auto sm:px-2 lg:px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -45,7 +45,7 @@ export default function NavBar() {
               e.preventDefault();
               scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-accent cursor-pointer bg-primary/80 rounded-2xl p-2 md:mx-0 ml-4"
+            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-primary cursor-pointer bg-background/80 rounded-2xl p-2 md:mx-0 ml-4"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -75,7 +75,7 @@ export default function NavBar() {
                   }
                   scrollToSection({ href: item.href });
                 }}
-                className={`px-2 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold duration-300 ${getNavItemClasses()}`}
+                className={`px-2 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1 }}
               >
                 {item.name}
@@ -130,7 +130,7 @@ export default function NavBar() {
                 scrollToSection({ href: item.href });
               }, 200);
             }}
-                  className="px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-accent/50 rounded-lg"
+                  className="px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-primary/50 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}

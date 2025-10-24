@@ -21,7 +21,7 @@ const SkillBar = ({ skill }) => {
           style={{ width: "auto", height: "auto" }}
         />
       </div>
-      <span className="mt-2 text-center font-medium text-sm text-primary">
+      <span className="mt-2 text-center font-medium text-sm text-on-primary">
         {skill.name}
       </span>
     </motion.div>
@@ -78,12 +78,12 @@ const SkillCategory = ({ title, skills, icon }) => {
       initial={{ opacity: 0, y: 0 }}
       animate={isInView ? { opacity: 1, y: 30 } : { opacity: 0, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-background p-6 sm:p-8 rounded-xl border border-border hover:border-primary shadow-sm hover:shadow-md"
+      className="bg-primary/20 p-6 sm:p-8 rounded-xl border border-border hover:border-background shadow-sm hover:shadow-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex items-center gap-3 mb-8 justify-center">
-        <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
           <span className="text-2xl">{icon}</span>
         </div>
         <h3 className="text-xl sm:text-2xl font-bold text-foreground">{title}</h3>
@@ -175,7 +175,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" ref={ref} className="py-12 md:py-20 bg-idk">
+    <section id="skills" ref={ref} className="py-12 md:py-20 bg-highlight">
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -184,10 +184,10 @@ const Skills = () => {
           className="text-center mb-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Technical <span className="text-primary">Skills</span>
+            Technical <span className="text-on-primary">Skills</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
+          <p className="text-lg max-w-2xl mx-auto">
             Building web and mobile apps, developing AI solutions, and designing seamless UX/UI experiences.
           </p>
         </motion.div>

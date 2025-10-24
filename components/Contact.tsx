@@ -55,7 +55,7 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" ref={ref} className="py-20 md:pt-20 bg-idk">
+    <section id="contact" ref={ref} className="py-20 md:pt-20 bg-highlight">
       <MailModal status={modalStatus} onClose={() => setModalStatus(null)} />
       <div className="px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -65,10 +65,10 @@ const Contact = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {"Let's "}<span className="text-primary">Talk</span>
+            {"Let's "}<span className="text-on-primary">Talk</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
+          <p className="text-lg text-foreground max-w-2xl mx-auto">
             Stop dreaming and let us start making it a reality.
           </p>
         </motion.div>
@@ -93,7 +93,7 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-background p-8 rounded-xl border border-border shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-hightlight/80 p-8 rounded-xl border border-border shadow-sm">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">
                   Full name
@@ -105,7 +105,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-primary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
                   placeholder="Your name"
                 />
               </div>
@@ -121,7 +121,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-primary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
                   placeholder="your@email.com"
                 />
               </div>
@@ -137,7 +137,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-primary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
                   placeholder="How can I help you?"
                 />
               </div>
@@ -153,14 +153,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-primary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all resize-none"
                   placeholder="Tell me more..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="group bg-primary/50 py-4 max-w-3xl rounded-full w-[50%] flex  justify-self-center align-center justify-center hover:cursor-pointer"
+                className="group bg-background/50 py-4 max-w-3xl rounded-full w-[50%] flex  justify-self-center align-center justify-center hover:cursor-pointer"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -168,7 +168,7 @@ const Contact = () => {
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-5 h-5 border-2 border-primary-foreground border-t-transparent rounded-full mr-2"
+                      className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full mr-2"
                     />
                     Sending...
                   </>

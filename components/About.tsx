@@ -35,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={ref} className="py-20 md:py-20 bg-accent w-full overflow-x-hidden">
+    <section id="about" ref={ref} className="py-20 md:py-20 bg-primary w-full overflow-x-hidden">
       <div className="px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -44,9 +44,9 @@ const About = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            About <span className="text-primary">me</span>
+            About <span className="text-on-primary">me</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-background mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -58,7 +58,7 @@ const About = () => {
           >
             <div className=" w-full max-w-md mx-auto">
               <motion.div
-                className=" -inset-4 bg-gradient-to-r from-primary to-accent rounded-2xl blur-2xl opacity-20"
+                className=" -inset-4 bg-gradient-to-r from-background to-primary rounded-2xl blur-2xl opacity-20"
                 animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.2, 1, 0.2],
@@ -69,8 +69,8 @@ const About = () => {
                   ease: "easeInOut"
                 }}
               />
-              <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 p-1">
-                <div className="w-full h-full rounded-2xl bg-accent/30 flex items-center justify-center">
+              <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-background/20 to-primary/20 p-1">
+                <div className="w-full h-full rounded-2xl bg-primary/30 flex items-center justify-center">
                   <motion.img
               src={"/images/profile.jpg"}
               alt={"logo"}
@@ -91,10 +91,10 @@ const About = () => {
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
                 {'Full Stack Developer'}
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-foreground leading-relaxed">
                 {`Hi, I’m ${years} years old. I started my software journey on 2018. I’ve contributed to the development of real-world applications used by millions of people. I see scalability not as a challenge, but as an opportunity. A digital product can’t truly be beautiful unless it’s functional and built to compete with the rest of the world.`}
               </p><br/>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg text-foreground leading-relaxed">
                 {`My experience spans multiple areas of the software landscape, helping me stay adaptable in both my technical skills and problem-solving approach.`}
               </p><br/>
               
@@ -102,7 +102,7 @@ const About = () => {
 
             <div className="flex gap-2">
               <div className="space-y-2">
-                <p className="text-lg text-muted-foreground font-medium">{'Coding from'}</p>
+                <p className="text-lg text-foreground font-medium">{'Coding from'}</p>
                 <p className="font-medium">{'🌎 México GMT-7'}</p>
               </div>
             </div>
@@ -135,13 +135,13 @@ const About = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5}}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="p-6 bg-background rounded-xl border border-border hover:border-primary/50 shadow-sm hover:shadow-md"
+                className="p-6 bg-highlight/30 rounded-xl border border-border hover:border-background/50 shadow-sm hover:shadow-md"
               >
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-background/20 rounded-lg flex items-center justify-center mb-4">
                 <p className='text-4xl'>{value.icon}</p>
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-primary">{value.title}</h4>
-                <p className="text-sm text-muted-foreground text-foreground">{value.description}</p>
+                <h4 className="text-lg font-semibold mb-2 text-on-primary">{value.title}</h4>
+                <p className="text-sm text-foreground">{value.description}</p>
               </motion.div>
             );
           })}

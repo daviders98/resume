@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-primary text-foreground min-w-full">
+    <div className="min-h-screen bg-background text-foreground min-w-full">
       <NavBar/>
       <Hero/>
       <About/>

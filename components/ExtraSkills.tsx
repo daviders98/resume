@@ -19,7 +19,7 @@ const ExtraSkills = () => {
       transition={{ duration: 0.6, delay: 0.2 }}
       className="mt-12 text-center"
     >
-      <h3 className="text-xl font-semibold mb-6 text-muted-foreground">
+      <h3 className="text-xl font-semibold mb-6">
         I have also worked with:
       </h3>
       <div className="pl-4 pr-4 flex flex-wrap justify-center gap-3 justify-self-center">
@@ -30,7 +30,7 @@ const ExtraSkills = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.5 + index * 0.1 }}
             whileHover={{ scale: 1.1, y: -2 }}
-            className="px-4 py-2 bg-hover/90 text-primary rounded-lg text-sm font-medium border-1 hover:border-foreground hover:text-foreground transition-colors cursor-default"
+            className="px-4 py-2 bg-secondary/90 text-on-primary rounded-lg text-sm font-medium border-1 hover:border-foreground hover:text-foreground transition-colors cursor-default"
           >
             {tech}
           </motion.span>

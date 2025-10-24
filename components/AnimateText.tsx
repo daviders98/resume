@@ -64,7 +64,7 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' 
               return (
                 <span
                   key={lIndex}
-                  className="font-[Playfair_Display] font-bold text-4xl md:text-5xl lg:text-6xl transition-opacity duration-200 text-primary"
+                  className="font-[Playfair_Display] font-bold text-4xl md:text-5xl lg:text-6xl transition-opacity duration-200 text-on-primary"
                   style={{ opacity: finalOpacity }}
                 >
                   {letter}

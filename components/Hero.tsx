@@ -69,7 +69,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-background via-background to-accent/5 pt-20"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
@@ -79,7 +79,7 @@ const Hero = () => {
   transition={{ duration: 0.6 }}
   className="mb-4"
 >
-  <span className="inline-block px-4 py-2 bg-idk/30 text-foreground rounded-full text-2xl font-medium">
+  <span className="inline-block px-4 py-2 bg-highlight/30 text-foreground rounded-full text-2xl font-medium">
     <motion.span
       className="inline-block"
       animate={{ rotate: [0, 20, -10, 20, 0] }}
@@ -119,7 +119,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto mt-14"
+            className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto mt-14"
           >
             <b>{"Crafting the Best Digital Experiences."}</b>
           </motion.p>
@@ -130,7 +130,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <button onClick={()=>scrollToSection({href:'#portfolio'})} className="group min-w-[200px] border-1 border-foreground rounded-lg p-2 cursor-pointer hover:bg-idk">
+            <button onClick={()=>scrollToSection({href:'#portfolio'})} className="group min-w-[200px] border-1 border-foreground rounded-lg p-2 cursor-pointer hover:bg-highlight hover:text-on-primary">
               Go to Portfolio
               <motion.span
                 className="ml-2"
@@ -140,7 +140,7 @@ const Hero = () => {
                 →
               </motion.span>
             </button>
-            <button onClick={()=>scrollToSection({href:'#contact'})} className="min-w-[200px] bg-foreground text-primary rounded-lg p-2 cursor-pointer hover:bg-muted hover:border-1 hover:border-foreground">
+            <button onClick={()=>scrollToSection({href:'#contact'})} className="min-w-[200px] bg-foreground text-on-primary rounded-lg p-2 cursor-pointer hover:bg-secondary hover:border-1 hover:border-foreground">
               Contact Now
               <FontAwesomeIcon icon={faSquareEnvelope} className="ml-2" />
             </button>
@@ -170,10 +170,10 @@ const Hero = () => {
   <motion.span
     whileHover={{ scale: 1.1 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className="px-4 py-2 bg-accent text-accent-foreground rounded-lg text-sm 
+    className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm 
     font-medium border border-foreground hover:border-foreground hover:border-1 
-    hover:rounded-lg hover:bg-hover cursor-pointer whitespace-nowrap 
-    hover:relative hover:bottom-1 hover:text-primary"
+    hover:rounded-lg hover:bg-secondary cursor-pointer whitespace-nowrap 
+    hover:relative hover:bottom-1 hover:text-on-primary"
   >
     {tech}
   </motion.span>
@@ -197,7 +197,7 @@ const Hero = () => {
                 }}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="hover:text-idk text-foreground "
+              className="hover:text-highlight text-muted"
             >
             <p className="text-lg mb-2">
               Discover more
