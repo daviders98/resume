@@ -1,51 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faEnvelope, faX } from "@fortawesome/free-solid-svg-icons";
 import scrollToSection from "@/utils/scroller";
 
 export default function NavBar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isAboutAtTop, setIsAboutAtTop] = useState(false);
-  const [isExperienceAtTop, setIsExperienceAtTop] = useState(false)
-  const [isPortfolioAtTop, setIsPortfolioAtTop] = useState(false)
-  const aboutRef = useRef<HTMLElement | null>(null);
-  const experienceRef = useRef<HTMLElement | null>(null);
-  const portfolioRef = useRef<HTMLElement | null>(null);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isAtTop,setIsAtTop] = useState(true)
   const getNavItemClasses = () => {
-    if (isPortfolioAtTop) return "text-white hover:text-foreground";
-    if (isExperienceAtTop) return "text-foreground hover:text-idk";
-    if (isAboutAtTop) return "text-white hover:text-foreground";
     return "text-foreground hover:text-idk";
   };
-
-  useEffect(() => {
-    aboutRef.current = document.querySelector("#about");
-    experienceRef.current = document.querySelector('#experience');
-    portfolioRef.current = document.querySelector('#portfolio')
-
-    const sections = [
-  { ref: portfolioRef, setter: setIsPortfolioAtTop },
-  { ref: experienceRef, setter: setIsExperienceAtTop },
-  { ref: aboutRef, setter: setIsAboutAtTop },
-];
-
-const handleScroll = () => {
-  setIsScrolled(window.scrollY > 50);
-
-  sections.forEach(({ ref, setter }) => {
-    if (ref.current) {
-      const top = ref.current.getBoundingClientRect().top;
-      setter(top - 45 <= 0);
-    }
-  });
-};
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const navItems = [
     { name: "Home", href: "#hero" },
@@ -56,26 +21,31 @@ const handleScroll = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsAtTop(window.scrollY === 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-primary/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto sm:px-2 lg:px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
+          
           <motion.a
             href="#hero"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2 mr-2"
+            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-accent cursor-pointer bg-primary/80 rounded-2xl p-2 md:mx-0 ml-4"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -86,7 +56,13 @@ const handleScroll = () => {
             />
             <span>DevGarcía</span>
           </motion.a>
-
+          <motion.button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-foreground"
+            whileTap={{ scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? <FontAwesomeIcon icon={faX} size="2x"/> : <FontAwesomeIcon icon={faBars} size="2xl"/>}
+          </motion.button>
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
               <motion.a
@@ -94,9 +70,12 @@ const handleScroll = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
+                  if(isMobileMenuOpen){
+                    setIsMobileMenuOpen(false)
+                  }
                   scrollToSection({ href: item.href });
                 }}
-                className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${getNavItemClasses()}`}
+                className={`px-2 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold duration-300 ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1 }}
               >
                 {item.name}
@@ -117,16 +96,86 @@ const handleScroll = () => {
                 }
                 target={`${icon == faEnvelope ? '': '__blank'}`}
                 rel="noopener noreferrer"
-                className={`p-2 ${getNavItemClasses()}  transition-colors`}
+                className={`p-1 ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FontAwesomeIcon icon={icon} size="2xl" />
+                <FontAwesomeIcon icon={icon} className="lg:text-4xl sm:text-3xl"/>
               </motion.a>
             ))}
           </div>
+          
         </div>
       </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden"
+          >
+            <nav className="mx-auto px-4 py-4 flex flex-col space-y-2">
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+              e.preventDefault();
+
+              setIsMobileMenuOpen(false);
+
+              setTimeout(() => {
+                scrollToSection({ href: item.href });
+              }, 200);
+            }}
+                  className="px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-accent/50 rounded-lg"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
+              <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border">
+  {[faGithub, faLinkedin, faEnvelope].map((icon, i) => {
+    const isContact = icon === faEnvelope;
+    const href =
+      icon === faGithub
+        ? "https://github.com/daviders98"
+        : icon === faLinkedin
+        ? "https://www.linkedin.com/in/davidagarciahdez/"
+        : "#contact";
+
+    return (
+      <motion.a
+        key={i}
+        href={href}
+        target={isContact ? "_self" : "_blank"}
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          if (isContact) {
+            e.preventDefault();
+            setIsMobileMenuOpen(false);
+            setTimeout(() => scrollToSection({ href }), 200);
+          } else {
+            setIsMobileMenuOpen(false);
+          }
+        }}
+        className={`p-1 ${getNavItemClasses()}`}
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <FontAwesomeIcon icon={icon} className="lg:text-4xl text-3xl" />
+      </motion.a>
+    );
+  })}
+</div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }

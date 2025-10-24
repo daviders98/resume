@@ -8,11 +8,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const TypingIndicator = () => (
-  <div className="flex items-center justify-center gap-1 bg-muted/30 rounded-full px-3 py-2 w-fit shadow-sm">
+  <div className="flex items-center justify-center gap-1 bg-muted/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
     {[0, 0.2, 0.4].map((delay, i) => (
       <motion.span
         key={i}
-        className="w-2 h-2 bg-muted rounded-full"
+        className="w-1 h-1 bg-muted rounded-full md:w-2 md:h-2"
         animate={{ y: [0, -4, 0] }}
         transition={{ repeat: Infinity, duration: 1, ease: "easeInOut", delay }}
       />
@@ -25,7 +25,6 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
   const [showTyping, setShowTyping] = useState(true);
 
   useEffect(() => {
-    console.log(isInView,startDelay)
   if (!isInView) return;
   const typingDuration = 1200;
   const timer = setTimeout(
@@ -36,21 +35,21 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
 }, [isInView, startDelay]);
 
   return (
-    <div className={`flex w-full mb-6 ${isRight ? "justify-end flex-row-reverse mr-12":"justify-start ml-12 "}`} style={{ minHeight: 120 }}>
+    <div className={`flex w-full mb-6 ${isRight ? "justify-self-end flex-row-reverse lg:mr-12 sm:mr-4":"justify-self-start lg:ml-12 sm:ml-4"}`} style={{ minHeight: 120 }}>
       {showTyping && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
-          className={`flex items-center gap-2 ${
+          className={`flex items-start gap-1 ${
             isRight ? "justify-start" : "justify-end"
           } z-10`}
         >
           {isRight ? (
             <>
               <TypingIndicator />
-              <div className="w-16 h-16 relative">
+              <div className="w-12 h-12 relative md:h-16 md:w-16">
                 <Image
                   src="/images/profile.jpg"
                   alt="Me typing"
@@ -62,7 +61,7 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
             </>
           ) : (
             <>
-              <div className="w-16 h-16 relative">
+              <div className="w-12 h-12 relative md:h-16 md:w-16">
                 <Image
                   src="/images/profile.jpg"
                   alt="Me typing"
@@ -148,7 +147,7 @@ const Experience = () => {
 
   return (
     <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary w-full min-h-screen">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
@@ -159,7 +158,7 @@ const Experience = () => {
             Professional <span className="text-idk">Experience</span>
           </h2>
           <div className="w-20 h-1 bg-idk mx-auto rounded-full mb-6" />
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-foreground max-w-2xl mx-auto p-4">
             Let me share with you my journey in the software world [:
           </p>
         </motion.div>
@@ -319,7 +318,7 @@ const Experience = () => {
               pathToLogo: "/images/experience/itesm.png",
             },
           ].map((exp, index) => (
-            <div key={index}>
+            <div key={index} className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 items-center">
                 <ExperienceCard
                   key={exp.id}
                   experience={exp}
@@ -341,7 +340,7 @@ const Experience = () => {
             Education & <span className="text-idk">Certifications</span>
           </h3>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 px-2 mb-4">
             <div className="space-y-4">
               <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <span className="text-3xl">🎓</span>
@@ -521,6 +520,7 @@ const Experience = () => {
                     href={cert.credentialUrl}
                     target="_blank"
                     className="hover:text-idk"
+                    rel="noopener noreferrer"
                   >
                       <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
                         <Image

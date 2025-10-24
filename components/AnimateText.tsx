@@ -9,7 +9,7 @@ interface ScrollWordsTextProps {
 
 const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { margin: '80px' });
+  const isInView = useInView(ref);
   const [progress, setProgress] = useState(0);
 
   const words = text.split(' ');
@@ -24,7 +24,7 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' 
       const rect = ref.current!.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const start = 100;
+      const start = rect.height/3;
       const end = rect.bottom;
       const scrollRange = end - start;
 

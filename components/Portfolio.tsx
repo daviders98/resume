@@ -38,7 +38,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   onMouseEnter={() => setHovered(true)}
   onMouseLeave={() => setHovered(false)}
 >
-        {/* ---------- FRONT ---------- */}
+        {/* ---------- FRONT OF CARD ---------- */}
     {!flipped && <motion.div
   className={`inset-0 rounded-xl bg-background ${!flipped ? "pointer-events-auto": 'pointer-events-none' }`}
 >
@@ -59,7 +59,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     />
   </div>
 
-  {/* Centered title + description on hover */}
   <motion.div
     className="absolute inset-0 flex items-center justify-center text-center p-6"
     initial={{ opacity: 0, y: 6 }}
@@ -112,7 +111,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 </motion.div>
 }
 
-{/* ---------- BACK ---------- */}
+{/* ---------- BACK OF CARD---------- */}
 {<div
   className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/90`}
   style={{
@@ -123,7 +122,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   <h3 className="text-2xl sm:text-3xl font-bold mb-3 drop-shadow-md">{project.title}</h3>
   <p className="text-foreground mb-4 text-sm sm:text-base">{project.longDescription}</p>
 
-  {/* Tech chips */}
   <div className="flex flex-wrap gap-2 mb-4">
     {project.technologies?.map((tech) => (
       <span
@@ -135,7 +133,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     ))}
   </div>
 
-  {/* Highlights */}
   {project.highlights && project.highlights.length > 0 && (
     <ul className="space-y-2 mb-4">
       {project.highlights.map((h, i) => (
@@ -147,7 +144,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     </ul>
   )}
 
-  {/* Buttons */}
   <div className="flex gap-2 mt-auto">
     {project.demoUrl && (
       <button
