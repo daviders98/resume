@@ -67,7 +67,7 @@ const handleScroll = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto sm:px-2 lg:px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           <motion.a
             href="#hero"
@@ -75,7 +75,7 @@ const handleScroll = () => {
               e.preventDefault();
               scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2 mr-2"
+            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2 mr-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -96,7 +96,7 @@ const handleScroll = () => {
                   e.preventDefault();
                   scrollToSection({ href: item.href });
                 }}
-                className={`px-3 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${getNavItemClasses()}`}
+                className={`px-2 lg:px-4 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold transition-colors duration-300 ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1 }}
               >
                 {item.name}
@@ -117,11 +117,11 @@ const handleScroll = () => {
                 }
                 target={`${icon == faEnvelope ? '': '__blank'}`}
                 rel="noopener noreferrer"
-                className={`p-2 ${getNavItemClasses()}  transition-colors`}
+                className={`p-1 ${getNavItemClasses()}  transition-colors`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FontAwesomeIcon icon={icon} size="2xl" />
+                <FontAwesomeIcon icon={icon} className="lg:text-4xl sm:text-3xl"/>
               </motion.a>
             ))}
           </div>

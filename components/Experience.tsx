@@ -36,7 +36,7 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
 }, [isInView, startDelay]);
 
   return (
-    <div className={`flex w-full mb-6 ${isRight ? "justify-end flex-row-reverse ml-12":"justify-start mr-12 "}`} style={{ minHeight: 120 }}>
+    <div className={`flex w-full mb-6 ${isRight ? "justify-end flex-row-reverse lg:ml-12 sm:ml-4":"justify-start lg:mr-12 sm:mr-4"}`} style={{ minHeight: 120 }}>
       {showTyping && (
         <motion.div
           initial={{ opacity: 0 }}
