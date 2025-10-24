@@ -6,7 +6,7 @@ export default function MailModal({ status, onClose }){
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-foreground/40 z-50">
       <motion.div 
-        className="bg-accent p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4"
+        className="bg-primary p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0 }}
@@ -22,14 +22,14 @@ export default function MailModal({ status, onClose }){
         <h3 className="text-xl font-bold">
           {status === 'success' ? 'Message Sent!' : 'Oops, something went wrong!'}
         </h3>
-        <p className="text-muted-foreground text-center max-w-xs">
+        <p className="text-center max-w-xs">
           {status === 'success' 
             ? 'Thanks for reaching out. I will get back to you within 2 business days!' 
             : 'Please try again later.'}
         </p>
 
         <button 
-          className="mt-4 px-6 py-2 bg-primary text-foreground rounded-full hover:scale-105 transition cursor-pointer"
+          className="mt-4 px-6 py-2 bg-background text-foreground rounded-full hover:scale-105 transition cursor-pointer"
           onClick={onClose}
         >
           Close

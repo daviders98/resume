@@ -2,39 +2,24 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Base theme colors */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* Your custom palette */
-  --color-wenge: #584b53;
-  --color-rose-taupe: #9d5c63;
-  --color-lavender-web: #d6e3f8;
-  --color-seashell: #fef5ef;
-  --color-desert-sand: #e4bb97;
-  
-  --eerie-black: #262626ff;
-  --ash-gray: #acbfa4ff;
-  --beige: #e2e8ceff;
-  --orange-wheel: #ff7f11ff;
-  --red: #EA526F;
-  --wine: #792C38;
-  --celestial-blue: #279AF1;
+  /* Base colors */
   --ghost-white: #F5F5F5;
   --smoky-black: #070600;
-  
-  /* Optional: semantic colors */
-  --color-primary: var(--ghost-white);
-  --color-secondary: var(--ash-gray);
-  --color-accent: var(--celestial-blue);
-  --color-muted: var(--red);
-  --foreground: var(--smoky-black);
-  --color-hover: var(--red);
-  --color-idk: #23B5D3;
+  --amaranth: #E42548;
+  --celestial-blue: #279AF1;
+  --aero: #32C2DF;
+  --davys-gray:#4F4B4B;
+
+  /* Semantic colors */
+  --color-background: var(--ghost-white);
+  --color-on-primary: var(--ghost-white);
+  --color-primary: var(--celestial-blue);
+  --color-secondary: var(--amaranth);
+  --color-muted: var(--davys-gray);
+  --color-foreground: var(--smoky-black);
+  --color-highlight: var(--aero);
 
   /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
-/* To-do define final colors */

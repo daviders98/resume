@@ -10,11 +10,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-accent border-t border-border">
+    <footer className="bg-primary border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-4 mb-8">
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
           <div>
-            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center justify-between h-16 md:h-20">
+            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-on-primary to-on-primary/60 bg-clip-text text-transparent flex items-center justify-between h-16 md:h-20">
             
               <motion.a
                 href="#hero"
@@ -22,7 +22,7 @@ const Footer = () => {
                     e.preventDefault();
                     scrollToSection({ href: "#hero" });
                 }}
-                className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-accent  transition-opacity cursor-pointer hover:text-idk bg-primary rounded-2xl p-2 mr-2"
+                className="flex items-center gap-x-1 text-xl md:text-2xl font-bold text-primary  transition-opacity cursor-pointer hover:text-highlight bg-background rounded-2xl p-2 mr-2"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 >
@@ -34,7 +34,7 @@ const Footer = () => {
                 <span>DevGarcía</span>
                 </motion.a>
             </h3>
-            <p className="text-sm text-muted-foreground mb-4 font-semibold">
+            <p className="text-sm mb-4 font-semibold">
               Crafting the Best Digital Experiences.
             </p>
           </div>
@@ -46,7 +46,7 @@ const Footer = () => {
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="text-sm text-foreground hover:text-primary"
+                    className="text-sm text-foreground hover:text-on-primary"
                   >
                     {item}
                   </a>
@@ -57,8 +57,8 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground flex items-center gap-1">
-            © {new Date().getFullYear()} {'Dev García'}. Powered by{' '}
+          <p className="text-sm flex items-center gap-1 text-muted">
+            © {new Date().getFullYear()} {'DevGarcía'}. Powered by{' '}
             <Image
                       src={'/images/technologies/nextjs.png'}
                       alt={'NextJS Logo'}
@@ -79,7 +79,7 @@ const Footer = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center hover:bg-primary transition-colors cursor-pointer"
+                className="w-10 h-10 bg-background text-foreground rounded-full flex items-center justify-center hover:bg-background cursor-pointer"
                 >
                 <FontAwesomeIcon icon={faChevronUp} size="xl" />
                 </motion.button>

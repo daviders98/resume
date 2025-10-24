@@ -8,11 +8,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const TypingIndicator = () => (
-  <div className="flex items-center justify-center gap-1 bg-muted/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
+  <div className="flex items-center justify-center gap-1 bg-secondary/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
     {[0, 0.2, 0.4].map((delay, i) => (
       <motion.span
         key={i}
-        className="w-1 h-1 bg-muted rounded-full md:w-2 md:h-2"
+        className="w-1 h-1 bg-secondary rounded-full md:w-2 md:h-2"
         animate={{ y: [0, -4, 0] }}
         transition={{ repeat: Infinity, duration: 1, ease: "easeInOut", delay }}
       />
@@ -87,12 +87,12 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
     ease: "easeInOut",
   }}
   className={`hover:scale-102 relative max-w-[80%] rounded-2xl p-4 md:p-6 shadow-md border border-border ${
-    isRight ? "bg-accent text-primary" : "bg-primary text-foreground"
+    isRight ? "bg-primary text-on-primary" : "bg-background text-foreground"
   }`}
 >
 
         <div className="mb-3">
-            <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
+            <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-background">
               {" "}
               <Image
                 src={experience.pathToLogo}
@@ -107,18 +107,18 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
           </h3>
           <h4
             className={`text-sm ${
-              isRight ? "text-primary" : "text-muted"
+              isRight ? "text-on-primary" : "text-secondary"
             } font-semibold`}
           >
             {experience.company}
           </h4>
-          <div className="flex flex-wrap gap-3 text-base text-muted-foreground mt-2">
+          <div className="flex flex-wrap gap-3 text-base mt-2">
             <span>📆 {experience.period}</span>
             <span>📍 {experience.location}</span>
           </div>
         </div>
 
-        <div className="text-base leading-relaxed text-muted-foreground space-y-2">
+        <div className="text-base leading-relaxed space-y-2">
           {experience.description.map((line, i) => (
             <li key={i}>{line}</li>
           ))}
@@ -129,7 +129,7 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
             <motion.span
               key={tech}
               whileHover={{ scale: 1.1 }}
-              className="px-3 py-1 bg-foreground text-primary rounded-full text-xs font-medium"
+              className="px-3 py-1 bg-foreground text-on-primary rounded-full text-xs font-medium"
             >
               {tech}
             </motion.span>
@@ -146,7 +146,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary w-full min-h-screen">
+    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-background w-full min-h-screen">
       <div className="sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -155,10 +155,10 @@ const Experience = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Professional <span className="text-idk">Experience</span>
+            Professional <span className="text-highlight">Experience</span>
           </h2>
-          <div className="w-20 h-1 bg-idk mx-auto rounded-full mb-6" />
-          <p className="text-lg text-foreground max-w-2xl mx-auto p-4">
+          <div className="w-20 h-1 bg-highlight mx-auto rounded-full mb-6" />
+          <p className="text-lg text-muted max-w-2xl mx-auto p-4">
             Let me share with you my journey in the software world [:
           </p>
         </motion.div>
@@ -337,7 +337,7 @@ const Experience = () => {
           className="mt-4 max-w-4xl mx-auto"
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            Education & <span className="text-idk">Certifications</span>
+            Education & <span className="text-highlight">Certifications</span>
           </h3>
 
           <div className="grid md:grid-cols-2 gap-6 px-2 mb-4">
@@ -418,7 +418,7 @@ const Experience = () => {
                 <motion.div
                   key={edu.id}
                   whileHover={{ y: -2 }}
-                  className="p-4 bg-background rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
                   style={{ minHeight: 100 }}
                 >
                   <div className="w-16 h-16 relative rounded-full border border-border mb-1">
@@ -431,10 +431,10 @@ const Experience = () => {
                     />
                   </div>
                   <h5 className="font-semibold mb-1">{edu.degree}</h5>
-                  <p className="text-sm text-accent mb-1">{edu.institution}</p>
-                  <p className="text-xs text-muted mb-2">{edu.period}</p>
+                  <p className="text-sm text-primary mb-1">{edu.institution}</p>
+                  <p className="text-xs text-secondary mb-2">{edu.period}</p>
                   {edu.description.map((desc, index) => (
-                    <li key={index} className="text-sm text-muted-foreground">
+                    <li key={index} className="text-sm text-muted">
                       {desc}
                     </li>
                   ))}
@@ -514,15 +514,15 @@ const Experience = () => {
                 <motion.div
                   key={cert.id}
                   whileHover={{ y: -2 }}
-                  className="p-4 bg-background rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
                 >
                   <a
                     href={cert.credentialUrl}
                     target="_blank"
-                    className="hover:text-idk"
+                    className="hover:text-highlight"
                     rel="noopener noreferrer"
                   >
-                      <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
+                      <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-background">
                         <Image
                           src={cert.pathToLogo}
                           alt={`Issuer Company logo ${cert.id}`}
@@ -532,8 +532,8 @@ const Experience = () => {
                         />
                     </div>
                     <h5 className="font-semibold mb-1">{cert.name}</h5>
-                    <p className="text-sm text-accent mb-1">{cert.issuer}</p>
-                    <p className="text-xs text-muted">{cert.date}</p>
+                    <p className="text-sm text-primary mb-1">{cert.issuer}</p>
+                    <p className="text-xs text-secondary">{cert.date}</p>
                   </a>
                 </motion.div>
               ))}
@@ -541,12 +541,12 @@ const Experience = () => {
                 href={
                   "https://www.linkedin.com/in/davidagarciahdez/details/certifications/"
                 }
-                className={"hover:text-idk"}
+                className={"hover:text-highlight"}
                 target="_blank"
               >
                 <motion.div
                   whileHover={{ y: -2 }}
-                  className="p-4 bg-background rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
                 >
                   <h5 className="font-semibold mb-1">
                     For more certifications visit

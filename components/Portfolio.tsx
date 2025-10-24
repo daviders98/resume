@@ -40,15 +40,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 >
         {/* ---------- FRONT OF CARD ---------- */}
     {!flipped && <motion.div
-  className={`inset-0 rounded-xl bg-background ${!flipped ? "pointer-events-auto": 'pointer-events-none' }`}
+  className={`inset-0 rounded-xl ${!flipped ? "pointer-events-auto": 'pointer-events-none' }`}
 >
   <div className="absolute inset-0">
-    <Image
-      src={project.image}
-      alt={project.title}
-      fill
-      className="object-cover w-full h-full"
-    />
+    <motion.div
+  className="absolute inset-0 overflow-hidden rounded-xl"
+  animate={{ scale: hovered ? 1.05 : 1 }}
+  transition={{ duration: 0.35, ease: 'easeOut' }}
+>
+  <Image
+    src={project.image}
+    alt={project.title}
+    fill
+    className="object-cover w-full h-full"
+  />
+</motion.div>
     <motion.div
       className="absolute inset-0"
       animate={{
@@ -65,17 +71,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
     transition={{ duration: 0.35, ease: 'easeOut' }}
   >
-    <div className='bg-primary/20 rounded-2xl p-8'>
-      <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-primary drop-shadow-lg">
+    <div className='bg-background/20 rounded-2xl p-8'>
+      <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-on-primary drop-shadow-lg">
         {project.title}
       </h3>
-      <p className="text-primary/90 max-w-lg mx-auto text-sm sm:text-base">
+      <p className="text-on-primary/90 max-w-lg mx-auto text-sm sm:text-base">
         {project.description}
       </p>
       <div className="flex gap-2 mt-auto pt-4">
     {project.demoUrl && (
       <button
-        className="flex-1 hover:text-primary cursor-pointer "
+        className="flex-1 hover:text-on-primary cursor-pointer "
         onClick={(e) => {
           e.stopPropagation();
           window.open(project.demoUrl, '_blank');
@@ -86,7 +92,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     )}
     {project.githubUrl && (
       <button
-        className="flex-1 hover:text-primary cursor-pointer"
+        className="flex-1 hover:text-on-primary cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           window.open(project.githubUrl, '_blank');
@@ -96,7 +102,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </button>
     )}
     <button
-      className="flex-1 hover:text-primary cursor-pointer"
+      className="flex-1 hover:text-on-primary cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
         setFlipped(true);
@@ -113,7 +119,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
 {/* ---------- BACK OF CARD---------- */}
 {<div
-  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-primary/90`}
+  className={`${flipped?'opacity-100 pointer-events-auto':'opacity-0 pointer-events-none'} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-background/90`}
   style={{
     transform: 'rotateY(180deg)',
     boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
@@ -126,7 +132,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     {project.technologies?.map((tech) => (
       <span
         key={tech}
-        className="px-3 py-1 bg-idk/50 text-foreground rounded-full text-xs font-medium backdrop-blur-sm shadow-sm"
+        className="px-3 py-1 bg-highlight/50 text-foreground rounded-full text-xs font-medium backdrop-blur-sm shadow-sm"
       >
         {tech}
       </span>
@@ -136,8 +142,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   {project.highlights && project.highlights.length > 0 && (
     <ul className="space-y-2 mb-4">
       {project.highlights.map((h, i) => (
-        <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-          <FontAwesomeIcon icon={faCircleChevronRight} className="mt-1 text-idk" />
+        <li key={i} className="flex items-start gap-2 text-sm text-muted">
+          <FontAwesomeIcon icon={faCircleChevronRight} className="mt-1 text-highlight" />
           <span>{h}</span>
         </li>
       ))}
@@ -147,7 +153,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   <div className="flex gap-2 mt-auto">
     {project.demoUrl && (
       <button
-        className="flex-1 hover:bg-idk rounded py-2 transition cursor-pointer"
+        className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           window.open(project.demoUrl, '_blank');
@@ -158,7 +164,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     )}
     {project.githubUrl && (
       <button
-        className="flex-1 hover:bg-idk rounded py-2 transition cursor-pointer"
+        className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           window.open(project.githubUrl, '_blank');
@@ -168,7 +174,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </button>
     )}
     <button
-      className="flex-1 hover:bg-idk rounded py-2 transition cursor-pointer"
+      className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
         setFlipped(false);
@@ -193,7 +199,7 @@ const Portfolio: React.FC = () => {
     title: 'E-Commerce Platform',
     description: 'Full-featured e-commerce platform with shopping cart',
     longDescription:
-      'A comprehensive e-commerce solution that allows businesses to manage products, orders, and customers efficiently... lorem ipsum long text that shouldn’t really affect',
+      'A comprehensive e-commerce solution that allows businesses to manage products, orders, and customers efficiently...',
     image:
       'https://images.unsplash.com/photo-1557821552-17105176677c?w=1600&h=900&fit=crop',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Redux', 'Tailwind CSS'],
@@ -301,14 +307,14 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <section id="portfolio" className="py-20 bg-muted">
+    <section id="portfolio" className="py-20 bg-secondary">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            My <span className="text-primary">Portfolio</span>
+            My <span className="text-on-primary">Portfolio</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
+          <p className="text-lg text-foreground max-w-2xl mx-auto">
             The following projects show what I am capable of.
           </p>
         </div>
