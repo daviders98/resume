@@ -122,7 +122,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-primary/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
-                  placeholder="tu@email.com"
+                  placeholder="your@email.com"
                 />
               </div>
 

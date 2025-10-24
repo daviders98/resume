@@ -4,8 +4,8 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
 interface ScrambleTextProps {
   text: string;
-  speed?: number;        // scramble frame speed
-  onComplete?: () => void; // called when word finishes
+  speed?: number;
+  onComplete?: () => void;
 }
 
 export default function ScrambleText({

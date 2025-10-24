@@ -34,7 +34,7 @@ const Footer = () => {
                 <span>DevGarcía</span>
                 </motion.a>
             </h3>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="text-sm text-muted-foreground mb-4 font-semibold">
               Crafting the Best Digital Experiences.
             </p>
           </div>
@@ -45,8 +45,8 @@ const Footer = () => {
               {['About', 'Skills', 'Experience','Portfolio','Contact'].map((item) => (
                 <li key={item}>
                   <a
-                    href={`#${item.toLowerCase().replace(' ', '')}`}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                    href={`#${item.toLowerCase()}`}
+                    className="text-sm text-foreground hover:text-primary"
                   >
                     {item}
                   </a>
