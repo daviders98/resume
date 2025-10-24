@@ -20,27 +20,29 @@ const TypingIndicator = () => (
   </div>
 );
 
-const ExperienceCard = ({ experience, index, startDelay }) => {
+const ExperienceCard = ({ experience, index, startDelay,isInView }) => {
   const isRight = index % 2 === 0;
   const [showTyping, setShowTyping] = useState(true);
 
   useEffect(() => {
-    const typingDuration = 1200; // duration of typing indicator in ms
-    const timer = setTimeout(
-      () => setShowTyping(false),
-      startDelay * 1000 + typingDuration
-    );
-    return () => clearTimeout(timer);
-  }, [startDelay]);
+    console.log(isInView,startDelay)
+  if (!isInView) return;
+  const typingDuration = 1200;
+  const timer = setTimeout(
+    () => setShowTyping(false),
+    startDelay * 1000 + typingDuration
+  );
+  return () => clearTimeout(timer);
+}, [isInView, startDelay]);
 
   return (
-    <div className={`flex w-full mb-6 ${isRight ? "justify-end":"justify-start"}`} style={{ minHeight: 120 }}>
+    <div className={`flex w-full mb-6 ${isRight ? "justify-end flex-row-reverse mr-12":"justify-start ml-12 "}`} style={{ minHeight: 120 }}>
       {showTyping && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.4 }}
           className={`flex items-center gap-2 ${
             isRight ? "justify-start" : "justify-end"
           } z-10`}
@@ -74,17 +76,22 @@ const ExperienceCard = ({ experience, index, startDelay }) => {
           )}
         </motion.div>
       )}
-      {!showTyping && 
+      { 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`hover:scale-102 relative max-w-[80%] rounded-2xl p-4 md:p-6 shadow-md border border-border ${
-          isRight
-            ? "bg-accent text-primary rounded-tr-none"
-            : "bg-primary text-foreground rounded-tl-none"
-        }`}
-      >
+  initial={{ y: 20, opacity: 0 }}
+  animate={{
+    y: 0,
+    opacity: isInView && !showTyping ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.6,
+    ease: "easeInOut",
+  }}
+  className={`hover:scale-102 relative max-w-[80%] rounded-2xl p-4 md:p-6 shadow-md border border-border ${
+    isRight ? "bg-accent text-primary" : "bg-primary text-foreground"
+  }`}
+>
+
         <div className="mb-3">
             <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-primary">
               {" "}
@@ -140,7 +147,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary min-h-800 w-full">
+    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-primary w-full min-h-screen">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -313,14 +320,13 @@ const Experience = () => {
             },
           ].map((exp, index) => (
             <div key={index}>
-              {isInView && (
                 <ExperienceCard
                   key={exp.id}
                   experience={exp}
                   index={index}
-                  startDelay={isInView ? index * 1.5 : 0} // stagger animation
+                  startDelay={isInView ? index * 1.5 : 0}
+                  isInView={isInView}
                 />
-              )}
             </div>
           ))}
         </div>
@@ -414,7 +420,7 @@ const Experience = () => {
                   key={edu.id}
                   whileHover={{ y: -2 }}
                   className="p-4 bg-background rounded-lg border border-border hover:border-foreground/20"
-                  style={{ minHeight: 100 }} // reserve space while content animates
+                  style={{ minHeight: 100 }}
                 >
                   <div className="w-16 h-16 relative rounded-full border border-border mb-1">
                     <Image
