@@ -78,16 +78,7 @@ jobs:
 
       - name: Squash and merge PR
         if: env.PR_NUMBER != ''
-        uses: peter-evans/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            await github.rest.pulls.merge({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: parseInt(process.env.PR_NUMBER),
-              merge_method: "squash"
-            });
-            console.log(`PR #${process.env.PR_NUMBER} squashed and merged!`);
+        run: |
+          gh pr merge ${{ env.PR_NUMBER }} --squash --delete-branch --admin
         env:
-          PR_NUMBER: ${{ env.PR_NUMBER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
