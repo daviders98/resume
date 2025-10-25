@@ -148,7 +148,7 @@ const Experience = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" ref={ref} className="pt-12 md:py-20 bg-background w-full min-h-screen">
+    <section id="experience" ref={ref} className="py-20 bg-background w-full min-h-screen">
       <div className="sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
