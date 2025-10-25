@@ -1,1 +1,0 @@
-export type ModalStatus = 'success' | 'error' | null;

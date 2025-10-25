@@ -7,44 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ScrambleText from "../components/ScrambleText";
 import { useEffect, useRef, useState } from "react";
 import scrollToSection from "@/utils/scroller";
+import { heroData } from "@/data/hero";
 
 const Hero = () => {
-  const words = [
-    "FULL STACK DEVELOPER",
-    "MENTOR",
-    "INNOVATOR",
-    "TEAM LEADER",
-    "PROBLEM SOLVER",
-    "RESULT DRIVEN",
-    "UX/UI Connoisseur",
-    "API CRAFTSMAN",
-    "TECHNICAL CONSULTANT",
-    "AUTOMATION ADVOCATE"
-  ];
   const [index, setIndex] = useState(0);
-  const techs = [
-    "React",
-    "NodeJS",
-    "TypeScript",
-    "PostgreSQL",
-    "AWS",
-    "Docker",
-    "Heroku",
-    "Azure",
-    "MySQL",
-    "Firebase",
-    "React Native",
-    "Android",
-    "iOS",
-    "NextJS",
-    "Flexbox",
-    "MongoDB",
-    "Python",
-    "Git",
-    "GitHub",
-    "GraphQL",
-    "CI/CD"
-  ];
   const rowRef = useRef<HTMLDivElement>(null);
   const [rowWidth, setRowWidth] = useState(1);
 
@@ -62,7 +28,7 @@ const Hero = () => {
 
   const handleNextWord = () => {
     setTimeout(() => {
-      setIndex((prev) => (prev + 1) % words.length);
+      setIndex((prev) => (prev + 1) % heroData.words.length);
     }, 1000);
   };
 
@@ -109,7 +75,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <ScrambleText
-              text={words[index]}
+              text={heroData.words[index]}
               speed={80}
               onComplete={handleNextWord}
             />
@@ -165,7 +131,7 @@ const Hero = () => {
                   },
                 }}
               >
-                {techs.concat(techs).map((tech, index) => (
+                {heroData.techs.concat(heroData.techs).map((tech, index) => (
                   <div key={index} className="inline-block">
   <motion.span
     whileHover={{ scale: 1.1 }}
