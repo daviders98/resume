@@ -1,22 +1,29 @@
 name: "Prettier Auto-Format"
+
 permissions:
   contents: write
   pull-requests: write
-  
+
 on:
-  schedule:
-    - cron: "0 0 * * 0"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - develop
 
 jobs:
   format:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        branch: [main, develop] # 👈 iterate over both branches
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: ${{ matrix.branch }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -24,61 +31,55 @@ jobs:
           node-version: "22.15.0"
 
       - name: Install dependencies
-        run: npm install
-      
+        run: npm ci
+
       - name: Configure git
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-      
+
       - name: Fetch all branches
         run: git fetch --all
 
-      - name: Update local main branch
-        run: git checkout main && git pull origin main
+      - name: Pull latest
+        run: git pull origin ${{ matrix.branch }}
 
       - name: Generate timestamp
         id: vars
         run: echo "BRANCH_SUFFIX=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
       - name: Create and switch to new branch
-        run: |
-          git checkout -b auto/format-${{ env.BRANCH_SUFFIX }}
-          
+        run: git checkout -b auto/format-${{ matrix.branch }}-${{ env.BRANCH_SUFFIX }}
+
       - name: Auto-fix formatting
-        run: |
-          npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
-      
+        run: npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
+
       - name: Stage changes
         run: |
-          git add . -- :/ ':!package-lock.json'
-          git reset package-lock.json
-      
+          git add . -- ':!package-lock.json'
+
       - name: Commit changes
         run: |
           git commit -m "chore: auto-format code with Prettier" || echo "No changes to commit"
 
       - name: Push branch
-        run: |
-          git push origin auto/format-${{ env.BRANCH_SUFFIX }}
+        run: git push origin auto/format-${{ matrix.branch }}-${{ env.BRANCH_SUFFIX }}
 
       - name: Create Pull Request
         id: create_pr
         run: |
           PR_URL=$(gh pr create \
-            --title "chore: auto-format code with Prettier" \
-            --body "This PR contains automatic code formatting changes made by Prettier." \
-            --head auto/format-${{ env.BRANCH_SUFFIX }} \
-            --base main)
-          echo "PR_NUMBER=$(basename $PR_URL)" >> $GITHUB_ENV
+            --title "chore: auto-format (${{ matrix.branch }})" \
+            --body "Automatic code formatting via Prettier for ${{ matrix.branch }}." \
+            --head auto/format-${{ matrix.branch }}-${{ env.BRANCH_SUFFIX }} \
+            --base ${{ matrix.branch }})
+          echo "PR_URL=$PR_URL" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Squash and merge PR
-        if: env.PR_NUMBER != ''
+        if: env.PR_URL != ''
         run: |
-          gh pr merge $PR_NUMBER --squash --delete-branch
+          gh pr merge "$PR_URL" --squash --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ env.PR_NUMBER }}
-
