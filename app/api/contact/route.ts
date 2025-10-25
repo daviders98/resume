@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import sanitizeHtml from "sanitize-html";
 
 const rateLimitMap = new Map<string, number[]>();
 
@@ -22,9 +23,7 @@ function rateLimit(ip: string): boolean {
 }
 
 export async function POST(req: Request) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0] ||
-    "unknown";
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
 
   if (!rateLimit(ip)) {
     return NextResponse.json(
@@ -36,11 +35,24 @@ export async function POST(req: Request) {
   const { name, email, subject, message } = await req.json();
 
   if (!name || !email || !message) {
-    return NextResponse.json(
-      { error: "Missing fields" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
+  const safeName = sanitizeHtml(name, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeEmail = sanitizeHtml(email, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeSubject = sanitizeHtml(subject, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeMessage = sanitizeHtml(message, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -52,11 +64,11 @@ export async function POST(req: Request) {
 
   try {
     await transporter.sendMail({
-      from: email,
+      from: safeEmail,
       to: process.env.EMAIL_USER,
-      subject: subject || `New message from ${name}`,
-      text: message,
-      html: `<p>${message}</p><p>From: ${name} (${email})</p>`,
+      subject: safeSubject || `New message from ${safeName}`,
+      text: safeMessage,
+      html: `<p>${safeMessage}</p><p>From: ${safeName} (${safeEmail})</p>`,
     });
 
     return NextResponse.json({ success: true });
