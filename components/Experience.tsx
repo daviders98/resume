@@ -1,4 +1,5 @@
 import { certificationHistory, certificationsEnd, educationHistory, ExperienceCardProps, experienceExtra, experienceHistory, ExperienceInfo } from "@/data/experience";
+import { Links } from "@/data/links";
 import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
@@ -52,7 +53,7 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }:ExperienceCar
               <TypingIndicator />
               <div className="w-12 h-12 relative md:h-16 md:w-16">
                 <Image
-                  src="/images/profile.jpg"
+                  src={Links.profile}
                   alt="Me typing"
                   fill
                   className="rounded-full object-cover border border-border"
@@ -64,7 +65,7 @@ const ExperienceCard = ({ experience, index, startDelay,isInView }:ExperienceCar
             <>
               <div className="w-12 h-12 relative md:h-16 md:w-16">
                 <Image
-                  src="/images/profile.jpg"
+                  src={Links.profile}
                   alt="Me typing"
                   fill
                   className="rounded-full object-cover border border-border"

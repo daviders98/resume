@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import moment from 'moment';
 import ScrollLettersText from './AnimateText';
 import { myData, traitsInfo } from '@/data/about';
+import { Links } from '@/data/links';
 
 const About = () => {
   const ref = useRef(null);
@@ -50,7 +51,7 @@ const About = () => {
               <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-background/20 to-primary/20 p-1">
                 <div className="w-full h-full rounded-2xl bg-primary/30 flex items-center justify-center">
                   <motion.img
-              src={"/images/profile.jpg"}
+              src={Links.profile}
               alt={"logo"}
               className="w-full h-full object-cover rounded-2xl"
             />

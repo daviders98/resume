@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import scrollToSection from '@/utils/scroller';
 import Image from 'next/image';
+import { Links } from '@/data/links';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -27,7 +28,7 @@ const Footer = () => {
                 whileTap={{ scale: 0.95 }}
                 >
                 <motion.img
-                    src={"/images/logo.png"}
+                    src={Links.logo}
                     alt={"logo"}
                     style={{ maxHeight: 48, width: 48 }}
                 />
@@ -60,7 +61,7 @@ const Footer = () => {
           <p className="text-sm flex items-center gap-1 text-muted">
             © {new Date().getFullYear()} {'DevGarcía'}. Powered by{' '}
             <Image
-                      src={'/images/technologies/nextjs.png'}
+                      src={Links.nextjsLogo}
                       alt={'NextJS Logo'}
                       width={24}
                       height={24}
