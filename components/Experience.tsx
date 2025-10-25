@@ -1,11 +1,17 @@
+import { useLanguage } from "@/context/LanguageContext";
 import {
   certificationHistory,
   certificationsEnd,
+  educationAndEndingTitle,
+  educationAndStartingTitle,
   educationHistory,
+  educationTile,
   ExperienceCardProps,
   experienceExtra,
   experienceHistory,
   ExperienceInfo,
+  experienceTitleEnd,
+  experienceTitleStart,
 } from "@/data/experience";
 import { Links } from "@/data/links";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -161,6 +167,7 @@ const ExperienceCard = ({
 const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const {language} = useLanguage();
 
   return (
     <section
@@ -176,16 +183,16 @@ const Experience = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Professional <span className="text-highlight">Experience</span>
+            {experienceTitleStart[language]}<span className="text-highlight">{experienceTitleEnd[language]}</span>
           </h2>
           <div className="w-20 h-1 bg-highlight mx-auto rounded-full mb-6" />
           <p className="text-lg text-muted max-w-2xl mx-auto p-4">
-            {experienceExtra}
+            {experienceExtra[language]}
           </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto items-center">
-          {experienceHistory.map((exp: ExperienceInfo, index: number) => (
+          {experienceHistory[language].map((exp: ExperienceInfo, index: number) => (
             <div
               key={index}
               className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 items-center"
@@ -208,16 +215,16 @@ const Experience = () => {
           className="mt-4 max-w-4xl mx-auto"
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            Education & <span className="text-highlight">Certifications</span>
+            {educationAndStartingTitle[language]}<span className="text-highlight">{educationAndEndingTitle[language]}</span>
           </h3>
 
           <div className="grid md:grid-cols-2 gap-6 px-2 mb-4">
             <div className="space-y-4">
               <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <span className="text-3xl">🎓</span>
-                Education
+                {educationTile[language]}
               </h4>
-              {educationHistory.map((edu) => (
+              {educationHistory[language].map((edu) => (
                 <motion.div
                   key={edu.id}
                   whileHover={{ y: -2 }}
@@ -247,9 +254,9 @@ const Experience = () => {
             <div className="space-y-4">
               <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <span className="text-3xl">📜</span>
-                Certifications
+                {educationAndEndingTitle[language]}
               </h4>
-              {certificationHistory.map((cert) => (
+              {certificationHistory[language].map((cert) => (
                 <motion.div
                   key={cert.id}
                   whileHover={{ y: -2 }}
@@ -287,7 +294,7 @@ const Experience = () => {
                   whileHover={{ y: -2 }}
                   className="p-4 rounded-lg border border-border hover:border-foreground/20"
                 >
-                  <h5 className="font-semibold mb-1">{certificationsEnd}</h5>
+                  <h5 className="font-semibold mb-1">{certificationsEnd[language]}</h5>
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                 </motion.div>
               </a>

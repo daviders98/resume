@@ -1,3 +1,5 @@
+import { Language } from "@/context/LanguageContext";
+
 const github = "https://github.com/daviders98";
 const linkedin = "https://www.linkedin.com/in/davidagarciahdez/";
 const logo = "/images/logo.png";
@@ -23,11 +25,29 @@ export interface NavItem {
   href: string;
 }
 
-export const navItems: NavItem[] = [
-  { name: "Home", href: "#hero" },
-  { name: "About me", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Experience", href: "#experience" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Contact", href: "#contact" },
-];
+export const navItems: Record<Language, NavItem[]> = {
+  en: [
+    { name: "Home", href: "#hero" },
+    { name: "About me", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Contact", href: "#contact" },
+  ],
+  es: [
+    { name: "Inicio", href: "#hero" },
+    { name: "Bio", href: "#about" },
+    { name: "Habilidades", href: "#skills" },
+    { name: "Experiencia", href: "#experience" },
+    { name: "Portafolio", href: "#portfolio" },
+    { name: "Contacto", href: "#contact" },
+  ],
+  zh: [
+    { name: "首页", href: "#hero" },
+    { name: "关于我", href: "#about" },
+    { name: "技能", href: "#skills" },
+    { name: "经历", href: "#experience" },
+    { name: "作品集", href: "#portfolio" },
+    { name: "联系", href: "#contact" },
+  ],
+};

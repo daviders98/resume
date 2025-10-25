@@ -8,6 +8,8 @@ import Experience from "@/components/Experience";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import LanguagePicker from "@/components/LanguagePicker";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 function App() {
   useEffect(() => {
@@ -15,7 +17,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground min-w-full">
+    <LanguageProvider>    <div className="min-h-screen bg-background text-foreground min-w-full">
       <NavBar />
       <Hero />
       <About />
@@ -24,7 +26,10 @@ function App() {
       <Portfolio />
       <Contact />
       <Footer />
-    </div>
+      <LanguagePicker/>
+      </div>
+      </LanguageProvider>
+    
   );
 }
 

@@ -1,12 +1,22 @@
+import { Language } from "@/context/LanguageContext";
+
 export interface SkillData {
   name: string;
   pathToLogo: string;
 }
+export type CategoryTitle = "Front-end" | "Back-end" | "Database" | "Tools";
 export interface CategoryData {
+  title: CategoryTitle;
+  skills: SkillData[];
+  icon: string;
+}
+
+export interface SkillCategoryProps {
   title: string;
   skills: SkillData[];
   icon: string;
 }
+
 export const categories: CategoryData[] = [
   {
     title: "Front-end",
@@ -68,5 +78,63 @@ export const categories: CategoryData[] = [
     icon: "🛠️",
   },
 ];
-export const skillsExtra =
-  "Building web and mobile apps, developing AI solutions, and designing seamless UX/UI experiences.";
+
+export const skillsTitles: Record<
+  Language,
+  Record<CategoryTitle, string>
+> = {
+  en: {
+    'Front-end': "Front-end",
+    'Back-end': "Back-end",
+    'Database': "Database",
+    'Tools': "Tools",
+  },
+  es: {
+    'Front-end': "Front-end",
+    'Back-end': "Back-end",
+    'Database': "Base de Datos",
+    'Tools': "Herramientas",
+  },
+  zh: {
+    'Front-end': "前端",
+    'Back-end': "后端",
+    'Database': "数据库",
+    'Tools': "工具",
+  },
+}
+
+export const skillsExtra = {
+  en: "Building web and mobile apps, developing AI solutions, and designing seamless UX/UI experiences",
+  es: "Construyendo aplicaciones web y móviles, desarrollando soluciones de IA y diseñando experiencias UX/UI fluidas.",
+  zh: "我构建网络和移动应用程序，开发人工智能解决方案，并设计无缝的用户体验/用户界面。",
+};
+
+export const technicalSkillsStart = {
+  en: "Technical",
+  es: "Habilidades",
+  zh: "技术",
+}
+export const technicalSkillsEnd = {
+  en: "Skills",
+  es: "Técnicas",
+  zh: "技能",
+}
+
+export const extraSkillsText = {
+  en: "I have also worked with:",
+  es: "También he trabajado con:",
+  zh: "我还曾与以下合作过：",
+}
+
+export const extraSkills = [
+    "Rest APIs",
+    "Microservices",
+    "Agile/Scrum",
+    "TDD",
+    "CI/CD",
+    "Responsive Design",
+    "Performance Optimization",
+    "ORMs",
+    "Load Testing",
+    "E2E Testing",
+];
