@@ -1,7 +1,9 @@
-import { MailModalProps } from "@/data/contact";
+import { useLanguage } from "@/context/LanguageContext";
+import { closeText, MailModalProps, messageErrorExtraText, messageErrorText, messageSentExtraText, messageSentText } from "@/data/contact";
 import { motion } from "framer-motion";
 
 export default function MailModal({ status, onClose }: MailModalProps) {
+  const {language} = useLanguage();
   if (!status) return null;
 
   return (
@@ -22,20 +24,20 @@ export default function MailModal({ status, onClose }: MailModalProps) {
 
         <h3 className="text-xl font-bold">
           {status === "success"
-            ? "Message Sent!"
-            : "Oops, something went wrong!"}
+            ? messageSentText[language]
+            : messageErrorText[language]}
         </h3>
         <p className="text-center max-w-xs">
           {status === "success"
-            ? "Thanks for reaching out. I will get back to you within 2 business days!"
-            : "Please try again later."}
+            ? messageSentExtraText[language]
+            : messageErrorExtraText[language]}
         </p>
 
         <button
           className="mt-4 px-6 py-2 bg-background text-foreground rounded-full hover:scale-105 transition cursor-pointer"
           onClick={onClose}
         >
-          Close
+          {closeText[language]}
         </button>
       </motion.div>
     </div>
