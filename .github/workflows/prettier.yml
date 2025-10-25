@@ -22,19 +22,36 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Configure git
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Update local main branch
+        run: git checkout main && git pull origin main
           
       - name: Auto-fix formatting
         run: |
           npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: auto-format with Prettier"
-            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-            git push origin main
-          else
-            echo "No changes to commit"
-          fi
+      
+      - name: Stage changes
+        run: |
+          git add . -- :/ ':!package-lock.json'
+          git reset package-lock.json
+      
+      - name: Commit changes
+        run: |
+          git commit -m "chore: auto-format code with Prettier" || echo "No changes to commit"
+          git branch
+          git rev-parse --abbrev-ref HEAD
 
+      - name: Push changes
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin main
+        
 
