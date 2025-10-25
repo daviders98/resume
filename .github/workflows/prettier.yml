@@ -1,5 +1,8 @@
 name: "Prettier Auto-Format"
-
+permissions:
+  contents: write
+  pull-requests: write
+  
 on:
   schedule:
     - cron: "0 0 * * 0"
@@ -54,16 +57,37 @@ jobs:
       - name: Commit changes
         run: |
           git commit -m "chore: auto-format code with Prettier" || echo "No changes to commit"
-          git branch
-          git rev-parse --abbrev-ref HEAD
 
       - name: Push branch
         run: |
           git push origin auto/format-${{ env.BRANCH_SUFFIX }}
 
       - name: Create Pull Request
+        id: create_pr
         run: |
-          gh pr create --title "chore: auto-format code with Prettier" --body "This PR contains automatic code formatting changes made by Prettier." --head auto/format-${{ env.BRANCH_SUFFIX }} --base main
+          pr_number=$(gh pr create \
+            --title "chore: auto-format code with Prettier" \
+            --body "This PR contains automatic code formatting changes made by Prettier." \
+            --head auto/format-${{ env.BRANCH_SUFFIX }} \
+            --base main \
+            --json number \
+            --jq ".number")
+          echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Squash and merge PR
+        if: env.PR_NUMBER != ''
+        uses: peter-evans/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: parseInt(process.env.PR_NUMBER),
+              merge_method: "squash"
+            });
+            console.log(`PR #${process.env.PR_NUMBER} squashed and merged!`);
+        env:
+          PR_NUMBER: ${{ env.PR_NUMBER }}
