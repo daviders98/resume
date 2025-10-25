@@ -20,10 +20,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run Prettier
-        run: |
-          npx prettier --check "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
           
       - name: Auto-fix formatting
         run: |
@@ -33,3 +29,5 @@ jobs:
           git add .
           git diff --quiet || git commit -m "chore: auto-format with Prettier"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
