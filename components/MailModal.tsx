@@ -1,9 +1,16 @@
 import { useLanguage } from "@/context/LanguageContext";
-import { closeText, MailModalProps, messageErrorExtraText, messageErrorText, messageSentExtraText, messageSentText } from "@/data/contact";
+import {
+  closeText,
+  MailModalProps,
+  messageErrorExtraText,
+  messageErrorText,
+  messageSentExtraText,
+  messageSentText,
+} from "@/data/contact";
 import { motion } from "framer-motion";
 
 export default function MailModal({ status, onClose }: MailModalProps) {
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   if (!status) return null;
 
   return (

@@ -7,7 +7,7 @@ import { useRef } from "react";
 const ExtraSkills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <motion.div
@@ -17,7 +17,9 @@ const ExtraSkills = () => {
       transition={{ duration: 0.6, delay: 0.2 }}
       className="mt-12 text-center"
     >
-      <h3 className="text-xl font-semibold mb-6">{extraSkillsText[language]}</h3>
+      <h3 className="text-xl font-semibold mb-6">
+        {extraSkillsText[language]}
+      </h3>
       <div className="pl-4 pr-4 flex flex-wrap justify-center gap-3 justify-self-center">
         {extraSkills.map((tech, index) => (
           <motion.span

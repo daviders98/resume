@@ -90,8 +90,8 @@ export default function NavBar() {
                     : icon === faLinkedin
                       ? Links.linkedin
                       : navItems[language].find((item) =>
-                                ["Contact", "Contacto", "联系"].includes(item.name)
-                              )?.href
+                          ["Contact", "Contacto", "联系"].includes(item.name),
+                        )?.href
                 }
                 target={`${icon == faEnvelope ? "" : "__blank"}`}
                 rel="noopener noreferrer"
@@ -148,8 +148,8 @@ export default function NavBar() {
                       : icon === faLinkedin
                         ? Links.linkedin
                         : navItems[language].find((item) =>
-                                ["Contact", "Contacto", "联系"].includes(item.name)
-                              )?.href;
+                            ["Contact", "Contacto", "联系"].includes(item.name),
+                          )?.href;
 
                   return (
                     href && (

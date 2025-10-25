@@ -1,18 +1,26 @@
 "use client";
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 export type Language = "en" | "es" | "zh";
 export const languages = [
-    { code: "en", label: "English" },
-    { code: "es", label: "Español" },
-    { code: "zh", label: "中文" }
-  ];
+  { code: "en", label: "English" },
+  { code: "es", label: "Español" },
+  { code: "zh", label: "中文" },
+];
 interface LanguageContextProps {
   language: Language;
   setLanguage: (lang: Language) => void;
 }
 
-const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextProps | undefined>(
+  undefined,
+);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>("en");
@@ -29,7 +37,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
       setLanguage(browserLang as Language);
       localStorage.setItem("language", browserLang as Language);
     } else {
-      setLanguage("en"); 
+      setLanguage("en");
       localStorage.setItem("language", "en");
     }
   }, []);
@@ -48,6 +56,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context) throw new Error("useLanguage must be used within a LanguageProvider");
+  if (!context)
+    throw new Error("useLanguage must be used within a LanguageProvider");
   return context;
 };

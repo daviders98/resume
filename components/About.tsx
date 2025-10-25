@@ -3,7 +3,13 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import moment from "moment";
 import ScrollLettersText from "./AnimateText";
-import { aboutMeEndText, aboutMeStartText, codingFromText, myData, traitsInfo } from "@/data/about";
+import {
+  aboutMeEndText,
+  aboutMeStartText,
+  codingFromText,
+  myData,
+  traitsInfo,
+} from "@/data/about";
 import { Links } from "@/data/links";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -13,7 +19,7 @@ const About = () => {
   const today = moment();
   const birthday = moment("1998-01-01");
   const years = today.diff(birthday, "years");
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <section
@@ -29,7 +35,8 @@ const About = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {aboutMeStartText[language]} <span className="text-on-primary">{aboutMeEndText[language]}</span>
+            {aboutMeStartText[language]}{" "}
+            <span className="text-on-primary">{aboutMeEndText[language]}</span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full" />
         </motion.div>

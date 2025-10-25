@@ -130,7 +130,7 @@ const SkillCategory = ({ title, skills, icon }: SkillCategoryProps) => {
 const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <section id="skills" ref={ref} className="py-20 bg-highlight">
@@ -142,14 +142,17 @@ const Skills = () => {
           className="text-center mb-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {technicalSkillsStart[language]} <span className="text-on-primary">{technicalSkillsEnd[language]}</span>
+            {technicalSkillsStart[language]}{" "}
+            <span className="text-on-primary">
+              {technicalSkillsEnd[language]}
+            </span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
           <p className="text-lg max-w-2xl mx-auto">{skillsExtra[language]}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          {categories.map((category: CategoryData,index: number) => (
+          {categories.map((category: CategoryData, index: number) => (
             <SkillCategory
               key={index}
               title={skillsTitles[language][category.title]}

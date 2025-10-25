@@ -6,13 +6,18 @@ import Image from "next/image";
 import { Links } from "@/data/links";
 import { useLanguage } from "@/context/LanguageContext";
 import { heroData } from "@/data/hero";
-import { poweredByEnd, poweredByStart, quickLinks, quickLinksItems } from "@/data/footer";
+import {
+  poweredByEnd,
+  poweredByStart,
+  quickLinks,
+  quickLinksItems,
+} from "@/data/footer";
 
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <footer className="bg-primary border-t border-border">
@@ -46,32 +51,32 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">{quickLinks[language]}</h4>
             <ul className="space-y-2">
-              {quickLinksItems[language].map(
-                (item,index) => (
-                  <li key={item}>
-                    <a
-                      href={`#${quickLinksItems['en'][index].toLowerCase()}`}
-                      className="text-sm text-foreground hover:text-on-primary"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ),
-              )}
+              {quickLinksItems[language].map((item, index) => (
+                <li key={item}>
+                  <a
+                    href={`#${quickLinksItems["en"][index].toLowerCase()}`}
+                    className="text-sm text-foreground hover:text-on-primary"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm flex items-center gap-1 text-muted">
-            © {new Date().getFullYear()} {"DevGarcía"}. {poweredByStart[language]}{" "}
+            © {new Date().getFullYear()} {"DevGarcía"}.{" "}
+            {poweredByStart[language]}{" "}
             <Image
               src={Links.nextjsLogo}
               alt={"NextJS Logo"}
               width={24}
               height={24}
               style={{ width: "auto", height: "auto" }}
-            />{poweredByEnd[language]}
+            />
+            {poweredByEnd[language]}
           </p>
           <motion.button
             onClick={scrollToTop}

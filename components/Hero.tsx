@@ -14,7 +14,7 @@ const Hero = () => {
   const [index, setIndex] = useState(0);
   const rowRef = useRef<HTMLDivElement>(null);
   const [rowWidth, setRowWidth] = useState(1);
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     const updateWidth = () => {

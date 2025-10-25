@@ -63,31 +63,27 @@ export const traitsInfo: Record<Language, TraitData[]> = {
     {
       icon: "🧼",
       title: "干净的代码",
-      description:
-        "我编写可维护、可扩展且文档完善的代码，遵循最佳实践。",
+      description: "我编写可维护、可扩展且文档完善的代码，遵循最佳实践。",
     },
     {
       icon: "🚀",
       title: "创新",
-      description:
-        "有创造力，能设计出用户喜爱的产品和功能。",
+      description: "有创造力，能设计出用户喜爱的产品和功能。",
     },
     {
       icon: "✅",
       title: "结果导向",
-      description:
-        "我重视创作真正有价值并产生影响的工作。",
+      description: "我重视创作真正有价值并产生影响的工作。",
     },
     {
       icon: "🫱🏽‍🫲🏼",
       title: "协作",
-      description:
-        "没有多样且优秀的团队，就无法实现伟大的目标。",
+      description: "没有多样且优秀的团队，就无法实现伟大的目标。",
     },
   ],
 };
 
-export const myData ={
+export const myData = {
   en: {
     title: "Full Stack Developer",
     bio: `Hi, I’m {years} years old. I started my software journey in 2018. I’ve contributed to the development of real-world applications used by millions of people. I see scalability not as a challenge, but as an opportunity. A digital product can’t truly be beautiful unless it’s functional and built to compete with the rest of the world.`,
@@ -115,7 +111,7 @@ export const myData ={
       "“任何人都可以用AI构建一个网站，但并不是每个人都能创建一个真正与您的受众产生联系的网站。”",
     location: "🌎 墨西哥 GMT-7",
   },
-}
+};
 
 export const aboutMeStartText = {
   en: "About",

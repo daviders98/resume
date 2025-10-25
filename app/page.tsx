@@ -17,19 +17,20 @@ function App() {
   }, []);
 
   return (
-    <LanguageProvider>    <div className="min-h-screen bg-background text-foreground min-w-full">
-      <NavBar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Portfolio />
-      <Contact />
-      <Footer />
-      <LanguagePicker/>
+    <LanguageProvider>
+      {" "}
+      <div className="min-h-screen bg-background text-foreground min-w-full">
+        <NavBar />
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Portfolio />
+        <Contact />
+        <Footer />
+        <LanguagePicker />
       </div>
-      </LanguageProvider>
-    
+    </LanguageProvider>
   );
 }
 

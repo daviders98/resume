@@ -4,13 +4,13 @@ export const experienceExtra = {
   en: "Let me share with you my journey in the software world [:",
   es: "Permíteme compartir contigo mi trayectoria en el mundo del software [:",
   zh: "让我与你分享我在软件世界的旅程 [:",
-}
+};
 
 export const certificationsEnd = {
   en: "For more certifications visit",
-  es: "Para ver más certificaciones visita", 
+  es: "Para ver más certificaciones visita",
   zh: "欲了解更多认证信息，请访问",
-}
+};
 export interface ExperienceInfo {
   id: number;
   company: string;
@@ -37,8 +37,24 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Recognized as Mentor of the Year.",
       ],
       technologies: [
-        "React","NextJS","Flutter","NodeJS","MySQL","AWS","Heroku","Python",
-        "Ant design","Express","Redis","SQLite","Datadog","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "Flutter",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -54,8 +70,23 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Proposed and implemented improvements to enhance user experience.",
       ],
       technologies: [
-        "React","NextJS","NodeJS","MySQL","AWS","Heroku","Ant design","Express",
-        "Redis","SQLite","Datadog","Sentry","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Sentry",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -72,8 +103,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Recognized as Handyman of the Year",
       ],
       technologies: [
-        "NextJS","NodeJS","MySQL","AWS","Heroku","Python","Ant design","Express",
-        "Git","Github","Github Actions","Jira","PugJS"
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Jira",
+        "PugJS",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -89,8 +131,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Developed tailored software solutions, implementing custom features and integrations to meet client-specific requirements while ensuring scalability, maintainability, and optimal performance.",
       ],
       technologies: [
-        "Blender","ReactJS","MySQL","HTML","CSS","NodeJS","Python",
-        "Material UI","Express","Git","Github","Figma","Trello"
+        "Blender",
+        "ReactJS",
+        "MySQL",
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "Python",
+        "Material UI",
+        "Express",
+        "Git",
+        "Github",
+        "Figma",
+        "Trello",
       ],
       pathToLogo: "/images/logo.png",
     },
@@ -103,19 +156,20 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
       description: [
         "Conducted lessons for children aged 6-12 in physics, mechanics, electronics, and programming (C++ and block-based).",
       ],
-      technologies: ["C++","Block programming","Arduino"],
+      technologies: ["C++", "Block programming", "Arduino"],
       pathToLogo: "/images/experience/tisbot.png",
     },
     {
       id: 6,
-      company: 'Monterrey Institute of Technology and Higher Education - Novus 2019 Project: "Citizen Workshop: Peace, citizen construction"',
+      company:
+        'Monterrey Institute of Technology and Higher Education - Novus 2019 Project: "Citizen Workshop: Peace, citizen construction"',
       position: "Collaborator",
       period: "2019 - 2020",
       location: "Sinaloa, México",
       description: [
         "Logistics coordinator, ads designer & website developer of static webpages using vanilla HTML and CSS.",
       ],
-      technologies: ["HTML","CSS","Canva","Excel"],
+      technologies: ["HTML", "CSS", "Canva", "Excel"],
       pathToLogo: "/images/experience/itesm.png",
     },
   ],
@@ -135,8 +189,24 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Reconocido como Mentor del Año.",
       ],
       technologies: [
-        "React","NextJS","Flutter","NodeJS","MySQL","AWS","Heroku","Python",
-        "Ant design","Express","Redis","SQLite","Datadog","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "Flutter",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -152,8 +222,23 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Propuese e implementé mejoras para optimizar la experiencia de usuario.",
       ],
       technologies: [
-        "React","NextJS","NodeJS","MySQL","AWS","Heroku","Ant design","Express",
-        "Redis","SQLite","Datadog","Sentry","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Sentry",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -170,8 +255,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Reconocido como Manitas del Año.",
       ],
       technologies: [
-        "NextJS","NodeJS","MySQL","AWS","Heroku","Python","Ant design","Express",
-        "Git","Github","Github Actions","Jira","PugJS"
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Jira",
+        "PugJS",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -187,8 +283,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "Desarrollé soluciones de software a medida, implementando funcionalidades personalizadas e integraciones según los requerimientos de los clientes, asegurando escalabilidad, mantenibilidad y rendimiento óptimo.",
       ],
       technologies: [
-        "Blender","ReactJS","MySQL","HTML","CSS","NodeJS","Python",
-        "Material UI","Express","Git","Github","Figma","Trello"
+        "Blender",
+        "ReactJS",
+        "MySQL",
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "Python",
+        "Material UI",
+        "Express",
+        "Git",
+        "Github",
+        "Figma",
+        "Trello",
       ],
       pathToLogo: "/images/logo.png",
     },
@@ -201,19 +308,20 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
       description: [
         "Impartí clases a niños de 6 a 12 años en física, mecánica, electrónica y programación (C++ y basada en bloques).",
       ],
-      technologies: ["C++","Block programming","Arduino"],
+      technologies: ["C++", "Block programming", "Arduino"],
       pathToLogo: "/images/experience/tisbot.png",
     },
     {
       id: 6,
-      company: 'Instituto Tecnológico y de Estudios Superiores de Monterrey - Novus 2019 Proyecto: "Taller Ciudadano: Paz, construcción ciudadana"',
+      company:
+        'Instituto Tecnológico y de Estudios Superiores de Monterrey - Novus 2019 Proyecto: "Taller Ciudadano: Paz, construcción ciudadana"',
       position: "Colaborador",
       period: "2019 - 2020",
       location: "Sinaloa, México",
       description: [
         "Coordinador logístico, diseñador de anuncios y desarrollador de páginas web estáticas usando HTML y CSS puro.",
       ],
-      technologies: ["HTML","CSS","Canva","Excel"],
+      technologies: ["HTML", "CSS", "Canva", "Excel"],
       pathToLogo: "/images/experience/itesm.png",
     },
   ],
@@ -233,8 +341,24 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "荣获年度导师称号。",
       ],
       technologies: [
-        "React","NextJS","Flutter","NodeJS","MySQL","AWS","Heroku","Python",
-        "Ant design","Express","Redis","SQLite","Datadog","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "Flutter",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -250,8 +374,23 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "提出并实施改进以优化用户体验。",
       ],
       technologies: [
-        "React","NextJS","NodeJS","MySQL","AWS","Heroku","Ant design","Express",
-        "Redis","SQLite","Datadog","Sentry","Git","Github","Github Actions","Docker","Jira"
+        "React",
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Ant design",
+        "Express",
+        "Redis",
+        "SQLite",
+        "Datadog",
+        "Sentry",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Docker",
+        "Jira",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -268,8 +407,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "荣获年度多面手称号。",
       ],
       technologies: [
-        "NextJS","NodeJS","MySQL","AWS","Heroku","Python","Ant design","Express",
-        "Git","Github","Github Actions","Jira","PugJS"
+        "NextJS",
+        "NodeJS",
+        "MySQL",
+        "AWS",
+        "Heroku",
+        "Python",
+        "Ant design",
+        "Express",
+        "Git",
+        "Github",
+        "Github Actions",
+        "Jira",
+        "PugJS",
       ],
       pathToLogo: "/images/experience/company.png",
     },
@@ -285,8 +435,19 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
         "开发定制软件解决方案，实现客户特定需求的功能和集成，同时确保可扩展性、可维护性和最佳性能。",
       ],
       technologies: [
-        "Blender","ReactJS","MySQL","HTML","CSS","NodeJS","Python",
-        "Material UI","Express","Git","Github","Figma","Trello"
+        "Blender",
+        "ReactJS",
+        "MySQL",
+        "HTML",
+        "CSS",
+        "NodeJS",
+        "Python",
+        "Material UI",
+        "Express",
+        "Git",
+        "Github",
+        "Figma",
+        "Trello",
       ],
       pathToLogo: "/images/logo.png",
     },
@@ -296,22 +457,21 @@ export const experienceHistory: Record<Language, ExperienceInfo[]> = {
       position: "机器人教师",
       period: "2019 - 2020",
       location: "墨西哥锡那罗亚",
-      description: [
-        "为6至12岁儿童教授物理、力学、电子和编程（C++及块编程）。",
-      ],
-      technologies: ["C++","Block programming","Arduino"],
+      description: ["为6至12岁儿童教授物理、力学、电子和编程（C++及块编程）。"],
+      technologies: ["C++", "Block programming", "Arduino"],
       pathToLogo: "/images/experience/tisbot.png",
     },
     {
       id: 6,
-      company: '蒙特雷科技与高等教育学院 - Novus 2019 项目："公民工作坊：和平、公民建设"',
+      company:
+        '蒙特雷科技与高等教育学院 - Novus 2019 项目："公民工作坊：和平、公民建设"',
       position: "协作者",
       period: "2019 - 2020",
       location: "墨西哥锡那罗亚",
       description: [
         "担任物流协调员、广告设计师以及使用原生HTML和CSS开发静态网页的网页开发者。",
       ],
-      technologies: ["HTML","CSS","Canva","Excel"],
+      technologies: ["HTML", "CSS", "Canva", "Excel"],
       pathToLogo: "/images/experience/itesm.png",
     },
   ],
@@ -450,7 +610,8 @@ export const educationHistory: Record<Language, EducationInfo[]> = {
     },
     {
       id: 6,
-      institution: "Instituto Tecnológico y de Estudios Superiores de Monterrey",
+      institution:
+        "Instituto Tecnológico y de Estudios Superiores de Monterrey",
       degree:
         "Licenciatura en Ciencias - BS, Ingeniería Industrial con especialización en sistemas, con honores",
       period: "2021",
@@ -527,7 +688,6 @@ export const educationHistory: Record<Language, EducationInfo[]> = {
     },
   ],
 };
-
 
 export interface CertificationInfo {
   id: number;
@@ -738,33 +898,32 @@ export const certificationHistory: Record<Language, CertificationInfo[]> = {
   ],
 };
 
-
 export const experienceTitleStart = {
   en: "Professional ",
   es: "Experiencia ",
   zh: "专业",
-}
+};
 
 export const experienceTitleEnd = {
   en: "Experience",
   es: "Profesional",
   zh: "经历",
-}
+};
 
 export const educationAndStartingTitle = {
   en: "Education & ",
   es: "Educación y ",
   zh: "教育与",
-}
+};
 
 export const educationAndEndingTitle = {
   en: "Certifications",
   es: "Certificaciones",
   zh: "认证",
-}
+};
 
 export const educationTile = {
   en: "Education",
   es: "Educación",
   zh: "教育",
-}
+};
