@@ -1,4 +1,4 @@
-const words : string[] = [
+const words: string[] = [
   "MENTOR",
   "INNOVATOR",
   "PROBLEM SOLVER",
@@ -10,31 +10,31 @@ const words : string[] = [
   "FULL STACK DEVELOPER",
   "TEAM LEADER",
 ];
-const techs : string[] = [
-    "React",
-    "NodeJS",
-    "TypeScript",
-    "PostgreSQL",
-    "AWS",
-    "Docker",
-    "Heroku",
-    "Azure",
-    "MySQL",
-    "Firebase",
-    "React Native",
-    "Android",
-    "iOS",
-    "NextJS",
-    "Flexbox",
-    "MongoDB",
-    "Python",
-    "Git",
-    "GitHub",
-    "GraphQL",
-    "CI/CD"
+const techs: string[] = [
+  "React",
+  "NodeJS",
+  "TypeScript",
+  "PostgreSQL",
+  "AWS",
+  "Docker",
+  "Heroku",
+  "Azure",
+  "MySQL",
+  "Firebase",
+  "React Native",
+  "Android",
+  "iOS",
+  "NextJS",
+  "Flexbox",
+  "MongoDB",
+  "Python",
+  "Git",
+  "GitHub",
+  "GraphQL",
+  "CI/CD",
 ];
 
 export const heroData = {
   words,
   techs,
-}
+};
