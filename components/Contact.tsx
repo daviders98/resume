@@ -3,8 +3,24 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
 import MailModal from "./MailModal";
-import { contactExtra, contactPhrase, ModalStatus } from "@/data/contact";
+import {
+  contactExtra,
+  contactPhrase,
+  emailForm,
+  fullNameForm,
+  letsTalkEnd,
+  letsTalkStart,
+  messageForm,
+  ModalStatus,
+  placeholderMessageForm,
+  placeholderNameForm,
+  placeholderSubjectForm,
+  sendingText,
+  sendText,
+  subjectForm,
+} from "@/data/contact";
 import sanitizeHtml from "sanitize-html";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -16,6 +32,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { language } = useLanguage();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -73,12 +90,12 @@ const Contact = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {"Let's "}
-            <span className="text-on-primary">Talk</span>
+            {letsTalkStart[language]}
+            <span className="text-on-primary">{letsTalkEnd[language]}</span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
           <p className="text-lg text-foreground max-w-2xl mx-auto">
-            {contactExtra}
+            {contactExtra[language]}
           </p>
         </motion.div>
 
@@ -101,7 +118,7 @@ const Contact = () => {
             </div>
             <div className="space-y-4 flex items-center justify-center">
               <p className="font-semibold text-2xl max-w-[80%] text-center">
-                {contactPhrase}
+                {contactPhrase[language]}
               </p>
             </div>
           </motion.div>
@@ -120,7 +137,7 @@ const Contact = () => {
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
                 >
-                  Full name
+                  {fullNameForm[language]}
                 </label>
                 <input
                   type="text"
@@ -130,7 +147,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
-                  placeholder="Your name"
+                  placeholder={placeholderNameForm[language]}
                 />
               </div>
 
@@ -139,7 +156,7 @@ const Contact = () => {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2"
                 >
-                  Email
+                  {emailForm[language]}
                 </label>
                 <input
                   type="email"
@@ -158,7 +175,7 @@ const Contact = () => {
                   htmlFor="subject"
                   className="block text-sm font-medium mb-2"
                 >
-                  Subject
+                  {subjectForm[language]}
                 </label>
                 <input
                   type="text"
@@ -168,7 +185,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
-                  placeholder="How can I help you?"
+                  placeholder={placeholderSubjectForm[language]}
                 />
               </div>
 
@@ -177,7 +194,7 @@ const Contact = () => {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
                 >
-                  Message
+                  {messageForm[language]}
                 </label>
                 <textarea
                   id="message"
@@ -187,7 +204,7 @@ const Contact = () => {
                   required
                   rows={5}
                   className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all resize-none"
-                  placeholder="Tell me more..."
+                  placeholder={placeholderMessageForm[language]}
                 />
               </div>
 
@@ -207,10 +224,10 @@ const Contact = () => {
                       }}
                       className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full mr-2"
                     />
-                    Sending...
+                    {sendingText[language]}
                   </>
                 ) : (
-                  <>Send</>
+                  <>{sendText[language]}</>
                 )}
               </button>
             </form>

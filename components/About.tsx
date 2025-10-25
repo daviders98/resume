@@ -3,8 +3,15 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import moment from "moment";
 import ScrollLettersText from "./AnimateText";
-import { myData, traitsInfo } from "@/data/about";
+import {
+  aboutMeEndText,
+  aboutMeStartText,
+  codingFromText,
+  myData,
+  traitsInfo,
+} from "@/data/about";
 import { Links } from "@/data/links";
+import { useLanguage } from "@/context/LanguageContext";
 
 const About = () => {
   const ref = useRef(null);
@@ -12,6 +19,7 @@ const About = () => {
   const today = moment();
   const birthday = moment("1998-01-01");
   const years = today.diff(birthday, "years");
+  const { language } = useLanguage();
 
   return (
     <section
@@ -27,7 +35,8 @@ const About = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            About <span className="text-on-primary">me</span>
+            {aboutMeStartText[language]}{" "}
+            <span className="text-on-primary">{aboutMeEndText[language]}</span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full" />
         </motion.div>
@@ -71,14 +80,14 @@ const About = () => {
           >
             <div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
-                {myData.title}
+                {myData[language].title}
               </h3>
               <p className="text-lg text-foreground leading-relaxed">
-                {myData.bio.replace("{years}", `${years}`)}
+                {myData[language].bio.replace("{years}", `${years}`)}
               </p>
               <br />
               <p className="text-lg text-foreground leading-relaxed">
-                {myData.bioExtra}
+                {myData[language].bioExtra}
               </p>
               <br />
             </div>
@@ -86,9 +95,9 @@ const About = () => {
             <div className="flex gap-2">
               <div className="space-y-2">
                 <p className="text-lg text-foreground font-medium">
-                  {"Coding from"}
+                  {codingFromText[language]}
                 </p>
-                <p className="font-medium">{myData.location}</p>
+                <p className="font-medium">{myData[language].location}</p>
               </div>
             </div>
           </motion.div>
@@ -99,7 +108,7 @@ const About = () => {
           transition={{ duration: 0.2 }}
           className="mt-12 flex items-center px-8 md:px-16"
         >
-          <ScrollLettersText text={myData.quote} className="my-12" />
+          <ScrollLettersText text={myData[language].quote} className="my-12" />
         </motion.div>
 
         <motion.div
@@ -108,7 +117,7 @@ const About = () => {
           transition={{ duration: 0.2 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
         >
-          {traitsInfo.map((value, index) => {
+          {traitsInfo[language].map((value, index) => {
             return (
               <motion.div
                 key={`${index}${value.title}`}

@@ -4,11 +4,20 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import scrollToSection from "@/utils/scroller";
 import Image from "next/image";
 import { Links } from "@/data/links";
+import { useLanguage } from "@/context/LanguageContext";
+import { heroData } from "@/data/hero";
+import {
+  poweredByEnd,
+  poweredByStart,
+  quickLinks,
+  quickLinksItems,
+} from "@/data/footer";
 
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  const { language } = useLanguage();
 
   return (
     <footer className="bg-primary border-t border-border">
@@ -35,32 +44,31 @@ const Footer = () => {
               </motion.a>
             </h3>
             <p className="text-sm mb-4 font-semibold">
-              Crafting the Best Digital Experiences.
+              {heroData.slogan[language]}
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">{quickLinks[language]}</h4>
             <ul className="space-y-2">
-              {["About", "Skills", "Experience", "Portfolio", "Contact"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item.toLowerCase()}`}
-                      className="text-sm text-foreground hover:text-on-primary"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                ),
-              )}
+              {quickLinksItems[language].map((item, index) => (
+                <li key={item}>
+                  <a
+                    href={`#${quickLinksItems["en"][index].toLowerCase()}`}
+                    className="text-sm text-foreground hover:text-on-primary"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm flex items-center gap-1 text-muted">
-            © {new Date().getFullYear()} {"DevGarcía"}. Powered by{" "}
+            © {new Date().getFullYear()} {"DevGarcía"}.{" "}
+            {poweredByStart[language]}{" "}
             <Image
               src={Links.nextjsLogo}
               alt={"NextJS Logo"}
@@ -68,6 +76,7 @@ const Footer = () => {
               height={24}
               style={{ width: "auto", height: "auto" }}
             />
+            {poweredByEnd[language]}
           </p>
           <motion.button
             onClick={scrollToTop}

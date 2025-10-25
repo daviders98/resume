@@ -8,11 +8,13 @@ import ScrambleText from "../components/ScrambleText";
 import { useEffect, useRef, useState } from "react";
 import scrollToSection from "@/utils/scroller";
 import { heroData } from "@/data/hero";
+import { useLanguage } from "@/context/LanguageContext";
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const rowRef = useRef<HTMLDivElement>(null);
   const [rowWidth, setRowWidth] = useState(1);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const updateWidth = () => {
@@ -28,7 +30,7 @@ const Hero = () => {
 
   const handleNextWord = () => {
     setTimeout(() => {
-      setIndex((prev) => (prev + 1) % heroData.words.length);
+      setIndex((prev) => (prev + 1) % heroData.words[language].length);
     }, 1000);
   };
 
@@ -53,7 +55,7 @@ const Hero = () => {
               >
                 👋
               </motion.span>{" "}
-              Hi, I am
+              {heroData.greeting[language]}
             </span>
           </motion.div>
 
@@ -75,7 +77,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <ScrambleText
-              text={heroData.words[index]}
+              text={heroData.words[language][index]}
               speed={80}
               onComplete={handleNextWord}
             />
@@ -87,7 +89,7 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg sm:text-xl mb-8 max-w-2xl mx-auto mt-14"
           >
-            <b>{"Crafting the Best Digital Experiences."}</b>
+            <b>{heroData.slogan[language]}</b>
           </motion.p>
 
           <motion.div
@@ -100,7 +102,7 @@ const Hero = () => {
               onClick={() => scrollToSection({ href: "#portfolio" })}
               className="group min-w-[200px] border-1 border-foreground rounded-lg p-2 cursor-pointer hover:bg-highlight hover:text-on-primary"
             >
-              Go to Portfolio
+              {heroData.portfolioCTAText[language]}
               <motion.span
                 className="ml-2"
                 animate={{ x: [0, 5, 0] }}
@@ -113,7 +115,7 @@ const Hero = () => {
               onClick={() => scrollToSection({ href: "#contact" })}
               className="min-w-[200px] bg-foreground text-on-primary rounded-lg p-2 cursor-pointer hover:bg-secondary hover:border-1 hover:border-foreground"
             >
-              Contact Now
+              {heroData.contactCTAText[language]}
               <FontAwesomeIcon icon={faSquareEnvelope} className="ml-2" />
             </button>
           </motion.div>
@@ -160,7 +162,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex flex-col items-center mt-20"
+            className="flex flex-col items-center mt-20 mb-4"
           >
             <motion.a
               href="#about"
@@ -172,7 +174,8 @@ const Hero = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="hover:text-highlight text-muted"
             >
-              <p className="text-lg mb-2">Discover more</p>
+              {heroData.discoverMoreText[language]}
+              <p className="text-lg mb-2"></p>
               <FontAwesomeIcon icon={faChevronDown} size={"xl"} />
             </motion.a>
           </motion.div>
