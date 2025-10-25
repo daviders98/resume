@@ -14,10 +14,9 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        branch: [main, develop] # 👈 iterate over both branches
+        branch: [main, develop]
 
     steps:
       - name: Checkout repository
@@ -44,28 +43,43 @@ jobs:
       - name: Pull latest
         run: git pull origin ${{ matrix.branch }}
 
+      - name: Run Prettier (check & write)
+        run: |
+          npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "no_changes=true" >> $GITHUB_ENV
+          else
+            echo "no_changes=false" >> $GITHUB_ENV
+          fi
+
+      - name: Stop if no changes
+        if: env.no_changes == 'true'
+        run: echo "✨ No formatting changes detected. Skipping PR creation."
+
       - name: Generate timestamp
-        id: vars
+        if: env.no_changes == 'false'
         run: echo "BRANCH_SUFFIX=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
       - name: Create and switch to new branch
+        if: env.no_changes == 'false'
         run: git checkout -b auto/format-${{ matrix.branch }}-${{ env.BRANCH_SUFFIX }}
 
-      - name: Auto-fix formatting
-        run: npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
-
-      - name: Stage changes
+      - name: Stage and commit changes
+        if: env.no_changes == 'false'
         run: |
           git add . -- ':!package-lock.json'
-
-      - name: Commit changes
-        run: |
-          git commit -m "chore: auto-format code with Prettier" || echo "No changes to commit"
+          git commit -m "chore: auto-format code with Prettier"
 
       - name: Push branch
+        if: env.no_changes == 'false'
         run: git push origin auto/format-${{ matrix.branch }}-${{ env.BRANCH_SUFFIX }}
 
       - name: Create Pull Request
+        if: env.no_changes == 'false'
         id: create_pr
         run: |
           PR_URL=$(gh pr create \
@@ -77,9 +91,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Squash and merge PR
-        if: env.PR_URL != ''
-        run: |
-          gh pr merge "$PR_URL" --squash --delete-branch
+      - name: Merge PR
+        if: env.no_changes == 'false' && env.PR_URL != ''
+        run: gh pr merge "$PR_URL" --squash --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
