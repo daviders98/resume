@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 const rateLimitMap = new Map<string, number[]>();
 
 const WINDOW = 10 * 60 * 1000;
-const MAX_REQUESTS = 3;
+const MAX_REQUESTS = 2;
 
 function rateLimit(ip: string): boolean {
   const now = Date.now();

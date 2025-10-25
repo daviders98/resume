@@ -1,6 +1,7 @@
+import { MailModalProps } from '@/data/contact';
 import { motion } from 'framer-motion';
 
-export default function MailModal({ status, onClose }){
+export default function MailModal({ status, onClose }:MailModalProps){
   if (!status) return null;
 
   return (

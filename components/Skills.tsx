@@ -5,8 +5,9 @@ import { useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import ExtraSkills from "./ExtraSkills";
+import { categories, CategoryData, SkillData, skillsExtra } from "@/data/skills";
 
-const SkillBar = ({ skill }) => {
+const SkillBar = ({ name, pathToLogo } :SkillData ) => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center w-24"
@@ -14,21 +15,21 @@ const SkillBar = ({ skill }) => {
     >
       <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden border border-gray-200">
         <Image
-          src={skill.pathToLogo}
-          alt={skill.name}
+          src={pathToLogo}
+          alt={name}
           width={36}
           height={36}
           style={{ width: "auto", height: "auto" }}
         />
       </div>
       <span className="mt-2 text-center font-medium text-sm text-on-primary">
-        {skill.name}
+        {name}
       </span>
     </motion.div>
   );
 };
 
-const SkillCategory = ({ title, skills, icon }) => {
+const SkillCategory = ({ title, skills, icon } : CategoryData) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -57,7 +58,7 @@ const SkillCategory = ({ title, skills, icon }) => {
   }, []);
 
   useEffect(() => {
-    let animationFrame;
+    let animationFrame = 0;
     const normalSpeed = window.innerWidth < 640 ? 0.002 : 0.003;
     const slowSpeed = normalSpeed / 5;
 
@@ -97,7 +98,7 @@ const SkillCategory = ({ title, skills, icon }) => {
         }}
       >
         {mounted &&
-          skills.map((skill, index) => (
+          skills.map((skill : SkillData, index)=> (
             <motion.div
               key={skill.name}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -106,7 +107,7 @@ const SkillCategory = ({ title, skills, icon }) => {
                 y: radiusY * Math.sin(angles[index]),
               }}
             >
-              <SkillBar skill={skill} />
+              <SkillBar {...skill} />
             </motion.div>
           ))}
       </div>
@@ -117,62 +118,6 @@ const SkillCategory = ({ title, skills, icon }) => {
 const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const categories = [
-    {
-      title: "Front-end",
-      skills: [
-        { name: "HTML5", pathToLogo: "/images/technologies/html5.png" },
-        { name: "CSS3", pathToLogo: "/images/technologies/css3.png" },
-        { name: "TailwindCSS", pathToLogo: "/images/technologies/tailwind.png" },
-        { name: "Ant Design", pathToLogo: "/images/technologies/antd.jpg" },
-        { name: "Material UI", pathToLogo: "/images/technologies/material-ui.jpg" },
-        { name: "ReactJS", pathToLogo: "/images/technologies/react.png" },
-        { name: "NextJS", pathToLogo: "/images/technologies/nextjs.png" },
-        {name:"React Native", pathToLogo: "/images/technologies/react-native.png"}
-      ],
-      icon: "🎨",
-    },
-    {
-      title: "Back-end",
-      skills: [
-        { name: "NodeJS", pathToLogo: "/images/technologies/nodejs.png" },
-        { name: "NextJS", pathToLogo: "/images/technologies/nextjs.png" },
-        { name: "Express", pathToLogo: "/images/technologies/express.png" },
-        { name: "NestJS", pathToLogo: "/images/technologies/nestjs.png" },
-        { name: "Python", pathToLogo: "/images/technologies/python.png" },
-        { name: "Django", pathToLogo: "/images/technologies/django.png" },
-        { name: "GraphQL", pathToLogo: "/images/technologies/graphql.png" },
-      ],
-      icon: "⚙️",
-    },
-    {
-      title: "Database",
-      skills: [
-        { name: "PostgreSQL", pathToLogo: "/images/technologies/postgresql.png" },
-        { name: "MongoDB", pathToLogo: "/images/technologies/mongodb.png" },
-        { name: "Redis", pathToLogo: "/images/technologies/redis.png" },
-        { name: "MySQL", pathToLogo: "/images/technologies/mysql.png" },
-        { name: "Firebase", pathToLogo: "/images/technologies/firebase.png" },
-      ],
-      icon: "💾",
-    },
-    {
-      title: "Tools",
-      skills: [
-        { name: "Git", pathToLogo: "/images/technologies/git.png" },
-        { name: "Docker", pathToLogo: "/images/technologies/docker.png" },
-        { name: "AWS", pathToLogo: "/images/technologies/aws.png" },
-        { name: "Postman", pathToLogo: "/images/technologies/postman.png" },
-        { name: "Heroku", pathToLogo: "/images/technologies/heroku.png" },
-        { name: "Datadog", pathToLogo: "/images/technologies/datadog.png" },
-        { name: "Figma", pathToLogo: "/images/technologies/figma.png" },
-        { name: "Render", pathToLogo: "/images/technologies/render.png" },
-        { name: "Github", pathToLogo: "/images/technologies/github.png" },
-      ],
-      icon: "🛠️",
-    },
-  ];
 
   return (
     <section id="skills" ref={ref} className="py-12 md:py-20 bg-highlight">
@@ -188,12 +133,12 @@ const Skills = () => {
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
           <p className="text-lg max-w-2xl mx-auto">
-            Building web and mobile apps, developing AI solutions, and designing seamless UX/UI experiences.
+            {skillsExtra}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          {categories.map((category) => (
+          {categories.map((category : CategoryData) => (
             <SkillCategory
               key={category.title}
               title={category.title}

@@ -1,9 +1,9 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, ChangeEvent, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import MailModal from './MailModal';
-import { ModalStatus } from '@/types';
+import { contactExtra, contactPhrase, ModalStatus } from '@/data/contact';
 
 const Contact = () => {
   const ref = useRef(null);
@@ -16,7 +16,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -25,7 +25,7 @@ const Contact = () => {
   
   const [modalStatus, setModalStatus] = useState<ModalStatus>(null)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   e.preventDefault();
   setIsSubmitting(true);
   try {
@@ -46,7 +46,8 @@ const Contact = () => {
     } else {
       setModalStatus('error');
     }
-  } catch (err) {
+  } catch (e) {
+    console.log(e)
     setModalStatus('error');
   } finally {
     setIsSubmitting(false);
@@ -69,7 +70,7 @@ const Contact = () => {
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
           <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Stop dreaming and let us start making it a reality.
+            {contactExtra}
           </p>
         </motion.div>
 
@@ -84,7 +85,7 @@ const Contact = () => {
                 <Image src={'https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1364'} alt='lightbulb in hand' width={360} height={520} />
             </div>
             <div className="space-y-4 flex items-center justify-center">
-              <p className='font-semibold text-2xl max-w-[80%] text-center'>Ideas are powerful, but they need action to become reality. Share your project with me, and together we&apos;ll transform your concept into a solution that makes an impact.</p>
+              <p className='font-semibold text-2xl max-w-[80%] text-center'>{contactPhrase}</p>
             </div>
           </motion.div>
 

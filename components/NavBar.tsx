@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faBars, faEnvelope, faX } from "@fortawesome/free-solid-svg-icons";
 import scrollToSection from "@/utils/scroller";
+import { Links, navItems } from "@/data/links";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -11,15 +12,6 @@ export default function NavBar() {
   const getNavItemClasses = () => {
     return "text-foreground hover:text-highlight";
   };
-
-  const navItems = [
-    { name: "Home", href: "#hero" },
-    { name: "About me", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,7 +42,7 @@ export default function NavBar() {
             whileTap={{ scale: 0.95 }}
           >
             <motion.img
-              src={"/images/logo.png"}
+              src={Links.logo}
               alt={"logo"}
               style={{ maxHeight: 48, width: 48 }}
             />
@@ -89,10 +81,10 @@ export default function NavBar() {
                 key={i}
                 href={
                   icon === faGithub
-                    ? "https://github.com/daviders98"
+                    ? Links.github
                     : icon === faLinkedin
-                    ? "https://www.linkedin.com/in/davidagarciahdez/"
-                    : "#contact"
+                    ? Links.linkedin
+                    : navItems.find(item=>item.name==="Contact")?.href
                 }
                 target={`${icon == faEnvelope ? '': '__blank'}`}
                 rel="noopener noreferrer"
@@ -143,13 +135,13 @@ export default function NavBar() {
     const isContact = icon === faEnvelope;
     const href =
       icon === faGithub
-        ? "https://github.com/daviders98"
+        ? Links.github
         : icon === faLinkedin
-        ? "https://www.linkedin.com/in/davidagarciahdez/"
-        : "#contact";
+        ? Links.linkedin
+        : navItems.find(item=>item.name==="Contact")?.href
 
     return (
-      <motion.a
+      href && <motion.a
         key={i}
         href={href}
         target={isContact ? "_self" : "_blank"}
