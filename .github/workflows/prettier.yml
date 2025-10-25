@@ -1,5 +1,8 @@
 name: "Prettier Auto-Format"
-
+permissions:
+  contents: write
+  pull-requests: write
+  
 on:
   schedule:
     - cron: "0 0 * * 0"
@@ -12,24 +15,79 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: main
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "20"
+          node-version: "22.15.0"
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run Prettier
+      
+      - name: Configure git
         run: |
-          npx prettier --check "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Update local main branch
+        run: git checkout main && git pull origin main
+
+      - name: Generate timestamp
+        id: vars
+        run: echo "BRANCH_SUFFIX=$(date +'%Y%m%dT%H%M%S')" >> $GITHUB_ENV
+
+      - name: Create and switch to new branch
+        run: |
+          git checkout -b auto/format-${{ env.BRANCH_SUFFIX }}
           
       - name: Auto-fix formatting
         run: |
           npx prettier --write "**/*.{js,ts,jsx,tsx,json,css,scss,md}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git diff --quiet || git commit -m "chore: auto-format with Prettier"
-          git push
+      
+      - name: Stage changes
+        run: |
+          git add . -- :/ ':!package-lock.json'
+          git reset package-lock.json
+      
+      - name: Commit changes
+        run: |
+          git commit -m "chore: auto-format code with Prettier" || echo "No changes to commit"
+
+      - name: Push branch
+        run: |
+          git push origin auto/format-${{ env.BRANCH_SUFFIX }}
+
+      - name: Create Pull Request
+        id: create_pr
+        run: |
+          pr_number=$(gh pr create \
+            --title "chore: auto-format code with Prettier" \
+            --body "This PR contains automatic code formatting changes made by Prettier." \
+            --head auto/format-${{ env.BRANCH_SUFFIX }} \
+            --base main \
+            --json number \
+            --jq ".number")
+          echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Squash and merge PR
+        if: env.PR_NUMBER != ''
+        uses: peter-evans/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: parseInt(process.env.PR_NUMBER),
+              merge_method: "squash"
+            });
+            console.log(`PR #${process.env.PR_NUMBER} squashed and merged!`);
+        env:
+          PR_NUMBER: ${{ env.PR_NUMBER }}
