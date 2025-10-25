@@ -1,16 +1,22 @@
-const github = 'https://github.com/daviders98'
-const linkedin = 'https://www.linkedin.com/in/davidagarciahdez/'
-const logo = "/images/logo.png"
-const nextjsLogo = '/images/technologies/nextjs.png'
-const profile = "/images/profile.jpg"
+const github = "https://github.com/daviders98";
+const linkedin = "https://www.linkedin.com/in/davidagarciahdez/";
+const logo = "/images/logo.png";
+const nextjsLogo = "/images/technologies/nextjs.png";
+const profile = "/images/profile.jpg";
 
-export const Links : { github: string; linkedin: string, logo: string,nextjsLogo: string, profile: string; } = {
-    github,
-    linkedin,
-    logo,
-    nextjsLogo,
-    profile
-}
+export const Links: {
+  github: string;
+  linkedin: string;
+  logo: string;
+  nextjsLogo: string;
+  profile: string;
+} = {
+  github,
+  linkedin,
+  logo,
+  nextjsLogo,
+  profile,
+};
 
 export interface NavItem {
   name: string;

@@ -1,19 +1,22 @@
-'use client';
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'framer-motion';
+"use client";
+import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 interface ScrollWordsTextProps {
   text: string;
   className?: string;
 }
 
-const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' }) => {
+const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({
+  text,
+  className = "",
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref);
   const [progress, setProgress] = useState(0);
 
-  const words = text.split(' ');
-  const lettersOnlyCount = text.replace(/\s/g, '').length;
+  const words = text.split(" ");
+  const lettersOnlyCount = text.replace(/\s/g, "").length;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -24,7 +27,7 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' 
       const rect = ref.current!.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 
-      const start = rect.height/3;
+      const start = rect.height / 3;
       const end = rect.bottom;
       const scrollRange = end - start;
 
@@ -34,16 +37,16 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' 
       setProgress(p);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [isInView]);
 
   return (
     <div
       ref={ref}
       className={`flex flex-wrap items-start gap-2 px-4 ${className}`}
-      style={{  }}
+      style={{}}
     >
       <span
         aria-hidden="true"
@@ -51,14 +54,18 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({ text, className = '' 
       />
 
       {words.map((word, wIndex) => {
-        const letters = word.split('');
+        const letters = word.split("");
         return (
           <div key={wIndex} className="inline-block leading-relaxed">
             {letters.map((letter, lIndex) => {
               const letterIndex =
-                words.slice(0, wIndex).reduce((sum, w) => sum + w.length, 0) + lIndex;
+                words.slice(0, wIndex).reduce((sum, w) => sum + w.length, 0) +
+                lIndex;
               const letterProgress = progress * lettersOnlyCount;
-              const visibleOpacity = Math.min(Math.max(letterProgress - letterIndex, 0), 1);
+              const visibleOpacity = Math.min(
+                Math.max(letterProgress - letterIndex, 0),
+                1,
+              );
               const finalOpacity = Math.max(visibleOpacity, 0.2);
 
               return (

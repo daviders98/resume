@@ -1,7 +1,7 @@
 export const experienceExtra =
   "Let me share with you my journey in the software world [:";
 
-export const certificationsEnd = 'For more certifications visit'
+export const certificationsEnd = "For more certifications visit";
 export interface ExperienceInfo {
   id: number;
   company: string;
@@ -243,13 +243,13 @@ export const educationHistory: EducationInfo[] = [
   },
 ];
 
-export interface CertificationInfo{
-    id: number;
-    name: string;
-    issuer: string;
-    date: string;
-    credentialUrl: string;
-    pathToLogo: string;
+export interface CertificationInfo {
+  id: number;
+  name: string;
+  issuer: string;
+  date: string;
+  credentialUrl: string;
+  pathToLogo: string;
 }
 
 export const certificationHistory: CertificationInfo[] = [

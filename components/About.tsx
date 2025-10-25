@@ -1,20 +1,24 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import moment from 'moment';
-import ScrollLettersText from './AnimateText';
-import { myData, traitsInfo } from '@/data/about';
-import { Links } from '@/data/links';
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import moment from "moment";
+import ScrollLettersText from "./AnimateText";
+import { myData, traitsInfo } from "@/data/about";
+import { Links } from "@/data/links";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const today = moment()
-  const birthday = moment('1998-01-01')
-  const years = today.diff(birthday, 'years');
+  const today = moment();
+  const birthday = moment("1998-01-01");
+  const years = today.diff(birthday, "years");
 
   return (
-    <section id="about" ref={ref} className="py-20 bg-primary w-full overflow-x-hidden">
+    <section
+      id="about"
+      ref={ref}
+      className="py-20 bg-primary w-full overflow-x-hidden"
+    >
       <div className="px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -33,7 +37,6 @@ const About = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            
           >
             <div className=" w-full max-w-md mx-auto">
               <motion.div
@@ -45,16 +48,16 @@ const About = () => {
                 transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
               <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-background/20 to-primary/20 p-1">
                 <div className="w-full h-full rounded-2xl bg-primary/30 flex items-center justify-center">
                   <motion.img
-              src={Links.profile}
-              alt={"logo"}
-              className="w-full h-full object-cover rounded-2xl"
-            />
+                    src={Links.profile}
+                    alt={"logo"}
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
                 </div>
               </div>
             </div>
@@ -71,17 +74,20 @@ const About = () => {
                 {myData.title}
               </h3>
               <p className="text-lg text-foreground leading-relaxed">
-                {myData.bio.replace('{years}',`${years}`)}
-              </p><br/>
+                {myData.bio.replace("{years}", `${years}`)}
+              </p>
+              <br />
               <p className="text-lg text-foreground leading-relaxed">
                 {myData.bioExtra}
-              </p><br/>
-              
+              </p>
+              <br />
             </div>
 
             <div className="flex gap-2">
               <div className="space-y-2">
-                <p className="text-lg text-foreground font-medium">{'Coding from'}</p>
+                <p className="text-lg text-foreground font-medium">
+                  {"Coding from"}
+                </p>
                 <p className="font-medium">{myData.location}</p>
               </div>
             </div>
@@ -90,19 +96,16 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.2}}
+          transition={{ duration: 0.2 }}
           className="mt-12 flex items-center px-8 md:px-16"
         >
-          <ScrollLettersText
-            text={myData.quote}
-            className="my-12"
-          />
+          <ScrollLettersText text={myData.quote} className="my-12" />
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.2}}
+          transition={{ duration: 0.2 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
         >
           {traitsInfo.map((value, index) => {
@@ -110,15 +113,19 @@ const About = () => {
               <motion.div
                 key={`${index}${value.title}`}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.5}}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+                }
+                transition={{ duration: 0.5 }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="p-6 bg-highlight/30 rounded-xl border border-border hover:border-background/50 shadow-sm hover:shadow-md"
               >
                 <div className="w-12 h-12 bg-background/20 rounded-lg flex items-center justify-center mb-4">
-                <p className='text-4xl'>{value.icon}</p>
+                  <p className="text-4xl">{value.icon}</p>
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-on-primary">{value.title}</h4>
+                <h4 className="text-lg font-semibold mb-2 text-on-primary">
+                  {value.title}
+                </h4>
                 <p className="text-sm text-foreground">{value.description}</p>
               </motion.div>
             );
@@ -130,4 +137,3 @@ const About = () => {
 };
 
 export default About;
-
