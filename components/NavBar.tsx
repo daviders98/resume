@@ -7,8 +7,8 @@ import scrollToSection from "@/utils/scroller";
 import { Links, navItems } from "@/data/links";
 
 export default function NavBar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isAtTop,setIsAtTop] = useState(true)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const getNavItemClasses = () => {
     return "text-foreground hover:text-highlight";
   };
@@ -30,7 +30,6 @@ export default function NavBar() {
     >
       <div className="mx-auto sm:px-2 lg:px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          
           <motion.a
             href="#hero"
             onClick={(e) => {
@@ -53,7 +52,11 @@ export default function NavBar() {
             className="md:hidden p-2 text-foreground"
             whileTap={{ scale: 0.9 }}
           >
-            {isMobileMenuOpen ? <FontAwesomeIcon icon={faX} size="2x"/> : <FontAwesomeIcon icon={faBars} size="2xl"/>}
+            {isMobileMenuOpen ? (
+              <FontAwesomeIcon icon={faX} size="2x" />
+            ) : (
+              <FontAwesomeIcon icon={faBars} size="2xl" />
+            )}
           </motion.button>
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
@@ -62,8 +65,8 @@ export default function NavBar() {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  if(isMobileMenuOpen){
-                    setIsMobileMenuOpen(false)
+                  if (isMobileMenuOpen) {
+                    setIsMobileMenuOpen(false);
                   }
                   scrollToSection({ href: item.href });
                 }}
@@ -83,27 +86,29 @@ export default function NavBar() {
                   icon === faGithub
                     ? Links.github
                     : icon === faLinkedin
-                    ? Links.linkedin
-                    : navItems.find(item=>item.name==="Contact")?.href
+                      ? Links.linkedin
+                      : navItems.find((item) => item.name === "Contact")?.href
                 }
-                target={`${icon == faEnvelope ? '': '__blank'}`}
+                target={`${icon == faEnvelope ? "" : "__blank"}`}
                 rel="noopener noreferrer"
                 className={`p-1 ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <FontAwesomeIcon icon={icon} className="lg:text-4xl sm:text-3xl"/>
+                <FontAwesomeIcon
+                  icon={icon}
+                  className="lg:text-4xl sm:text-3xl"
+                />
               </motion.a>
             ))}
           </div>
-          
         </div>
       </div>
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden"
@@ -114,14 +119,14 @@ export default function NavBar() {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => {
-              e.preventDefault();
+                    e.preventDefault();
 
-              setIsMobileMenuOpen(false);
+                    setIsMobileMenuOpen(false);
 
-              setTimeout(() => {
-                scrollToSection({ href: item.href });
-              }, 200);
-            }}
+                    setTimeout(() => {
+                      scrollToSection({ href: item.href });
+                    }, 200);
+                  }}
                   className="px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-primary/50 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -131,39 +136,45 @@ export default function NavBar() {
                 </motion.a>
               ))}
               <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border">
-  {[faGithub, faLinkedin, faEnvelope].map((icon, i) => {
-    const isContact = icon === faEnvelope;
-    const href =
-      icon === faGithub
-        ? Links.github
-        : icon === faLinkedin
-        ? Links.linkedin
-        : navItems.find(item=>item.name==="Contact")?.href
+                {[faGithub, faLinkedin, faEnvelope].map((icon, i) => {
+                  const isContact = icon === faEnvelope;
+                  const href =
+                    icon === faGithub
+                      ? Links.github
+                      : icon === faLinkedin
+                        ? Links.linkedin
+                        : navItems.find((item) => item.name === "Contact")
+                            ?.href;
 
-    return (
-      href && <motion.a
-        key={i}
-        href={href}
-        target={isContact ? "_self" : "_blank"}
-        rel="noopener noreferrer"
-        onClick={(e) => {
-          if (isContact) {
-            e.preventDefault();
-            setIsMobileMenuOpen(false);
-            setTimeout(() => scrollToSection({ href }), 200);
-          } else {
-            setIsMobileMenuOpen(false);
-          }
-        }}
-        className={`p-1 ${getNavItemClasses()}`}
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <FontAwesomeIcon icon={icon} className="lg:text-4xl text-3xl" />
-      </motion.a>
-    );
-  })}
-</div>
+                  return (
+                    href && (
+                      <motion.a
+                        key={i}
+                        href={href}
+                        target={isContact ? "_self" : "_blank"}
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          if (isContact) {
+                            e.preventDefault();
+                            setIsMobileMenuOpen(false);
+                            setTimeout(() => scrollToSection({ href }), 200);
+                          } else {
+                            setIsMobileMenuOpen(false);
+                          }
+                        }}
+                        className={`p-1 ${getNavItemClasses()}`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <FontAwesomeIcon
+                          icon={icon}
+                          className="lg:text-4xl text-3xl"
+                        />
+                      </motion.a>
+                    )
+                  );
+                })}
+              </div>
             </nav>
           </motion.div>
         )}

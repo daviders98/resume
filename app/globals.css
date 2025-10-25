@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 @theme inline {
   /* Base colors */
-  --ghost-white: #F5F5F5;
+  --ghost-white: #f5f5f5;
   --smoky-black: #070600;
-  --amaranth: #E42548;
-  --celestial-blue: #279AF1;
-  --aero: #32C2DF;
-  --davys-gray:#4F4B4B;
+  --amaranth: #e42548;
+  --celestial-blue: #279af1;
+  --aero: #32c2df;
+  --davys-gray: #4f4b4b;
 
   /* Semantic colors */
   --color-background: var(--ghost-white);

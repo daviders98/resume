@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   if (!rateLimit(ip)) {
     return NextResponse.json(
       { error: "Too many requests. Please try again later." },
-      { status: 429 }
+      { status: 429 },
     );
   }
 
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
     console.error(err);
     return NextResponse.json(
       { error: "Failed to send email" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
