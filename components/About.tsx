@@ -14,7 +14,7 @@ const About = () => {
   const years = today.diff(birthday, 'years');
 
   return (
-    <section id="about" ref={ref} className="py-20 md:py-20 bg-primary w-full overflow-x-hidden">
+    <section id="about" ref={ref} className="py-20 bg-primary w-full overflow-x-hidden">
       <div className="px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
