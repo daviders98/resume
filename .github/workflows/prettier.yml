@@ -39,7 +39,7 @@ jobs:
 
       - name: Generate timestamp
         id: vars
-        run: echo "BRANCH_SUFFIX=$(date +'%Y%m%dT%H%M%S')" >> $GITHUB_ENV
+        run: echo "BRANCH_SUFFIX=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
       - name: Create and switch to new branch
         run: |
@@ -65,20 +65,20 @@ jobs:
       - name: Create Pull Request
         id: create_pr
         run: |
-          pr_number=$(gh pr create \
+          PR_URL=$(gh pr create \
             --title "chore: auto-format code with Prettier" \
             --body "This PR contains automatic code formatting changes made by Prettier." \
             --head auto/format-${{ env.BRANCH_SUFFIX }} \
-            --base main \
-            --json number \
-            --jq ".number")
-          echo "PR_NUMBER=$pr_number" >> $GITHUB_ENV
+            --base main)
+          echo "PR_NUMBER=$(basename $PR_URL)" >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Squash and merge PR
         if: env.PR_NUMBER != ''
         run: |
-          gh pr merge ${{ env.PR_NUMBER }} --squash --delete-branch --admin
+          gh pr merge $PR_NUMBER --squash --delete-branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+
