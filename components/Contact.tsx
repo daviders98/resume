@@ -4,6 +4,7 @@ import { useInView } from 'framer-motion';
 import Image from 'next/image';
 import MailModal from './MailModal';
 import { contactExtra, contactPhrase, ModalStatus } from '@/data/contact';
+import sanitizeHtml from "sanitize-html";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -17,10 +18,15 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const sanitizedValue = sanitizeHtml(e.target.value, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+
+  setFormData({
+    ...formData,
+    [e.target.name]: sanitizedValue
+  });
   };
   
   const [modalStatus, setModalStatus] = useState<ModalStatus>(null)
