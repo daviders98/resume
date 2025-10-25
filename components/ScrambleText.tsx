@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+const letters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 interface ScrambleTextProps {
   text: string;
@@ -26,7 +27,7 @@ export default function ScrambleText({
             if (idx < iteration) return char;
             return letters[Math.floor(Math.random() * letters.length)];
           })
-          .join("")
+          .join(""),
       );
 
       iteration += 1 / 2;

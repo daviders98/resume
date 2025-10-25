@@ -5,9 +5,14 @@ import { useInView } from "framer-motion";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import ExtraSkills from "./ExtraSkills";
-import { categories, CategoryData, SkillData, skillsExtra } from "@/data/skills";
+import {
+  categories,
+  CategoryData,
+  SkillData,
+  skillsExtra,
+} from "@/data/skills";
 
-const SkillBar = ({ name, pathToLogo } :SkillData ) => {
+const SkillBar = ({ name, pathToLogo }: SkillData) => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center w-24"
@@ -29,12 +34,12 @@ const SkillBar = ({ name, pathToLogo } :SkillData ) => {
   );
 };
 
-const SkillCategory = ({ title, skills, icon } : CategoryData) => {
+const SkillCategory = ({ title, skills, icon }: CategoryData) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const [angles, setAngles] = useState(
-    skills.map((_, i) => (i / skills.length) * 2 * Math.PI)
+    skills.map((_, i) => (i / skills.length) * 2 * Math.PI),
   );
   const [mounted, setMounted] = useState(false);
   const [radiusX, setRadiusX] = useState(120);
@@ -64,7 +69,7 @@ const SkillCategory = ({ title, skills, icon } : CategoryData) => {
 
     const animate = () => {
       setAngles((prev) =>
-        prev.map((angle) => angle + (isHovered ? slowSpeed : normalSpeed))
+        prev.map((angle) => angle + (isHovered ? slowSpeed : normalSpeed)),
       );
       animationFrame = requestAnimationFrame(animate);
     };
@@ -87,7 +92,9 @@ const SkillCategory = ({ title, skills, icon } : CategoryData) => {
         <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
           <span className="text-2xl">{icon}</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground">{title}</h3>
+        <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+          {title}
+        </h3>
       </div>
 
       <div
@@ -98,7 +105,7 @@ const SkillCategory = ({ title, skills, icon } : CategoryData) => {
         }}
       >
         {mounted &&
-          skills.map((skill : SkillData, index)=> (
+          skills.map((skill: SkillData, index) => (
             <motion.div
               key={skill.name}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -132,13 +139,11 @@ const Skills = () => {
             Technical <span className="text-on-primary">Skills</span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
-          <p className="text-lg max-w-2xl mx-auto">
-            {skillsExtra}
-          </p>
+          <p className="text-lg max-w-2xl mx-auto">{skillsExtra}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
-          {categories.map((category : CategoryData) => (
+          {categories.map((category: CategoryData) => (
             <SkillCategory
               key={category.title}
               title={category.title}
@@ -148,7 +153,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
-      <ExtraSkills/>
+      <ExtraSkills />
     </section>
   );
 };
