@@ -160,7 +160,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex flex-col items-center mt-20"
+            className="flex flex-col items-center mt-20 mb-4"
           >
             <motion.a
               href="#about"
