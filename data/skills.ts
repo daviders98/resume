@@ -79,29 +79,26 @@ export const categories: CategoryData[] = [
   },
 ];
 
-export const skillsTitles: Record<
-  Language,
-  Record<CategoryTitle, string>
-> = {
+export const skillsTitles: Record<Language, Record<CategoryTitle, string>> = {
   en: {
-    'Front-end': "Front-end",
-    'Back-end': "Back-end",
-    'Database': "Database",
-    'Tools': "Tools",
+    "Front-end": "Front-end",
+    "Back-end": "Back-end",
+    Database: "Database",
+    Tools: "Tools",
   },
   es: {
-    'Front-end': "Front-end",
-    'Back-end': "Back-end",
-    'Database': "Base de Datos",
-    'Tools': "Herramientas",
+    "Front-end": "Front-end",
+    "Back-end": "Back-end",
+    Database: "Base de Datos",
+    Tools: "Herramientas",
   },
   zh: {
-    'Front-end': "前端",
-    'Back-end': "后端",
-    'Database': "数据库",
-    'Tools': "工具",
+    "Front-end": "前端",
+    "Back-end": "后端",
+    Database: "数据库",
+    Tools: "工具",
   },
-}
+};
 
 export const skillsExtra = {
   en: "Building web and mobile apps, developing AI solutions, and designing seamless UX/UI experiences",
@@ -113,28 +110,28 @@ export const technicalSkillsStart = {
   en: "Technical",
   es: "Habilidades",
   zh: "技术",
-}
+};
 export const technicalSkillsEnd = {
   en: "Skills",
   es: "Técnicas",
   zh: "技能",
-}
+};
 
 export const extraSkillsText = {
   en: "I have also worked with:",
   es: "También he trabajado con:",
   zh: "我还曾与以下合作过：",
-}
+};
 
 export const extraSkills = [
-    "Rest APIs",
-    "Microservices",
-    "Agile/Scrum",
-    "TDD",
-    "CI/CD",
-    "Responsive Design",
-    "Performance Optimization",
-    "ORMs",
-    "Load Testing",
-    "E2E Testing",
+  "Rest APIs",
+  "Microservices",
+  "Agile/Scrum",
+  "TDD",
+  "CI/CD",
+  "Responsive Design",
+  "Performance Optimization",
+  "ORMs",
+  "Load Testing",
+  "E2E Testing",
 ];

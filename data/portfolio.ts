@@ -149,7 +149,8 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
       {
         id: 1,
         title: "Plataforma de Comercio Electrónico",
-        description: "Plataforma completa de comercio electrónico con carrito de compras",
+        description:
+          "Plataforma completa de comercio electrónico con carrito de compras",
         longDescription:
           "Una solución integral de comercio electrónico que permite a las empresas gestionar productos, pedidos y clientes de manera eficiente...",
         image:
@@ -389,27 +390,27 @@ export const portfolioTitleStart = {
   en: "My",
   es: "Mi",
   zh: "我的",
-}
+};
 export const portfolioTitleEnd = {
   en: "Portfolio",
   es: "Portafolio",
   zh: "作品集",
-}
+};
 
 export const demoText = {
   en: "Demo",
   es: "Demo",
   zh: "演示",
-}
+};
 
 export const codeText = {
   en: "Code",
   es: "Código",
   zh: "代码",
-}
+};
 
 export const seeMoreText = {
   en: "See more",
   es: "Ver más",
   zh: "查看更多",
-}
+};

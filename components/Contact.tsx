@@ -3,7 +3,22 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
 import MailModal from "./MailModal";
-import { contactExtra, contactPhrase, emailForm, fullNameForm, letsTalkEnd, letsTalkStart, messageForm, ModalStatus, placeholderMessageForm, placeholderNameForm, placeholderSubjectForm, sendingText, sendText, subjectForm } from "@/data/contact";
+import {
+  contactExtra,
+  contactPhrase,
+  emailForm,
+  fullNameForm,
+  letsTalkEnd,
+  letsTalkStart,
+  messageForm,
+  ModalStatus,
+  placeholderMessageForm,
+  placeholderNameForm,
+  placeholderSubjectForm,
+  sendingText,
+  sendText,
+  subjectForm,
+} from "@/data/contact";
 import sanitizeHtml from "sanitize-html";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -17,7 +32,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

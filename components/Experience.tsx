@@ -167,7 +167,7 @@ const ExperienceCard = ({
 const Experience = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <section
@@ -183,7 +183,10 @@ const Experience = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {experienceTitleStart[language]}<span className="text-highlight">{experienceTitleEnd[language]}</span>
+            {experienceTitleStart[language]}
+            <span className="text-highlight">
+              {experienceTitleEnd[language]}
+            </span>
           </h2>
           <div className="w-20 h-1 bg-highlight mx-auto rounded-full mb-6" />
           <p className="text-lg text-muted max-w-2xl mx-auto p-4">
@@ -192,20 +195,22 @@ const Experience = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto items-center">
-          {experienceHistory[language].map((exp: ExperienceInfo, index: number) => (
-            <div
-              key={index}
-              className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 items-center"
-            >
-              <ExperienceCard
-                key={exp.id}
-                experience={exp}
-                index={index}
-                startDelay={isInView ? index * 1.5 : 0}
-                isInView={isInView}
-              />
-            </div>
-          ))}
+          {experienceHistory[language].map(
+            (exp: ExperienceInfo, index: number) => (
+              <div
+                key={index}
+                className="max-w-4xl mx-auto px-2 sm:px-6 lg:px-8 items-center"
+              >
+                <ExperienceCard
+                  key={exp.id}
+                  experience={exp}
+                  index={index}
+                  startDelay={isInView ? index * 1.5 : 0}
+                  isInView={isInView}
+                />
+              </div>
+            ),
+          )}
         </div>
 
         <motion.div
@@ -215,7 +220,10 @@ const Experience = () => {
           className="mt-4 max-w-4xl mx-auto"
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
-            {educationAndStartingTitle[language]}<span className="text-highlight">{educationAndEndingTitle[language]}</span>
+            {educationAndStartingTitle[language]}
+            <span className="text-highlight">
+              {educationAndEndingTitle[language]}
+            </span>
           </h3>
 
           <div className="grid md:grid-cols-2 gap-6 px-2 mb-4">
@@ -294,7 +302,9 @@ const Experience = () => {
                   whileHover={{ y: -2 }}
                   className="p-4 rounded-lg border border-border hover:border-foreground/20"
                 >
-                  <h5 className="font-semibold mb-1">{certificationsEnd[language]}</h5>
+                  <h5 className="font-semibold mb-1">
+                    {certificationsEnd[language]}
+                  </h5>
                   <FontAwesomeIcon icon={faLinkedin} size="2xl" />
                 </motion.div>
               </a>

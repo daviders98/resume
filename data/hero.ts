@@ -4,7 +4,7 @@ const greeting = {
   en: "Hi, I am",
   es: "Hola, soy",
   zh: "你好，我叫",
-}
+};
 const words: Record<Language, string[]> = {
   en: [
     "MENTOR",
@@ -71,28 +71,32 @@ const slogan = {
   en: "Crafting the Best Digital Experiences.",
   es: "Creando las Mejores Experiencias Digitales.",
   zh: "打造最佳数字体验。",
-}
+};
 
 const portfolioCTAText = {
   en: "Go to Portfolio",
   es: "Ir al Portafolio",
   zh: "前往作品集",
-}
+};
 
 const contactCTAText = {
   en: "Contact Now",
   es: "Contactar Ahora",
   zh: "立即联系",
-}
+};
 
 const discoverMoreText = {
   en: "Discover more",
   es: "Descubre más",
   zh: "发现更多",
-}
+};
 
 export const heroData = {
   words,
   techs,
-  greeting,slogan,portfolioCTAText,contactCTAText,discoverMoreText
+  greeting,
+  slogan,
+  portfolioCTAText,
+  contactCTAText,
+  discoverMoreText,
 };

@@ -23,7 +23,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [flipped, setFlipped] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   return (
     <div className="w-full min-h-120 sm:min-h-120">
@@ -88,7 +88,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         window.open(project.demoUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faSquareArrowUpRight} /> {demoText[language]}
+                      <FontAwesomeIcon icon={faSquareArrowUpRight} />{" "}
+                      {demoText[language]}
                     </button>
                   )}
                   {project.githubUrl && (
@@ -99,7 +100,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         window.open(project.githubUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faGithub} /> { codeText[language]}
+                      <FontAwesomeIcon icon={faGithub} /> {codeText[language]}
                     </button>
                   )}
                   <button
@@ -170,7 +171,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     window.open(project.demoUrl, "_blank");
                   }}
                 >
-                  <FontAwesomeIcon icon={faSquareArrowUpRight} /> {demoText[language]}
+                  <FontAwesomeIcon icon={faSquareArrowUpRight} />{" "}
+                  {demoText[language]}
                 </button>
               )}
               {project.githubUrl && (
@@ -208,7 +210,10 @@ const Portfolio: React.FC = () => {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {portfolioTitleStart[language]} <span className="text-on-primary">{portfolioTitleEnd[language]}</span>
+            {portfolioTitleStart[language]}{" "}
+            <span className="text-on-primary">
+              {portfolioTitleEnd[language]}
+            </span>
           </h2>
           <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
           <p className="text-lg text-foreground max-w-2xl mx-auto">
