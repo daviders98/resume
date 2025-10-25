@@ -29,7 +29,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1557821552-17105176677c?w=1600&h=900&fit=crop',
     technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Redux', 'Tailwind CSS'],
     demoUrl: 'https://demo-ecommerce.com',
-    githubUrl: 'https://github.com/tuusuario/ecommerce-platform',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Secure payment processing with Stripe',
       'Admin dashboard with real-time metrics',
@@ -47,7 +47,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?w=1600&h=900&fit=crop',
     technologies: ['Vue.js', 'Firebase', 'Tailwind CSS', 'Chart.js'],
     demoUrl: 'https://demo-projects.com',
-    githubUrl: 'https://github.com/tuusuario/project-management-app',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Real-time task updates with Firebase',
       'Interactive dashboards with charts',
@@ -65,7 +65,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&h=900&fit=crop',
     technologies: ['React', 'Next.js', 'Framer Motion', 'Tailwind CSS'],
     demoUrl: 'https://demo-portfolio.com',
-    githubUrl: 'https://github.com/tuusuario/portfolio-website',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Responsive design for all devices',
       'Animated transitions with Framer Motion',
@@ -83,7 +83,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1483721310020-03333e577078?w=1600&h=900&fit=crop',
     technologies: ['React Native', 'Node.js', 'MongoDB', 'Redux'],
     demoUrl: 'https://demo-fitnessapp.com',
-    githubUrl: 'https://github.com/tuusuario/fitness-tracking-app',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Track workouts and calories burned',
       'Set fitness goals and reminders',
@@ -101,7 +101,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop',
     technologies: ['Angular', 'Firebase', 'Bootstrap'],
     demoUrl: 'https://demo-recipes.com',
-    githubUrl: 'https://github.com/tuusuario/recipe-sharing-platform',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Upload and manage personal recipes',
       'Search and filter by ingredients',
@@ -119,7 +119,7 @@ export const portfolioData: { projects: Project[] } = {
       'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe'],
     demoUrl: 'https://demo-travel.com',
-    githubUrl: 'https://github.com/tuusuario/travel-booking-system',
+    githubUrl: 'https://github.com/daviders98',
     highlights: [
       'Flight, hotel, and activity booking',
       'Integrated secure payment system',
