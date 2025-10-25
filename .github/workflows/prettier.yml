@@ -18,10 +18,6 @@ jobs:
       matrix:
         branch: [main, develop]
 
-    strategy:
-      matrix:
-        branch: [main, develop] # 👈 iterate over both branches
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
