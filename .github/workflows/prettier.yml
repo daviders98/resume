@@ -33,6 +33,14 @@ jobs:
 
       - name: Update local main branch
         run: git checkout main && git pull origin main
+
+      - name: Generate timestamp
+        id: vars
+        run: echo "BRANCH_SUFFIX=$(date +'%Y%m%dT%H%M%S')" >> $GITHUB_ENV
+
+      - name: Create and switch to new branch
+        run: |
+          git checkout -b auto/format-${{ env.BRANCH_SUFFIX }}
           
       - name: Auto-fix formatting
         run: |
@@ -49,9 +57,13 @@ jobs:
           git branch
           git rev-parse --abbrev-ref HEAD
 
-      - name: Push changes
+      - name: Push branch
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git push origin main
-        
+          git push origin auto/format-${{ env.BRANCH_SUFFIX }}
+
+      - name: Create Pull Request
+        run: |
+          gh pr create --title "chore: auto-format code with Prettier" --body "This PR contains automatic code formatting changes made by Prettier." --head auto/format-${{ env.BRANCH_SUFFIX }} --base main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
