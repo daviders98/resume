@@ -107,8 +107,8 @@ export const skillsExtra = {
 };
 
 export const technicalSkillsStart = {
-  en: "Technical",
-  es: "Habilidades",
+  en: "Technical ",
+  es: "Habilidades ",
   zh: "技术",
 };
 export const technicalSkillsEnd = {

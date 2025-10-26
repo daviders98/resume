@@ -14,9 +14,9 @@ export default function MailModal({ status, onClose }: MailModalProps) {
   if (!status) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-foreground/40 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-[var(--color-foreground)]/40 z-50">
       <motion.div
-        className="bg-primary p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4"
+        className="bg-[var(--color-primary)] p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0 }}
@@ -41,7 +41,7 @@ export default function MailModal({ status, onClose }: MailModalProps) {
         </p>
 
         <button
-          className="mt-4 px-6 py-2 bg-background text-foreground rounded-full hover:scale-105 transition cursor-pointer"
+          className="mt-4 px-6 py-2 bg-[var(--color-background)] text-[var(--color-foreground)] rounded-full hover:scale-105 transition cursor-pointer"
           onClick={onClose}
         >
           {closeText[language]}

@@ -25,7 +25,7 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="py-20 bg-primary w-full overflow-x-hidden"
+      className="py-20 bg-[var(--color-primary)]/80 w-full overflow-x-hidden"
     >
       <div className="px-8">
         <motion.div
@@ -36,9 +36,9 @@ const About = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {aboutMeStartText[language]}{" "}
-            <span className="text-on-primary">{aboutMeEndText[language]}</span>
+            <span className="text-[var(--color-on-primary)]">{aboutMeEndText[language]}</span>
           </h2>
-          <div className="w-20 h-1 bg-background mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
@@ -49,7 +49,7 @@ const About = () => {
           >
             <div className=" w-full max-w-md mx-auto">
               <motion.div
-                className=" -inset-4 bg-gradient-to-r from-background to-primary rounded-2xl blur-2xl opacity-20"
+                className=" -inset-4 bg-gradient-to-r from-[var(--color-background)] to-[var(--color-primary)] rounded-2xl blur-2xl opacity-20"
                 animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.2, 1, 0.2],
@@ -60,8 +60,8 @@ const About = () => {
                   ease: "easeInOut",
                 }}
               />
-              <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-background/20 to-primary/20 p-1">
-                <div className="w-full h-full rounded-2xl bg-primary/30 flex items-center justify-center">
+              <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-[var(--color-background)]/20 to-[var(--color-primary)]/20 p-1">
+                <div className="w-full h-full rounded-2xl bg-[var(--color-primary)]/30 flex items-center justify-center">
                   <motion.img
                     src={Links.profile}
                     alt={"logo"}
@@ -82,11 +82,11 @@ const About = () => {
               <h3 className="text-2xl sm:text-3xl font-bold mb-4">
                 {myData[language].title}
               </h3>
-              <p className="text-lg text-foreground leading-relaxed">
+              <p className="text-lg text-[var(--color-foreground)] leading-relaxed">
                 {myData[language].bio.replace("{years}", `${years}`)}
               </p>
               <br />
-              <p className="text-lg text-foreground leading-relaxed">
+              <p className="text-lg text-[var(--color-foreground)] leading-relaxed">
                 {myData[language].bioExtra}
               </p>
               <br />
@@ -94,7 +94,7 @@ const About = () => {
 
             <div className="flex gap-2">
               <div className="space-y-2">
-                <p className="text-lg text-foreground font-medium">
+                <p className="text-lg text-[var(--color-foreground)] font-medium">
                   {codingFromText[language]}
                 </p>
                 <p className="font-medium">{myData[language].location}</p>
@@ -127,15 +127,15 @@ const About = () => {
                 }
                 transition={{ duration: 0.5 }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="p-6 bg-highlight/30 rounded-xl border border-border hover:border-background/50 shadow-sm hover:shadow-md"
+                className="p-6 bg-[var(--color-highlight)]/30 rounded-xl border border-border hover:border-[var(--color-background)]/50 shadow-sm hover:shadow-md"
               >
-                <div className="w-12 h-12 bg-background/20 rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-[var(--color-background)]/20 rounded-lg flex items-center justify-center mb-4">
                   <p className="text-4xl">{value.icon}</p>
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-on-primary">
+                <h4 className="text-lg font-semibold mb-2 text-[var(--color-on-primary)]">
                   {value.title}
                 </h4>
-                <p className="text-sm text-foreground">{value.description}</p>
+                <p className="text-sm text-[var(--color-foreground)]">{value.description}</p>
               </motion.div>
             );
           })}

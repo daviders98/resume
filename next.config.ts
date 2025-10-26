@@ -17,15 +17,6 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com"],
   },
-  matcher: [
-    {
-      source: "/((?!api|_next/static|_next/image|favicon.ico).*)",
-      missing: [
-        { type: "header", key: "next-router-prefetch" },
-        { type: "header", key: "purpose", value: "prefetch" },
-      ],
-    },
-  ],
   async headers() {
     return [
       {
