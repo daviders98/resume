@@ -23,7 +23,7 @@ const SkillBar = ({ name, pathToLogo }: SkillData) => {
       className="flex flex-col items-center justify-center w-24"
       whileHover={{ scale: 1.2, cursor: "pointer" }}
     >
-      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden border border-gray-200">
+      <div className="w-12 h-12 rounded-full bg-[var(--color-primary)] flex items-center justify-center overflow-hidden border border-[var(--color-muted)]">
         <Image
           src={pathToLogo}
           alt={name}
@@ -32,7 +32,7 @@ const SkillBar = ({ name, pathToLogo }: SkillData) => {
           style={{ width: "auto", height: "auto" }}
         />
       </div>
-      <span className="mt-2 text-center font-medium text-sm text-on-primary">
+      <span className="mt-2 text-center font-medium text-sm text-[var(--color-on-primary)]">
         {name}
       </span>
     </motion.div>
@@ -89,15 +89,15 @@ const SkillCategory = ({ title, skills, icon }: SkillCategoryProps) => {
       initial={{ opacity: 0, y: 0 }}
       animate={isInView ? { opacity: 1, y: 30 } : { opacity: 0, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-primary/20 p-6 sm:p-8 rounded-xl border border-border hover:border-background shadow-sm hover:shadow-md"
+      className="bg-[var(--color-primary)]/20 p-6 sm:p-8 rounded-xl border border-border hover:border-[var(--color-background)] shadow-sm hover:shadow-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flex items-center gap-3 mb-8 justify-center">
-        <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
+        <div className="w-10 h-10 bg-[var(--color-background)] rounded-lg flex items-center justify-center">
           <span className="text-2xl">{icon}</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+        <h3 className="text-xl sm:text-2xl font-bold text-[var(--color-foreground)]">
           {title}
         </h3>
       </div>
@@ -133,7 +133,11 @@ const Skills = () => {
   const { language } = useLanguage();
 
   return (
-    <section id="skills" ref={ref} className="py-20 bg-highlight">
+    <section
+      id="skills"
+      ref={ref}
+      className="py-20 bg-[var(--color-highlight)]"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -142,12 +146,12 @@ const Skills = () => {
           className="text-center mb-4"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            {technicalSkillsStart[language]}{" "}
-            <span className="text-on-primary">
+            {technicalSkillsStart[language]}
+            <span className="text-[var(--color-on-primary)]">
               {technicalSkillsEnd[language]}
             </span>
           </h2>
-          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
+          <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
           <p className="text-lg max-w-2xl mx-auto">{skillsExtra[language]}</p>
         </motion.div>
 

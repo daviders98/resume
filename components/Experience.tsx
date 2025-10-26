@@ -1,4 +1,5 @@
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import {
   certificationHistory,
   certificationsEnd,
@@ -22,11 +23,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const TypingIndicator = () => (
-  <div className="flex items-center justify-center gap-1 bg-secondary/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
+  <div className="flex items-center justify-center gap-1 bg-[var(--color-secondary)]/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
     {[0, 0.2, 0.4].map((delay, i) => (
       <motion.span
         key={i}
-        className="w-1 h-1 bg-secondary rounded-full md:w-2 md:h-2"
+        className="w-1 h-1 bg-[var(--color-secondary)] rounded-full md:w-2 md:h-2"
         animate={{ y: [0, -4, 0] }}
         transition={{ repeat: Infinity, duration: 1, ease: "easeInOut", delay }}
       />
@@ -42,6 +43,7 @@ const ExperienceCard = ({
 }: ExperienceCardProps) => {
   const isRight = index % 2 === 0;
   const [showTyping, setShowTyping] = useState(true);
+  const { isDark } = useTheme();
 
   useEffect(() => {
     if (!isInView) return;
@@ -110,15 +112,19 @@ const ExperienceCard = ({
           }}
           className={`hover:scale-102 relative max-w-[80%] rounded-2xl p-4 md:p-6 shadow-md border border-border ${
             isRight
-              ? "bg-primary text-on-primary"
-              : "bg-background text-foreground"
+              ? "bg-[var(--color-primary)] text-[var(--color-on-primary)]"
+              : "bg-[var(--color-background)] text-[var(--color-foreground)]"
           }`}
         >
           <div className="mb-3">
-            <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-background">
+            <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
               {" "}
               <Image
-                src={experience.pathToLogo}
+                src={
+                  experience.pathToLogo == "/images/logo.png" && isDark
+                    ? Links.darkLogo
+                    : experience.pathToLogo
+                }
                 alt={`Company logo ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 64px, 128px"
@@ -130,7 +136,9 @@ const ExperienceCard = ({
             </h3>
             <h4
               className={`text-sm ${
-                isRight ? "text-on-primary" : "text-secondary"
+                isRight
+                  ? "text-[var(--color-on-primary)]"
+                  : "text-[var(--color-secondary)]"
               } font-semibold`}
             >
               {experience.company}
@@ -152,7 +160,7 @@ const ExperienceCard = ({
               <motion.span
                 key={tech}
                 whileHover={{ scale: 1.1 }}
-                className="px-3 py-1 bg-foreground text-on-primary rounded-full text-xs font-medium"
+                className="px-3 py-1 bg-[var(--color-foreground)] text-[var(--color-on-primary)] rounded-full text-xs font-medium"
               >
                 {tech}
               </motion.span>
@@ -173,7 +181,7 @@ const Experience = () => {
     <section
       id="experience"
       ref={ref}
-      className="py-20 bg-background w-full min-h-screen"
+      className="py-20 bg-[var(--color-background)] w-full min-h-screen"
     >
       <div className="sm:px-6 lg:px-8">
         <motion.div
@@ -184,12 +192,12 @@ const Experience = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {experienceTitleStart[language]}
-            <span className="text-highlight">
+            <span className="text-[var(--color-highlight)]">
               {experienceTitleEnd[language]}
             </span>
           </h2>
-          <div className="w-20 h-1 bg-highlight mx-auto rounded-full mb-6" />
-          <p className="text-lg text-muted max-w-2xl mx-auto p-4">
+          <div className="w-20 h-1 bg-[var(--color-highlight)] mx-auto rounded-full mb-6" />
+          <p className="text-lg text-[var(--color-muted)] max-w-2xl mx-auto p-4">
             {experienceExtra[language]}
           </p>
         </motion.div>
@@ -221,7 +229,7 @@ const Experience = () => {
         >
           <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             {educationAndStartingTitle[language]}
-            <span className="text-highlight">
+            <span className="text-[var(--color-highlight)]">
               {educationAndEndingTitle[language]}
             </span>
           </h3>
@@ -236,7 +244,7 @@ const Experience = () => {
                 <motion.div
                   key={edu.id}
                   whileHover={{ y: -2 }}
-                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-[var(--color-foreground)]/20"
                   style={{ minHeight: 100 }}
                 >
                   <div className="w-16 h-16 relative rounded-full border border-border mb-1">
@@ -249,10 +257,17 @@ const Experience = () => {
                     />
                   </div>
                   <h5 className="font-semibold mb-1">{edu.degree}</h5>
-                  <p className="text-sm text-primary mb-1">{edu.institution}</p>
-                  <p className="text-xs text-secondary mb-2">{edu.period}</p>
+                  <p className="text-sm text-[var(--color-primary)] mb-1">
+                    {edu.institution}
+                  </p>
+                  <p className="text-xs text-[var(--color-secondary)] mb-2">
+                    {edu.period}
+                  </p>
                   {edu.description.map((desc, index) => (
-                    <li key={index} className="text-sm text-muted">
+                    <li
+                      key={index}
+                      className="text-sm text-[var(--color-muted)]"
+                    >
                       {desc}
                     </li>
                   ))}
@@ -268,15 +283,15 @@ const Experience = () => {
                 <motion.div
                   key={cert.id}
                   whileHover={{ y: -2 }}
-                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-[var(--color-foreground)]/20"
                 >
                   <a
                     href={cert.credentialUrl}
                     target="_blank"
-                    className="hover:text-highlight"
+                    className="hover:text-[var(--color-highlight)]"
                     rel="noopener noreferrer"
                   >
-                    <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-background">
+                    <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
                       <Image
                         src={cert.pathToLogo}
                         alt={`Issuer Company logo ${cert.id}`}
@@ -286,8 +301,12 @@ const Experience = () => {
                       />
                     </div>
                     <h5 className="font-semibold mb-1">{cert.name}</h5>
-                    <p className="text-sm text-primary mb-1">{cert.issuer}</p>
-                    <p className="text-xs text-secondary">{cert.date}</p>
+                    <p className="text-sm text-[var(--color-primary)] mb-1">
+                      {cert.issuer}
+                    </p>
+                    <p className="text-xs text-[var(--color-secondary)]">
+                      {cert.date}
+                    </p>
                   </a>
                 </motion.div>
               ))}
@@ -295,12 +314,12 @@ const Experience = () => {
                 href={
                   "https://www.linkedin.com/in/davidagarciahdez/details/certifications/"
                 }
-                className={"hover:text-highlight"}
+                className={"hover:text-[var(--color-highlight)]"}
                 target="_blank"
               >
                 <motion.div
                   whileHover={{ y: -2 }}
-                  className="p-4 rounded-lg border border-border hover:border-foreground/20"
+                  className="p-4 rounded-lg border border-border hover:border-[var(--color-foreground)]/20"
                 >
                   <h5 className="font-semibold mb-1">
                     {certificationsEnd[language]}

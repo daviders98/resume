@@ -80,7 +80,11 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" ref={ref} className="py-20 md:pt-20 bg-highlight">
+    <section
+      id="contact"
+      ref={ref}
+      className="py-20 md:pt-20 bg-[var(--color-highlight)]"
+    >
       <MailModal status={modalStatus} onClose={() => setModalStatus(null)} />
       <div className="px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -91,10 +95,12 @@ const Contact = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {letsTalkStart[language]}
-            <span className="text-on-primary">{letsTalkEnd[language]}</span>
+            <span className="text-[var(--color-on-primary)]">
+              {letsTalkEnd[language]}
+            </span>
           </h2>
-          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
+          <p className="text-lg text-[var(--color-foreground)] max-w-2xl mx-auto">
             {contactExtra[language]}
           </p>
         </motion.div>
@@ -146,7 +152,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
+                  className="w-full px-4 py-3 bg-[var(--color-background)]/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-background)]/50"
                   placeholder={placeholderNameForm[language]}
                 />
               </div>
@@ -165,7 +171,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
+                  className="w-full px-4 py-3 bg-[var(--color-background)]/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-background)]/50"
                   placeholder="your@email.com"
                 />
               </div>
@@ -184,7 +190,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all"
+                  className="w-full px-4 py-3 bg-[var(--color-background)]/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-background)]/50"
                   placeholder={placeholderSubjectForm[language]}
                 />
               </div>
@@ -203,14 +209,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-background/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-background/50 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-[var(--color-background)]/30 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-background)]/50 resize-none"
                   placeholder={placeholderMessageForm[language]}
                 />
               </div>
 
               <button
                 type="submit"
-                className="group bg-background/50 py-4 max-w-3xl rounded-full w-[50%] flex  justify-self-center align-center justify-center hover:cursor-pointer"
+                className="group bg-[var(--color-background)]/50 py-4 max-w-3xl rounded-full w-[50%] flex  justify-self-center align-center justify-center hover:cursor-pointer"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -222,7 +228,7 @@ const Contact = () => {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="w-5 h-5 border-2 border-foreground border-t-transparent rounded-full mr-2"
+                      className="w-5 h-5 border-2 border-[var(--color-foreground)] border-t-transparent rounded-full mr-2"
                     />
                     {sendingText[language]}
                   </>

@@ -5,6 +5,7 @@ const linkedin = "https://www.linkedin.com/in/davidagarciahdez/";
 const logo = "/images/logo.png";
 const nextjsLogo = "/images/technologies/nextjs.png";
 const profile = "/images/profile.jpg";
+const darkLogo = "/images/logo_dark.png";
 
 export const Links: {
   github: string;
@@ -12,12 +13,14 @@ export const Links: {
   logo: string;
   nextjsLogo: string;
   profile: string;
+  darkLogo: string;
 } = {
   github,
   linkedin,
   logo,
   nextjsLogo,
   profile,
+  darkLogo,
 };
 
 export interface NavItem {

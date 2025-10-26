@@ -28,7 +28,7 @@ const ExtraSkills = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.5 + index * 0.1 }}
             whileHover={{ scale: 1.1, y: -2 }}
-            className="px-4 py-2 bg-secondary/90 text-on-primary rounded-lg text-sm font-medium border-1 hover:border-foreground hover:text-foreground transition-colors cursor-default"
+            className="px-4 py-2 bg-[var(--color-secondary)]/90 text-[var(--color-on-primary)] rounded-lg text-sm font-medium border-1 hover:border-[var(--color-foreground)] hover:text-[var(--color-foreground)] transition-colors cursor-default"
           >
             {tech}
           </motion.span>

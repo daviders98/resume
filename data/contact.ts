@@ -18,7 +18,7 @@ export interface MailModalProps {
 }
 
 export const letsTalkStart = {
-  en: "Let's",
+  en: "Let's ",
   es: "Hablemos ",
   zh: "让我们",
 };

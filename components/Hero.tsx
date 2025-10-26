@@ -47,7 +47,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="mb-4"
           >
-            <span className="inline-block px-4 py-2 bg-highlight/30 text-foreground rounded-full text-2xl font-medium">
+            <span className="inline-block px-4 py-2 bg-[var(--color-highlight)]/30 text-[var(--color-foreground)] rounded-full text-2xl font-medium">
               <motion.span
                 className="inline-block"
                 animate={{ rotate: [0, 20, -10, 20, 0] }}
@@ -63,7 +63,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-foreground via-foreground to-foreground/60 bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-[var(--color-foreground)] via-[var(--color-foreground)] to-[var(--color-foreground)]/60 bg-clip-text text-transparent"
           >
             {"David"}
             <br />
@@ -100,7 +100,7 @@ const Hero = () => {
           >
             <button
               onClick={() => scrollToSection({ href: "#portfolio" })}
-              className="group min-w-[200px] border-1 border-foreground rounded-lg p-2 cursor-pointer hover:bg-highlight hover:text-on-primary"
+              className="group min-w-[200px] border-1 border-[var(--color-foreground)] rounded-lg p-2 cursor-pointer hover:bg-[var(--color-highlight)] hover:text-[var(--color-on-primary)]"
             >
               {heroData.portfolioCTAText[language]}
               <motion.span
@@ -113,7 +113,7 @@ const Hero = () => {
             </button>
             <button
               onClick={() => scrollToSection({ href: "#contact" })}
-              className="min-w-[200px] bg-foreground text-on-primary rounded-lg p-2 cursor-pointer hover:bg-secondary hover:border-1 hover:border-foreground"
+              className="min-w-[200px] bg-[var(--color-foreground)] text-[var(--color-on-primary)] rounded-lg p-2 cursor-pointer hover:bg-[var(--color-secondary)] hover:border-1 hover:border-[var(--color-foreground)]"
             >
               {heroData.contactCTAText[language]}
               <FontAwesomeIcon icon={faSquareEnvelope} className="ml-2" />
@@ -145,10 +145,10 @@ const Hero = () => {
                     <motion.span
                       whileHover={{ scale: 1.1 }}
                       transition={{ type: "spring", stiffness: 300 }}
-                      className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm 
-    font-medium border border-foreground hover:border-foreground hover:border-1 
-    hover:rounded-lg hover:bg-secondary cursor-pointer whitespace-nowrap 
-    hover:relative hover:bottom-1 hover:text-on-primary"
+                      className="px-4 py-2 bg-[var(--color-primary)] rounded-lg text-sm 
+    font-medium border border-[var(--color-foreground)] hover:border-[var(--color-foreground)] hover:border-1 
+    hover:rounded-lg hover:bg-[var(--color-secondary)] cursor-pointer whitespace-nowrap 
+    hover:relative hover:bottom-1 hover:text-[var(--color-on-primary)]"
                     >
                       {tech}
                     </motion.span>
@@ -172,7 +172,7 @@ const Hero = () => {
               }}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="hover:text-highlight text-muted"
+              className="hover:text-[var(--color-highlight)] text-[var(--color-muted)]"
             >
               {heroData.discoverMoreText[language]}
               <p className="text-lg mb-2"></p>
