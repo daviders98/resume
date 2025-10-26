@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Language, languages, useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
+import { languageText, themeText } from "@/data/hero";
 
 export default function SettingsPanel() {
   const [opened, setOpened] = useState(false);
@@ -48,7 +49,7 @@ export default function SettingsPanel() {
 
           <div className="flex flex-col gap-1">
             <span className="font-medium text-sm text-[var(--color-foreground)]">
-              Language
+              {languageText[language]}
             </span>
             {languages.map((lang) => (
               <button
@@ -67,7 +68,7 @@ export default function SettingsPanel() {
 
           <div className="flex flex-col gap-1 mt-2">
             <span className="font-medium text-sm text-[var(--color-foreground)]">
-              Theme
+              {themeText[language]}
             </span>
             <button
               className="px-2 py-1 rounded flex items-center gap-2 text-sm hover:bg-[var(--color-muted)]/50"
