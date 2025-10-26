@@ -95,7 +95,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         window.open(project.demoUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faSquareArrowUpRight} size={'xl'}/>
+                      <FontAwesomeIcon
+                        icon={faSquareArrowUpRight}
+                        size={"xl"}
+                      />
                       {demoText[language]}
                     </button>
                   )}
@@ -107,7 +110,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         window.open(project.githubUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faGithub} size={'xl'}/> {codeText[language]}
+                      <FontAwesomeIcon icon={faGithub} size={"xl"} />{" "}
+                      {codeText[language]}
                     </button>
                   )}
                   <button
@@ -117,7 +121,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       setFlipped(true);
                     }}
                   >
-                    <FontAwesomeIcon icon={faCircleInfo} size={'xl'}/>
+                    <FontAwesomeIcon icon={faCircleInfo} size={"xl"} />
                     {seeMoreText[language]}
                   </button>
                 </div>
