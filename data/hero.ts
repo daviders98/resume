@@ -105,10 +105,10 @@ export const languageText = {
   en: "Language",
   es: "Idioma",
   zh: "语言",
-}
+};
 
 export const themeText = {
   en: "Theme",
   es: "Tema",
   zh: "主题",
-}
+};

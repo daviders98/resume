@@ -1,6 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { faChevronDown, faSquareEnvelope } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faSquareEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import scrollToSection from "@/utils/scroller";
