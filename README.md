@@ -7,17 +7,17 @@ Showcases experience, skills, and projects, designed with performance, accessibi
 
 ## 🚀 Features
 
-* ⚡ **Next.js 15.5.5 + App Router** — fast, server-rendered pages and SEO-friendly
-* 🎨 **Tailwind CSS** — sleek, responsive design with dark/light theme support
-* 🌓 **ThemeContext** — toggle light/dark mode
-* 🌍 **LanguageContext** — support for multiple languages
-* 💌 **Contact API** — serverless endpoint to securely handle messages
-* 🔐 **Token API** — secure token endpoint (e.g., for contact or auth workflows)
-* 🧰 **Reusable Components** — modular, maintainable UI components
-* 🖼️ **Dynamic Portfolio** — add/edit projects easily via `/data/portfolio.ts`
-* 🧩 **Custom Animations** — text scrambling and animated headers
-* ✅ **Fully Typed** — TypeScript throughout for type safety
-* 🛠 **GitHub Actions** — automatic code formatting on `develop` & `main` branch pushes
+- ⚡ **Next.js 15.5.5 + App Router** — fast, server-rendered pages and SEO-friendly
+- 🎨 **Tailwind CSS** — sleek, responsive design with dark/light theme support
+- 🌓 **ThemeContext** — toggle light/dark mode
+- 🌍 **LanguageContext** — support for multiple languages
+- 💌 **Contact API** — serverless endpoint to securely handle messages
+- 🔐 **Token API** — secure token endpoint (e.g., for contact or auth workflows)
+- 🧰 **Reusable Components** — modular, maintainable UI components
+- 🖼️ **Dynamic Portfolio** — add/edit projects easily via `/data/portfolio.ts`
+- 🧩 **Custom Animations** — text scrambling and animated headers
+- ✅ **Fully Typed** — TypeScript throughout for type safety
+- 🛠 **GitHub Actions** — automatic code formatting on `develop` & `main` branch pushes
 
 ---
 
@@ -25,25 +25,25 @@ Showcases experience, skills, and projects, designed with performance, accessibi
 
 ```bash
 .
-├── app/                  
-│   ├── api/              
+├── app/
+│   ├── api/
 │   │   ├── contact/route.ts  # Contact form submission endpoint
 │   │   └── token/route.ts    # Token endpoint
-│   ├── layout.tsx        
-│   ├── page.tsx          
-│   └── globals.css       
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
 │
-├── components/           
-├── context/              
-├── data/                 
-├── public/               
-├── utils/                
-├── lib/                  
+├── components/
+├── context/
+├── data/
+├── public/
+├── utils/
+├── lib/
 ├── .github/workflows/    # GitHub Action for code formatting
-├── tailwind.config.ts    
-├── next.config.ts        
-├── package.json          
-└── tsconfig.json         
+├── tailwind.config.ts
+├── next.config.ts
+├── package.json
+└── tsconfig.json
 ```
 
 ---
@@ -123,7 +123,7 @@ npm run format     # Run Prettier
 
 ## 📬 Contact
 
-* **Website:** [devgarcia.vercel.app](devgarcia.vercel.app/)
+- **Website:** [devgarcia.vercel.app](devgarcia.vercel.app/)
 
 ---
 
