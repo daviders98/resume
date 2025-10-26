@@ -80,7 +80,11 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" ref={ref} className="py-20 md:pt-20 bg-[var(--color-highlight)]">
+    <section
+      id="contact"
+      ref={ref}
+      className="py-20 md:pt-20 bg-[var(--color-highlight)]"
+    >
       <MailModal status={modalStatus} onClose={() => setModalStatus(null)} />
       <div className="px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -91,7 +95,9 @@ const Contact = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {letsTalkStart[language]}
-            <span className="text-[var(--color-on-primary)]">{letsTalkEnd[language]}</span>
+            <span className="text-[var(--color-on-primary)]">
+              {letsTalkEnd[language]}
+            </span>
           </h2>
           <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
           <p className="text-lg text-[var(--color-foreground)] max-w-2xl mx-auto">

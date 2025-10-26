@@ -24,7 +24,10 @@ export default function SettingsPanel() {
           className="w-12 h-12 rounded-full bg-[var(--color-muted)] flex items-center justify-center shadow-md hover:bg-[var(--color-highlight)]/70"
           aria-label="Open Settings"
         >
-          <FontAwesomeIcon icon={faCog} className="text-[var(--color-background)]" />
+          <FontAwesomeIcon
+            icon={faCog}
+            className="text-[var(--color-background)]"
+          />
         </button>
       )}
 
@@ -44,12 +47,16 @@ export default function SettingsPanel() {
           </button>
 
           <div className="flex flex-col gap-1">
-            <span className="font-medium text-sm text-[var(--color-foreground)]">Language</span>
+            <span className="font-medium text-sm text-[var(--color-foreground)]">
+              Language
+            </span>
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 className={`px-2 py-1 rounded text-left text-sm hover:bg-[var(--color-muted)]/50 ${
-                  language === lang.code ? "font-bold bg-[var(--color-muted)]/30" : ""
+                  language === lang.code
+                    ? "font-bold bg-[var(--color-muted)]/30"
+                    : ""
                 }`}
                 onClick={() => setLanguage(lang.code as Language)}
               >
@@ -59,7 +66,9 @@ export default function SettingsPanel() {
           </div>
 
           <div className="flex flex-col gap-1 mt-2">
-            <span className="font-medium text-sm text-[var(--color-foreground)]">Theme</span>
+            <span className="font-medium text-sm text-[var(--color-foreground)]">
+              Theme
+            </span>
             <button
               className="px-2 py-1 rounded flex items-center gap-2 text-sm hover:bg-[var(--color-muted)]/50"
               onClick={toggleDark}

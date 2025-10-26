@@ -1,5 +1,11 @@
 "use client";
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
 interface ThemeContextProps {
   isDark: boolean;
@@ -25,7 +31,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       html.classList.remove("dark");
       setIsDark(false);
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       if (prefersDark) {
         html.classList.add("dark");
         setIsDark(true);

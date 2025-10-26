@@ -36,7 +36,9 @@ const About = () => {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {aboutMeStartText[language]}{" "}
-            <span className="text-[var(--color-on-primary)]">{aboutMeEndText[language]}</span>
+            <span className="text-[var(--color-on-primary)]">
+              {aboutMeEndText[language]}
+            </span>
           </h2>
           <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full" />
         </motion.div>
@@ -135,7 +137,9 @@ const About = () => {
                 <h4 className="text-lg font-semibold mb-2 text-[var(--color-on-primary)]">
                   {value.title}
                 </h4>
-                <p className="text-sm text-[var(--color-foreground)]">{value.description}</p>
+                <p className="text-sm text-[var(--color-foreground)]">
+                  {value.description}
+                </p>
               </motion.div>
             );
           })}
