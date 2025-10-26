@@ -188,7 +188,7 @@ const Experience = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8"
+          className="text-center mb-8 px-2"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {experienceTitleStart[language]}

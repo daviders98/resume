@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleChevronRight,
+  faCircleInfo,
   faSquareArrowUpRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -24,6 +25,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [flipped, setFlipped] = useState(false);
   const [hovered, setHovered] = useState(false);
   const { language } = useLanguage();
+
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setHovered(true);
+    }
+  }, []);
 
   return (
     <div className="w-full min-h-120 sm:min-h-120">
@@ -82,34 +89,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div className="flex gap-2 mt-auto pt-4">
                   {project.demoUrl && (
                     <button
-                      className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer "
+                      className="flex flex-col items-center flex-1 hover:text-[var(--color-highlight)] cursor-pointer "
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.demoUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faSquareArrowUpRight} />{" "}
+                      <FontAwesomeIcon icon={faSquareArrowUpRight} size={'xl'}/>
                       {demoText[language]}
                     </button>
                   )}
                   {project.githubUrl && (
                     <button
-                      className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer"
+                      className="flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.githubUrl, "_blank");
                       }}
                     >
-                      <FontAwesomeIcon icon={faGithub} /> {codeText[language]}
+                      <FontAwesomeIcon icon={faGithub} size={'xl'}/> {codeText[language]}
                     </button>
                   )}
                   <button
-                    className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer"
+                    className="flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer"
                     onClick={(e) => {
                       e.stopPropagation();
                       setFlipped(true);
                     }}
                   >
+                    <FontAwesomeIcon icon={faCircleInfo} size={'xl'}/>
                     {seeMoreText[language]}
                   </button>
                 </div>
