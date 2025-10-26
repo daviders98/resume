@@ -43,7 +43,7 @@ const ExperienceCard = ({
 }: ExperienceCardProps) => {
   const isRight = index % 2 === 0;
   const [showTyping, setShowTyping] = useState(true);
-  const {isDark} = useTheme();
+  const { isDark } = useTheme();
 
   useEffect(() => {
     if (!isInView) return;
@@ -120,7 +120,11 @@ const ExperienceCard = ({
             <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
               {" "}
               <Image
-                src={experience.pathToLogo == '/images/logo.png' && isDark ? Links.darkLogo : experience.pathToLogo}
+                src={
+                  experience.pathToLogo == "/images/logo.png" && isDark
+                    ? Links.darkLogo
+                    : experience.pathToLogo
+                }
                 alt={`Company logo ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 64px, 128px"
@@ -132,7 +136,9 @@ const ExperienceCard = ({
             </h3>
             <h4
               className={`text-sm ${
-                isRight ? "text-[var(--color-on-primary)]" : "text-[var(--color-secondary)]"
+                isRight
+                  ? "text-[var(--color-on-primary)]"
+                  : "text-[var(--color-secondary)]"
               } font-semibold`}
             >
               {experience.company}
@@ -251,10 +257,17 @@ const Experience = () => {
                     />
                   </div>
                   <h5 className="font-semibold mb-1">{edu.degree}</h5>
-                  <p className="text-sm text-[var(--color-primary)] mb-1">{edu.institution}</p>
-                  <p className="text-xs text-[var(--color-secondary)] mb-2">{edu.period}</p>
+                  <p className="text-sm text-[var(--color-primary)] mb-1">
+                    {edu.institution}
+                  </p>
+                  <p className="text-xs text-[var(--color-secondary)] mb-2">
+                    {edu.period}
+                  </p>
                   {edu.description.map((desc, index) => (
-                    <li key={index} className="text-sm text-[var(--color-muted)]">
+                    <li
+                      key={index}
+                      className="text-sm text-[var(--color-muted)]"
+                    >
                       {desc}
                     </li>
                   ))}
@@ -288,8 +301,12 @@ const Experience = () => {
                       />
                     </div>
                     <h5 className="font-semibold mb-1">{cert.name}</h5>
-                    <p className="text-sm text-[var(--color-primary)] mb-1">{cert.issuer}</p>
-                    <p className="text-xs text-[var(--color-secondary)]">{cert.date}</p>
+                    <p className="text-sm text-[var(--color-primary)] mb-1">
+                      {cert.issuer}
+                    </p>
+                    <p className="text-xs text-[var(--color-secondary)]">
+                      {cert.date}
+                    </p>
                   </a>
                 </motion.div>
               ))}

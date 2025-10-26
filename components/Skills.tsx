@@ -133,7 +133,11 @@ const Skills = () => {
   const { language } = useLanguage();
 
   return (
-    <section id="skills" ref={ref} className="py-20 bg-[var(--color-highlight)]">
+    <section
+      id="skills"
+      ref={ref}
+      className="py-20 bg-[var(--color-highlight)]"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

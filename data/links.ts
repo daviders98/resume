@@ -20,7 +20,7 @@ export const Links: {
   logo,
   nextjsLogo,
   profile,
-  darkLogo
+  darkLogo,
 };
 
 export interface NavItem {
