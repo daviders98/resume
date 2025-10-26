@@ -32,7 +32,7 @@ export default function NavBar() {
       className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-[var(--color-background)]/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
     >
       <div className="mx-auto sm:px-2 lg:px-2">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16">
           <motion.a
             href="#hero"
             onClick={(e) => {
@@ -96,7 +96,7 @@ export default function NavBar() {
                 }
                 target={`${icon == faEnvelope ? "" : "__blank"}`}
                 rel="noopener noreferrer"
-                className={`p-1 ${getNavItemClasses()}`}
+                className={`${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -168,7 +168,7 @@ export default function NavBar() {
                             setIsMobileMenuOpen(false);
                           }
                         }}
-                        className={`p-1 ${getNavItemClasses()}`}
+                        className={`${getNavItemClasses()}`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
                       >
