@@ -72,17 +72,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               animate={hovered ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              <div className="bg-background/20 rounded-2xl p-8">
-                <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-on-primary drop-shadow-lg">
+              <div className="bg-[var(--color-background)]/40 rounded-2xl p-4">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[var(--color-foreground)] drop-shadow-lg">
                   {project.title}
                 </h3>
-                <p className="text-on-primary/90 max-w-lg mx-auto text-sm sm:text-base">
+                <p className="text-[var(--color-foreground)]/40 max-w-lg mx-auto text-sm sm:text-base">
                   {project.description}
                 </p>
                 <div className="flex gap-2 mt-auto pt-4">
                   {project.demoUrl && (
                     <button
-                      className="flex-1 hover:text-on-primary cursor-pointer "
+                      className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer "
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.demoUrl, "_blank");
@@ -94,7 +94,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   )}
                   {project.githubUrl && (
                     <button
-                      className="flex-1 hover:text-on-primary cursor-pointer"
+                      className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.githubUrl, "_blank");
@@ -104,7 +104,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     </button>
                   )}
                   <button
-                    className="flex-1 hover:text-on-primary cursor-pointer"
+                    className="flex-1 hover:text-[var(--color-highlight)] cursor-pointer"
                     onClick={(e) => {
                       e.stopPropagation();
                       setFlipped(true);
@@ -121,7 +121,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         {/* ---------- BACK OF CARD---------- */}
         {
           <div
-            className={`${flipped ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} inset-0 rounded-xl p-6 flex flex-col text-foreground h-full bg-background/90`}
+            className={`${flipped ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} inset-0 rounded-xl p-6 flex flex-col text-[var(--color-foreground)] h-full bg-[var(--color-background)]/90`}
             style={{
               transform: "rotateY(180deg)",
               boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
@@ -130,7 +130,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <h3 className="text-2xl sm:text-3xl font-bold mb-3 drop-shadow-md">
               {project.title}
             </h3>
-            <p className="text-foreground mb-4 text-sm sm:text-base">
+            <p className="text-[var(--color-foreground)] mb-4 text-sm sm:text-base">
               {project.longDescription}
             </p>
 
@@ -138,7 +138,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {project.technologies?.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 bg-highlight/50 text-foreground rounded-full text-xs font-medium backdrop-blur-sm shadow-sm"
+                  className="px-3 py-1 bg-[var(--color-highlight)]/50 text-[var(--color-foreground)] rounded-full text-xs font-medium backdrop-blur-sm shadow-sm"
                 >
                   {tech}
                 </span>
@@ -150,11 +150,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {project.highlights.map((h, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-sm text-muted"
+                    className="flex items-start gap-2 text-sm text-[var(--color-muted)]"
                   >
                     <FontAwesomeIcon
                       icon={faCircleChevronRight}
-                      className="mt-1 text-highlight"
+                      className="mt-1 text-[var(--color-highlight)]"
                     />
                     <span>{h}</span>
                   </li>
@@ -165,7 +165,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="flex gap-2 mt-auto">
               {project.demoUrl && (
                 <button
-                  className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
+                  className="flex-1 hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.demoUrl, "_blank");
@@ -177,7 +177,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               )}
               {project.githubUrl && (
                 <button
-                  className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
+                  className="flex-1 hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.githubUrl, "_blank");
@@ -187,7 +187,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </button>
               )}
               <button
-                className="flex-1 hover:bg-highlight rounded py-2 transition cursor-pointer"
+                className="flex-1 hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   setFlipped(false);
@@ -206,17 +206,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 const Portfolio: React.FC = () => {
   const { language } = useLanguage();
   return (
-    <section id="portfolio" className="py-20 bg-secondary">
+    <section id="portfolio" className="py-20 bg-[var(--color-secondary)]">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {portfolioTitleStart[language]}{" "}
-            <span className="text-on-primary">
+            <span className="text-[var(--color-on-primary)]">
               {portfolioTitleEnd[language]}
             </span>
           </h2>
-          <div className="w-20 h-1 bg-background mx-auto rounded-full mb-6" />
-          <p className="text-lg text-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
+          <p className="text-lg text-[var(--color-foreground)] max-w-2xl mx-auto">
             {portfolioExtra[language]}
           </p>
         </div>

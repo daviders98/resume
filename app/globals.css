@@ -23,3 +23,13 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+.dark {
+  --color-background: #0e0e11;
+  --color-foreground: #d6d5d5;  
+  --color-on-primary: #0e0e11;
+  --color-primary: #1b65b0;
+  --color-secondary: #912a3d;
+  --color-muted: #b3b3b3;
+  --color-highlight: #247791;
+}

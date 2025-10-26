@@ -6,15 +6,16 @@ import { faBars, faEnvelope, faX } from "@fortawesome/free-solid-svg-icons";
 import scrollToSection from "@/utils/scroller";
 import { Links, navItems } from "@/data/links";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
   const getNavItemClasses = () => {
-    return "text-foreground hover:text-highlight";
+    return "text-[var(--color-foreground)] hover:text-[var(--color-highlight)]";
   };
   const { language } = useLanguage();
-
+  const { isDark } = useTheme();
   useEffect(() => {
     const handleScroll = () => {
       setIsAtTop(window.scrollY === 0);
@@ -28,7 +29,7 @@ export default function NavBar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-background/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
+      className={`fixed top-0 left-0 right-0 z-50 duration-300 bg-[var(--color-background)]/80 backdrop-blur-lg ${isAtTop ? "" : "shadow-lg"}`}
     >
       <div className="mx-auto sm:px-2 lg:px-2">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -38,12 +39,12 @@ export default function NavBar() {
               e.preventDefault();
               scrollToSection({ href: "#hero" });
             }}
-            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-primary cursor-pointer bg-background/80 rounded-2xl p-2 md:mx-0"
+            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.img
-              src={Links.logo}
+              src={isDark ? Links.darkLogo : Links.logo}
               alt={"logo"}
               style={{ maxHeight: 48, width: 48 }}
             />
@@ -51,7 +52,7 @@ export default function NavBar() {
           </motion.a>
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-[var(--color-foreground)]"
             whileTap={{ scale: 0.9 }}
           >
             {isMobileMenuOpen ? (
@@ -131,7 +132,7 @@ export default function NavBar() {
                       scrollToSection({ href: item.href });
                     }, 200);
                   }}
-                  className="px-2 py-3 text-foreground/80 hover:text-foreground hover:bg-primary/50 rounded-lg"
+                  className="px-2 py-3 text-[var(--color-foreground)]/80 hover:text-[var(--color-foreground)] hover:bg-[var(--color-primary)]/50 rounded-lg"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
