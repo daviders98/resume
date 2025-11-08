@@ -12,6 +12,7 @@ import Image from "next/image";
 import {
   codeText,
   demoText,
+  GitHubURL,
   portfolioData,
   portfolioExtra,
   portfolioTitleEnd,
@@ -89,7 +90,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div className="flex gap-2 mt-auto pt-4">
                   {project.demoUrl && (
                     <button
-                      className="flex flex-col items-center flex-1 hover:text-[var(--color-highlight)] cursor-pointer "
+                      className="flex flex-col items-center flex-1 hover:text-[var(--color-highlight)] cursor-pointer justify-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open(project.demoUrl, "_blank");
@@ -103,19 +104,26 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     </button>
                   )}
                   {project.githubUrl && (
-                    <button
-                      className="flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(project.githubUrl, "_blank");
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faGithub} size={"xl"} />{" "}
-                      {codeText[language]}
-                    </button>
+                    <div className="flex flex-col">
+                      {project.githubUrl.map((url: GitHubURL, index) => {
+                        return (
+                          <button
+                            key={index}
+                            className={`flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer ${project.githubUrl && project.githubUrl.length > 1 ? "mb-4" : ""}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(url.link, "_blank");
+                            }}
+                          >
+                            <FontAwesomeIcon icon={faGithub} size={"xl"} />{" "}
+                            {url.title ? url.title : codeText[language]}
+                          </button>
+                        );
+                      })}
+                    </div>
                   )}
                   <button
-                    className="flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer"
+                    className="flex-1 flex flex-col items-center hover:text-[var(--color-highlight)] cursor-pointer justify-center"
                     onClick={(e) => {
                       e.stopPropagation();
                       setFlipped(true);
@@ -188,15 +196,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </button>
               )}
               {project.githubUrl && (
-                <button
-                  className="flex-1 hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(project.githubUrl, "_blank");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faGithub} /> {codeText[language]}
-                </button>
+                <div className="flex-1 flex flex-col items-center">
+                  {project.githubUrl.map((url, index) => {
+                    return (
+                      <button
+                        key={index}
+                        className="w-full hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(url.link, "_blank");
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faGithub} />{" "}
+                        {url.title || codeText[language]}
+                      </button>
+                    );
+                  })}
+                </div>
               )}
               <button
                 className="flex-1 hover:bg-[var(--color-highlight)] rounded py-2 transition cursor-pointer"
