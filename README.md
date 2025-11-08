@@ -116,7 +116,6 @@ npm run dev        # Start development server
 npm run build      # Build for production
 npm run start      # Run production build
 npm run lint       # Run ESLint
-npm run format     # Run Prettier
 ```
 
 ---
