@@ -49,17 +49,19 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "PostgreSQL",
           "Serverless",
           "Cron Job",
-          "Styled components"
+          "Styled components",
         ],
         demoUrl: "https://better-wordle.vercel.app",
-        githubUrl: [{
-          title: 'Front end',
-          link: "https://github.com/daviders98/wordle-front"
-        },
+        githubUrl: [
           {
-            title:'Back end',
-            link: "https://github.com/daviders98/wordle-back"
-          }],
+            title: "Front end",
+            link: "https://github.com/daviders98/wordle-front",
+          },
+          {
+            title: "Back end",
+            link: "https://github.com/daviders98/wordle-back",
+          },
+        ],
         highlights: [
           "Frontend built with React + TypeScript and hosted on Vercel.",
           "Backend built with Django + Supabase and hosted on Render.",
@@ -72,8 +74,10 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
       {
         id: 2,
         title: "Personal Portfolio & Resume App",
-        description: "A modern, responsive portfolio and resume website built with Next.js, TypeScript, and Tailwind CSS.",
-        longDescription: "A sleek and high-performance personal portfolio and resume website built using Next.js 15.5.5, TypeScript, and Tailwind CSS. It includes support for multiple languages and dark/light themes using React Context API, a contact form with a secure serverless endpoint, and a dynamic portfolio section powered by reusable and animated components. Deployed seamlessly on Vercel with automated GitHub Actions for code formatting and CI/CD integration.",
+        description:
+          "A modern, responsive portfolio and resume website built with Next.js, TypeScript, and Tailwind CSS.",
+        longDescription:
+          "A sleek and high-performance personal portfolio and resume website built using Next.js 15.5.5, TypeScript, and Tailwind CSS. It includes support for multiple languages and dark/light themes using React Context API, a contact form with a secure serverless endpoint, and a dynamic portfolio section powered by reusable and animated components. Deployed seamlessly on Vercel with automated GitHub Actions for code formatting and CI/CD integration.",
         image: "/images/portfolio_app.png",
         technologies: [
           "Next.js 15.5.5",
@@ -85,13 +89,13 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "GitHub Actions",
           "Serverless Functions",
           "Font Awesome",
-          "Prettier"
+          "Prettier",
         ],
         demoUrl: "https://devgarcia.vercel.app",
         githubUrl: [
           {
-            "link": "https://github.com/daviders98/resume"
-          }
+            link: "https://github.com/daviders98/resume",
+          },
         ],
         highlights: [
           "Built with Next.js 15.5.5, TypeScript, and Tailwind CSS for performance and maintainability.",
@@ -100,8 +104,8 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "Serverless contact and token API endpoints for secure form handling.",
           "Dynamic and easily editable portfolio via `/data/portfolio.ts`.",
           "Custom text and scroll animations for engaging user experience.",
-          "Deployed on Vercel with automated formatting and linting via GitHub Actions."
-        ]
+          "Deployed on Vercel with automated formatting and linting via GitHub Actions.",
+        ],
       },
       {
         id: 3,
@@ -113,7 +117,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&h=900&fit=crop",
         technologies: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
         demoUrl: "https://demo-portfolio.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Responsive design for all devices",
           "Animated transitions with Framer Motion",
@@ -131,7 +135,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1600&h=900&fit=crop",
         technologies: ["React Native", "Node.js", "MongoDB", "Redux"],
         demoUrl: "https://demo-fitnessapp.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Track workouts and calories burned",
           "Set fitness goals and reminders",
@@ -149,7 +153,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
         demoUrl: "https://demo-recipes.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Upload and manage personal recipes",
           "Search and filter by ingredients",
@@ -167,7 +171,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
         demoUrl: "https://demo-travel.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Flight, hotel, and activity booking",
           "Integrated secure payment system",
@@ -198,18 +202,18 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "PostgreSQL",
           "Serverless",
           "Cron Job",
-          "Styled components"
+          "Styled components",
         ],
         demoUrl: "https://better-wordle.vercel.app",
         githubUrl: [
           {
             title: "Front end",
-            link: "https://github.com/daviders98/wordle-front"
+            link: "https://github.com/daviders98/wordle-front",
           },
           {
             title: "Back end",
-            link: "https://github.com/daviders98/wordle-back"
-          }
+            link: "https://github.com/daviders98/wordle-back",
+          },
         ],
         highlights: [
           "Frontend construido con React + TypeScript y alojado en Vercel.",
@@ -217,14 +221,16 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "Estadísticas de jugador persistentes y seguimiento de rachas mediante `localStorage`.",
           "Generación automática de changelogs con Husky y GitHub Actions.",
           "Endpoints de API seguros con CORS, CSRF y autenticación JWT.",
-          "Lógica diaria de rotación de palabras impulsada por funciones serverless y un trabajo Cron."
-        ]
+          "Lógica diaria de rotación de palabras impulsada por funciones serverless y un trabajo Cron.",
+        ],
       },
       {
         id: 2,
         title: "Portafolio Personal y Aplicación de Currículum",
-        description: "Un sitio web moderno y adaptable de portafolio y currículum construido con Next.js, TypeScript y Tailwind CSS.",
-        longDescription: "Un sitio web de portafolio y currículum personal elegante y de alto rendimiento desarrollado con Next.js 15.5.5, TypeScript y Tailwind CSS. Incluye soporte para múltiples idiomas y modos claro/oscuro mediante React Context API, un formulario de contacto con endpoint sin servidor seguro, y una sección de portafolio dinámica impulsada por componentes reutilizables y animados. Desplegado fácilmente en Vercel con acciones automatizadas de GitHub para formateo de código e integración CI/CD.",
+        description:
+          "Un sitio web moderno y adaptable de portafolio y currículum construido con Next.js, TypeScript y Tailwind CSS.",
+        longDescription:
+          "Un sitio web de portafolio y currículum personal elegante y de alto rendimiento desarrollado con Next.js 15.5.5, TypeScript y Tailwind CSS. Incluye soporte para múltiples idiomas y modos claro/oscuro mediante React Context API, un formulario de contacto con endpoint sin servidor seguro, y una sección de portafolio dinámica impulsada por componentes reutilizables y animados. Desplegado fácilmente en Vercel con acciones automatizadas de GitHub para formateo de código e integración CI/CD.",
         image: "/images/portfolio_app.png",
         technologies: [
           "Next.js 15.5.5",
@@ -236,13 +242,13 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "GitHub Actions",
           "Funciones Serverless",
           "Font Awesome",
-          "Prettier"
+          "Prettier",
         ],
         demoUrl: "https://devgarcia.vercel.app",
         githubUrl: [
           {
-            "link": "https://github.com/daviders98/resume"
-          }
+            link: "https://github.com/daviders98/resume",
+          },
         ],
         highlights: [
           "Construido con Next.js 15.5.5, TypeScript y Tailwind CSS para máximo rendimiento y mantenibilidad.",
@@ -251,8 +257,8 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "Endpoints sin servidor para contacto y tokens, garantizando un manejo seguro de formularios.",
           "Portafolio dinámico y fácilmente editable a través de `/data/portfolio.ts`.",
           "Animaciones personalizadas de texto y desplazamiento para una experiencia de usuario atractiva.",
-          "Desplegado en Vercel con formateo y linting automatizados mediante GitHub Actions."
-        ]
+          "Desplegado en Vercel con formateo y linting automatizados mediante GitHub Actions.",
+        ],
       },
       {
         id: 3,
@@ -264,7 +270,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&h=900&fit=crop",
         technologies: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
         demoUrl: "https://demo-portfolio.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Diseño responsivo para todos los dispositivos",
           "Transiciones animadas con Framer Motion",
@@ -282,7 +288,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1600&h=900&fit=crop",
         technologies: ["React Native", "Node.js", "MongoDB", "Redux"],
         demoUrl: "https://demo-fitnessapp.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Registrar entrenamientos y calorías quemadas",
           "Establecer metas de fitness y recordatorios",
@@ -300,7 +306,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
         demoUrl: "https://demo-recipes.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Subir y gestionar recetas personales",
           "Buscar y filtrar por ingredientes",
@@ -318,7 +324,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
         demoUrl: "https://demo-travel.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Reserva de vuelos, hoteles y actividades",
           "Sistema de pago seguro integrado",
@@ -349,18 +355,18 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "PostgreSQL",
           "Serverless",
           "Cron Job",
-          "Styled components"
+          "Styled components",
         ],
         demoUrl: "https://better-wordle.vercel.app",
         githubUrl: [
           {
             title: "前端",
-            link: "https://github.com/daviders98/wordle-front"
+            link: "https://github.com/daviders98/wordle-front",
           },
           {
             title: "后端",
-            link: "https://github.com/daviders98/wordle-back"
-          }
+            link: "https://github.com/daviders98/wordle-back",
+          },
         ],
         highlights: [
           "前端使用 React + TypeScript 构建并部署在 Vercel。",
@@ -368,14 +374,16 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "通过 `localStorage` 持久化玩家统计数据和连胜记录。",
           "使用 Husky 和 GitHub Actions 自动生成更新日志。",
           "通过 CORS、CSRF 和 JWT 实现安全的 API 端点。",
-          "使用无服务器函数和 Cron 任务实现每日单词轮换逻辑。"
-        ]
+          "使用无服务器函数和 Cron 任务实现每日单词轮换逻辑。",
+        ],
       },
       {
         id: 2,
         title: "个人作品集与简历应用",
-        description: "一个使用 Next.js、TypeScript 和 Tailwind CSS 构建的现代响应式作品集与简历网站。",
-        longDescription: "一个外观精美、高性能的个人作品集与简历网站，使用 Next.js 15.5.5、TypeScript 和 Tailwind CSS 构建。通过 React Context API 实现多语言和明暗主题支持，包含一个安全的无服务器联系表单端点，以及一个由可重用和动画组件驱动的动态作品集部分。部署在 Vercel 上，并通过 GitHub Actions 实现自动代码格式化与 CI/CD 集成。",
+        description:
+          "一个使用 Next.js、TypeScript 和 Tailwind CSS 构建的现代响应式作品集与简历网站。",
+        longDescription:
+          "一个外观精美、高性能的个人作品集与简历网站，使用 Next.js 15.5.5、TypeScript 和 Tailwind CSS 构建。通过 React Context API 实现多语言和明暗主题支持，包含一个安全的无服务器联系表单端点，以及一个由可重用和动画组件驱动的动态作品集部分。部署在 Vercel 上，并通过 GitHub Actions 实现自动代码格式化与 CI/CD 集成。",
         image: "/images/portfolio_app.png",
         technologies: [
           "Next.js 15.5.5",
@@ -387,13 +395,13 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "GitHub Actions",
           "无服务器函数",
           "Font Awesome",
-          "Prettier"
+          "Prettier",
         ],
         demoUrl: "https://devgarcia.vercel.app",
         githubUrl: [
           {
-            "link": "https://github.com/daviders98/resume"
-          }
+            link: "https://github.com/daviders98/resume",
+          },
         ],
         highlights: [
           "使用 Next.js 15.5.5、TypeScript 和 Tailwind CSS 构建，兼具性能与可维护性。",
@@ -402,8 +410,8 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "安全的无服务器联系与令牌 API 端点，用于表单处理。",
           "可通过 `/data/portfolio.ts` 动态编辑的作品集部分。",
           "自定义文本与滚动动画，带来流畅的用户体验。",
-          "部署于 Vercel，并通过 GitHub Actions 实现自动格式化与代码检查。"
-        ]
+          "部署于 Vercel，并通过 GitHub Actions 实现自动格式化与代码检查。",
+        ],
       },
       {
         id: 3,
@@ -415,7 +423,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&h=900&fit=crop",
         technologies: ["React", "Next.js", "Framer Motion", "Tailwind CSS"],
         demoUrl: "https://demo-portfolio.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "适用于所有设备的响应式设计",
           "使用 Framer Motion 实现动画过渡",
@@ -433,7 +441,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1483721310020-03333e577078?w=1600&h=900&fit=crop",
         technologies: ["React Native", "Node.js", "MongoDB", "Redux"],
         demoUrl: "https://demo-fitnessapp.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "记录锻炼和消耗的卡路里",
           "设置健身目标和提醒",
@@ -451,7 +459,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
         demoUrl: "https://demo-recipes.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "上传和管理个人食谱",
           "按食材搜索和筛选",
@@ -469,7 +477,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
         demoUrl: "https://demo-travel.com",
-        githubUrl: [{link:"https://github.com/daviders98"}],
+        githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "航班、酒店和活动预订",
           "集成的安全支付系统",
