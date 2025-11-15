@@ -23,7 +23,7 @@ function rateLimit(ip: string): boolean {
 }
 
 function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/.test(email);
 }
 
 export async function POST(req: Request) {
@@ -48,6 +48,10 @@ export async function POST(req: Request) {
 
   if (message.length > 3000) {
     return NextResponse.json({ error: "Message too long" }, { status: 400 });
+  }
+
+  if (name.length > 200 || subject.length > 300) {
+    return NextResponse.json({ error: "Invalid field length" }, { status: 400 });
   }
 
   const safeName = sanitizeHtml(name, {
