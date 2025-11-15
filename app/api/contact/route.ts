@@ -50,10 +50,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Message too long" }, { status: 400 });
   }
 
-  const safeName = sanitizeHtml(name, { allowedTags: [], allowedAttributes: {} });
-  const safeEmail = sanitizeHtml(email, { allowedTags: [], allowedAttributes: {} });
-  const safeSubject = sanitizeHtml(subject, { allowedTags: [], allowedAttributes: {} });
-  const safeMessage = sanitizeHtml(message, { allowedTags: [], allowedAttributes: {} });
+  const safeName = sanitizeHtml(name, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeEmail = sanitizeHtml(email, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeSubject = sanitizeHtml(subject, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
+  const safeMessage = sanitizeHtml(message, {
+    allowedTags: [],
+    allowedAttributes: {},
+  });
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
