@@ -22,6 +22,12 @@ function rateLimit(ip: string): boolean {
   return true;
 }
 
+function isValidEmail(email: string) {
+  return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}$/.test(
+    email,
+  );
+}
+
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
 
@@ -37,6 +43,22 @@ export async function POST(req: Request) {
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
+
+  if (!isValidEmail(email)) {
+    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+  }
+
+  if (message.length > 3000) {
+    return NextResponse.json({ error: "Message too long" }, { status: 400 });
+  }
+
+  if (name.length > 200 || subject.length > 300) {
+    return NextResponse.json(
+      { error: "Invalid field length" },
+      { status: 400 },
+    );
+  }
+
   const safeName = sanitizeHtml(name, {
     allowedTags: [],
     allowedAttributes: {},
@@ -64,7 +86,8 @@ export async function POST(req: Request) {
 
   try {
     await transporter.sendMail({
-      from: safeEmail,
+      from: process.env.GOOGLE_APP_EMAIL,
+      replyTo: safeEmail,
       to: process.env.EMAIL_USER,
       subject: safeSubject || `New message from ${safeName}`,
       text: safeMessage,

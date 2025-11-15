@@ -139,6 +139,12 @@ const Contact = () => {
               className="space-y-6 bg-hightlight/80 p-8 rounded-xl border border-border shadow-sm"
             >
               <div>
+                <input
+                  type="text"
+                  name="company"
+                  className="hidden"
+                  autoComplete="off"
+                />
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
