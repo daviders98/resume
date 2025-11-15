@@ -30,7 +30,7 @@ export default function middleware(request: NextRequest) {
   response.headers.set("Content-Security-Policy", csp);
   response.headers.set(
     "Content-Security-Policy-Report-Only",
-    "default-src 'self'; report-uri /api/csp-report"
+    "default-src 'self'; report-uri /api/csp-report",
   );
   return response;
 }
