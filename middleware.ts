@@ -15,10 +15,14 @@ export default function middleware(request: NextRequest) {
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-`
-    .replace(/\s+/g, " ")
-    .trim();
+  `.replace(/\s+/g, " ").trim();
 
+  const cspReportOnly = `
+    default-src 'self';
+    object-src 'none';
+    require-trusted-types-for 'script';
+    report-to csp-endpoint;
+  `.replace(/\s+/g, " ").trim();
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", csp);
@@ -30,7 +34,7 @@ export default function middleware(request: NextRequest) {
   response.headers.set("Content-Security-Policy", csp);
   response.headers.set(
     "Content-Security-Policy-Report-Only",
-    "default-src 'self'; report-uri /api/csp-report",
+    cspReportOnly,
   );
   return response;
 }
