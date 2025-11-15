@@ -20,12 +20,18 @@ export const metadata: Metadata = {
   description: "Resume Website for David García",
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   await connection();
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

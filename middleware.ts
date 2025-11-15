@@ -15,7 +15,9 @@ export default function middleware(request: NextRequest) {
   form-action 'self';
   frame-ancestors 'none';
   upgrade-insecure-requests;
-`.replace(/\s+/g, " ").trim();
+`
+    .replace(/\s+/g, " ")
+    .trim();
 
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set("x-nonce", nonce);
