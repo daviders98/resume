@@ -46,7 +46,6 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({
     <div
       ref={ref}
       className={`flex flex-wrap items-start gap-2 px-4 ${className}`}
-      style={{}}
     >
       <span
         aria-hidden="true"

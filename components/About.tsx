@@ -66,7 +66,7 @@ const About = () => {
                 <div className="w-full h-full rounded-2xl bg-[var(--color-primary)]/30 flex items-center justify-center">
                   <motion.img
                     src={Links.profile}
-                    alt={"logo"}
+                    alt={"profile picture"}
                     className="w-full h-full object-cover rounded-2xl"
                   />
                 </div>
