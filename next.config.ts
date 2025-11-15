@@ -19,7 +19,6 @@ const nextConfig: NextConfig = {
             key: "Permissions-Policy",
             value: "geolocation=(), microphone=(), camera=()",
           },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
         ],
       },
     ];

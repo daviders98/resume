@@ -22,7 +22,7 @@ export default function MailModal({ status, onClose }: MailModalProps) {
         exit={{ scale: 0 }}
       >
         <motion.div
-          className="w-16 h-16 text-3xl"
+          className="w-16 h-16 text-3xl flex items-center justify-center"
           initial="hidden"
           animate="visible"
         >

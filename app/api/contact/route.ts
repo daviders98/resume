@@ -22,6 +22,10 @@ function rateLimit(ip: string): boolean {
   return true;
 }
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "unknown";
 
@@ -37,22 +41,19 @@ export async function POST(req: Request) {
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
-  const safeName = sanitizeHtml(name, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
-  const safeEmail = sanitizeHtml(email, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
-  const safeSubject = sanitizeHtml(subject, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
-  const safeMessage = sanitizeHtml(message, {
-    allowedTags: [],
-    allowedAttributes: {},
-  });
+
+  if (!isValidEmail(email)) {
+    return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+  }
+
+  if (message.length > 3000) {
+    return NextResponse.json({ error: "Message too long" }, { status: 400 });
+  }
+
+  const safeName = sanitizeHtml(name, { allowedTags: [], allowedAttributes: {} });
+  const safeEmail = sanitizeHtml(email, { allowedTags: [], allowedAttributes: {} });
+  const safeSubject = sanitizeHtml(subject, { allowedTags: [], allowedAttributes: {} });
+  const safeMessage = sanitizeHtml(message, { allowedTags: [], allowedAttributes: {} });
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -64,7 +65,8 @@ export async function POST(req: Request) {
 
   try {
     await transporter.sendMail({
-      from: safeEmail,
+      from: process.env.GOOGLE_APP_EMAIL,
+      replyTo: safeEmail,
       to: process.env.EMAIL_USER,
       subject: safeSubject || `New message from ${safeName}`,
       text: safeMessage,
