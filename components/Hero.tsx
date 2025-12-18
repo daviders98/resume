@@ -43,17 +43,13 @@ const Hero = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 lg:pt-20">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="mb-2 lg:mb-4"
-            >
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="mb-2 lg:mb-4"
+          >
             <span className="inline-block px-4 py-2 bg-[var(--color-highlight)]/30 text-[var(--color-foreground)] rounded-full text-2xl font-medium">
-              <motion.span
-                className="inline-block"
-              >
-                👋
-              </motion.span>{" "}
+              <motion.span className="inline-block">👋</motion.span>{" "}
               {heroData.greeting[language]}
             </span>
           </motion.div>
