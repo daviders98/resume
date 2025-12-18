@@ -84,7 +84,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <h3 className="text-2xl sm:text-3xl font-bold mb-2 text-[var(--color-foreground)] drop-shadow-lg">
                   {project.title}
                 </h3>
-                <p className="text-[var(--color-foreground)]/40 max-w-lg mx-auto text-sm sm:text-base">
+                <p className="text-[var(--color-foreground)]/50 max-w-lg mx-auto text-sm sm:text-base">
                   {project.description}
                 </p>
                 <div className="flex gap-2 mt-auto pt-4">
