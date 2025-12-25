@@ -50,14 +50,18 @@ const ExperienceCard = ({
     const typingDuration = 1200;
     const timer = setTimeout(
       () => setShowTyping(false),
-      startDelay * 1000 + typingDuration,
+      startDelay * 1000 + typingDuration
     );
     return () => clearTimeout(timer);
   }, [isInView, startDelay]);
 
   return (
     <div
-      className={`flex w-full mb-6 ${isRight ? "justify-self-end flex-row-reverse lg:mr-12 sm:mr-4" : "justify-self-start lg:ml-12 sm:ml-4"}`}
+      className={`flex w-full mb-6 ${
+        isRight
+          ? "justify-self-end flex-row-reverse lg:mr-12 sm:mr-4"
+          : "justify-self-start lg:ml-12 sm:ml-4"
+      }`}
       style={{ minHeight: 120 }}
     >
       {showTyping && (
@@ -150,10 +154,10 @@ const ExperienceCard = ({
           </div>
 
           <div className="text-base leading-relaxed space-y-2">
-            <ul>
-            {experience.description.map((line: string, i: number) => (
-              <li key={i}>{line}</li>
-            ))}
+            <ul className="list-disc list-inside">
+              {experience.description.map((line:string, i:number) => (
+                <li key={i}>{line}</li>
+              ))}
             </ul>
           </div>
 
@@ -219,7 +223,7 @@ const Experience = () => {
                   isInView={isInView}
                 />
               </div>
-            ),
+            )
           )}
         </div>
 
@@ -265,15 +269,15 @@ const Experience = () => {
                   <p className="text-xs text-[var(--color-secondary)] mb-2">
                     {edu.period}
                   </p>
-                  <ul>
+                  <ul className="list-disc list-inside">
                     {edu.description.map((desc, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-[var(--color-muted)]"
-                    >
-                      {desc}
-                    </li>
-                  ))}
+                      <li
+                        key={index}
+                        className="text-sm text-[var(--color-muted)]"
+                      >
+                        {desc}
+                      </li>
+                    ))}
                   </ul>
                 </motion.div>
               ))}
