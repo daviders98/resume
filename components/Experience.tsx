@@ -50,7 +50,7 @@ const ExperienceCard = ({
     const typingDuration = 1200;
     const timer = setTimeout(
       () => setShowTyping(false),
-      startDelay * 1000 + typingDuration
+      startDelay * 1000 + typingDuration,
     );
     return () => clearTimeout(timer);
   }, [isInView, startDelay]);
@@ -155,7 +155,7 @@ const ExperienceCard = ({
 
           <div className="text-base leading-relaxed space-y-2">
             <ul className="list-disc list-inside">
-              {experience.description.map((line:string, i:number) => (
+              {experience.description.map((line: string, i: number) => (
                 <li key={i}>{line}</li>
               ))}
             </ul>
@@ -223,7 +223,7 @@ const Experience = () => {
                   isInView={isInView}
                 />
               </div>
-            )
+            ),
           )}
         </div>
 
