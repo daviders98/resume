@@ -150,9 +150,11 @@ const ExperienceCard = ({
           </div>
 
           <div className="text-base leading-relaxed space-y-2">
-            {experience.description.map((line: string, i: number) => (
-              <li key={i}>{line}</li>
-            ))}
+            <ul>
+              {experience.description.map((line: string, i: number) => (
+                <li key={i}>{line}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="flex flex-wrap gap-2 mt-4">
@@ -263,14 +265,16 @@ const Experience = () => {
                   <p className="text-xs text-[var(--color-secondary)] mb-2">
                     {edu.period}
                   </p>
-                  {edu.description.map((desc, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-[var(--color-muted)]"
-                    >
-                      {desc}
-                    </li>
-                  ))}
+                  <ul>
+                    {edu.description.map((desc, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-[var(--color-muted)]"
+                      >
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
