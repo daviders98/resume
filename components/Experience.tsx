@@ -151,9 +151,9 @@ const ExperienceCard = ({
 
           <div className="text-base leading-relaxed space-y-2">
             <ul>
-            {experience.description.map((line: string, i: number) => (
-              <li key={i}>{line}</li>
-            ))}
+              {experience.description.map((line: string, i: number) => (
+                <li key={i}>{line}</li>
+              ))}
             </ul>
           </div>
 
@@ -267,13 +267,13 @@ const Experience = () => {
                   </p>
                   <ul>
                     {edu.description.map((desc, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-[var(--color-muted)]"
-                    >
-                      {desc}
-                    </li>
-                  ))}
+                      <li
+                        key={index}
+                        className="text-sm text-[var(--color-muted)]"
+                      >
+                        {desc}
+                      </li>
+                    ))}
                   </ul>
                 </motion.div>
               ))}
