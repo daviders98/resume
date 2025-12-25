@@ -57,7 +57,11 @@ const ExperienceCard = ({
 
   return (
     <div
-      className={`flex w-full mb-6 ${isRight ? "justify-self-end flex-row-reverse lg:mr-12 sm:mr-4" : "justify-self-start lg:ml-12 sm:ml-4"}`}
+      className={`flex w-full mb-6 ${
+        isRight
+          ? "justify-self-end flex-row-reverse lg:mr-12 sm:mr-4"
+          : "justify-self-start lg:ml-12 sm:ml-4"
+      }`}
       style={{ minHeight: 120 }}
     >
       {showTyping && (
@@ -150,7 +154,7 @@ const ExperienceCard = ({
           </div>
 
           <div className="text-base leading-relaxed space-y-2">
-            <ul>
+            <ul className="list-disc list-inside">
               {experience.description.map((line: string, i: number) => (
                 <li key={i}>{line}</li>
               ))}
@@ -265,7 +269,7 @@ const Experience = () => {
                   <p className="text-xs text-[var(--color-secondary)] mb-2">
                     {edu.period}
                   </p>
-                  <ul>
+                  <ul className="list-disc list-inside">
                     {edu.description.map((desc, index) => (
                       <li
                         key={index}
