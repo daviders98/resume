@@ -46,14 +46,14 @@ export default function NavBar() {
             whileTap={{ scale: 0.95 }}
           >
             <div className="relative w-12 h-12">
-            <Image
-              src={isDark ? Links.darkLogo : Links.logo}
-              alt="logo"
-              fill
-              className="object-contain"
-              sizes="48px"
-            />
-          </div>
+              <Image
+                src={isDark ? Links.darkLogo : Links.logo}
+                alt="logo"
+                fill
+                className="object-contain"
+                sizes="48px"
+              />
+            </div>
             <div>DevGarcía</div>
           </motion.a>
           <motion.button
