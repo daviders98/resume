@@ -45,14 +45,15 @@ export default function NavBar() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
+            <div className="relative w-12 h-12">
             <Image
               src={isDark ? Links.darkLogo : Links.logo}
-              alt={"logo"}
-              width={48}
-              height={48}
-              style={{ maxHeight: 48, width: 48 }}
-              className="object-contain" // Added for safety
+              alt="logo"
+              fill
+              className="object-contain"
+              sizes="48px"
             />
+          </div>
             <div>DevGarcía</div>
           </motion.a>
           <motion.button
