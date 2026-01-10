@@ -1,15 +1,17 @@
 "use client";
 import Hero from "@/components/Hero";
 import NavBar from "@/components/NavBar";
-import About from "@/components/About";
 import { useEffect } from "react";
-import Skills from "@/components/Skills";
-import Experience from "@/components/Experience";
-import Portfolio from "@/components/Portfolio";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
-import SettingsPanel from "@/components/SettingsPanel";
+import dynamic from "next/dynamic";
+
+const About = dynamic(() => import("@/components/About"));
+const Skills = dynamic(() => import("@/components/Skills"));
+const Experience = dynamic(() => import("@/components/Experience"));
+const Portfolio = dynamic(() => import("@/components/Portfolio"));
+const Contact = dynamic(() => import("@/components/Contact"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const SettingsPanel = dynamic(() => import("@/components/SettingsPanel"));
 
 function App() {
   useEffect(() => {
