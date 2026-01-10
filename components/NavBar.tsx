@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -43,10 +45,13 @@ export default function NavBar() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.img
+            <Image
               src={isDark ? Links.darkLogo : Links.logo}
               alt={"logo"}
+              width={48}
+              height={48}
               style={{ maxHeight: 48, width: 48 }}
+              className="object-contain" // Added for safety
             />
             <div>DevGarcía</div>
           </motion.a>

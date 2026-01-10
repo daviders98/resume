@@ -16,8 +16,57 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DevGarcía",
-  description: "Resume Website for David García",
+  metadataBase: new URL("https://devgarcia.vercel.app/"),
+  title: {
+    default: "DevGarcía | Full Stack Developer",
+    template: "%s | DevGarcía",
+  },
+  description:
+    "Portfolio and Resume of David García, a Full Stack Developer specializing in Next.js, React, and modern web technologies.",
+  keywords: [
+    "David García",
+    "Full Stack Developer",
+    "Next.js",
+    "React",
+    "Portfolio",
+    "Resume",
+    "Web Development",
+  ],
+  authors: [{ name: "David García", url: "https://github.com/daviders98" }],
+  creator: "David García",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://devgarcia.vercel.app/",
+    title: "DevGarcía | Full Stack Developer",
+    description: "Portfolio and Resume of David García",
+    siteName: "DevGarcía",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "DevGarcía Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DevGarcía | Full Stack Developer",
+    description: "Portfolio and Resume of David García",
+    images: ["/images/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default async function RootLayout({
