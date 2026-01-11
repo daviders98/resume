@@ -5,12 +5,24 @@ import { useEffect } from "react";
 import { LanguageProvider } from "@/context/LanguageContext";
 import dynamic from "next/dynamic";
 
-const About = dynamic(() => import("@/components/About"));
-const Skills = dynamic(() => import("@/components/Skills"));
-const Experience = dynamic(() => import("@/components/Experience"));
-const Portfolio = dynamic(() => import("@/components/Portfolio"));
-const Contact = dynamic(() => import("@/components/Contact"));
-const Footer = dynamic(() => import("@/components/Footer"));
+const About = dynamic(() => import("@/components/About"), {
+  ssr: false,
+});
+const Skills = dynamic(() => import("@/components/Skills"), {
+  ssr: false,
+});
+const Experience = dynamic(() => import("@/components/Experience"), {
+  ssr: false,
+});
+const Portfolio = dynamic(() => import("@/components/Portfolio"), {
+  ssr: false,
+});
+const Contact = dynamic(() => import("@/components/Contact"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("@/components/Footer"), {
+  ssr: false,
+});
 const SettingsPanel = dynamic(() => import("@/components/SettingsPanel"));
 
 function App() {

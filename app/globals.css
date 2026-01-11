@@ -4,9 +4,9 @@
   /* Base colors */
   --ghost-white: #f5f5f5;
   --smoky-black: #070600;
-  --amaranth: #e42548;
-  --celestial-blue: #279af1;
-  --aero: #32c2df;
+  --amaranth: #c00e2e;
+  --celestial-blue: #0077cc;
+  --aero: #0088a8;
   --davys-gray: #7a7474;
 
   /* Semantic colors */
@@ -27,8 +27,23 @@
   --color-background: #0e0e11;
   --color-foreground: #d6d5d5;
   --color-on-primary: #0e0e11;
-  --color-primary: #1b65b0;
-  --color-secondary: #912a3d;
+  --color-primary: #318ae3;
+  --color-secondary: #e05a70;
   --color-muted: #b3b3b3;
-  --color-highlight: #247791;
+  --color-highlight: #45a8c4;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
 }

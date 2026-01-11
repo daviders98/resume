@@ -93,6 +93,7 @@ const Footer = () => {
               ease: "easeInOut",
             }}
             className="w-10 h-10 bg-[var(--color-background)] text-[var(--color-foreground)] rounded-full flex items-center justify-center hover:bg-[var(--color-background)] cursor-pointer"
+            aria-label="Scroll to top"
           >
             <FontAwesomeIcon icon={faChevronUp} size="xl" />
           </motion.button>

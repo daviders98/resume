@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         className="relative w-full h-full rounded-xl shadow-sm border border-border cursor-pointer overflow-hidden"
         style={{ transformStyle: "preserve-3d" }}
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.4 }}
         onClick={() => setFlipped(!flipped)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}

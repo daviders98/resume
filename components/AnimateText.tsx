@@ -21,25 +21,35 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({
   useEffect(() => {
     if (!ref.current) return;
 
+    let rafId: number;
+
     const handleScroll = () => {
       if (!isInView) return;
 
-      const rect = ref.current!.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
 
-      const start = rect.height / 3;
-      const end = rect.bottom;
-      const scrollRange = end - start;
+        const start = rect.height / 3;
+        const end = rect.bottom;
+        const scrollRange = end - start;
 
-      let p = (windowHeight - rect.top) / scrollRange;
-      p = Math.min(Math.max(p, 0), 1);
+        let p = (windowHeight - rect.top) / scrollRange;
+        p = Math.min(Math.max(p, 0), 1);
 
-      setProgress(p);
+        setProgress(p);
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(rafId);
+    };
   }, [isInView]);
 
   return (

@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -44,21 +44,24 @@ export default function NavBar() {
             className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            aria-label="Home"
           >
-            <Image
-              src={isDark ? Links.darkLogo : Links.logo}
-              alt={"logo"}
-              width={48}
-              height={48}
-              style={{ maxHeight: 48, width: 48 }}
-              className="object-contain" // Added for safety
-            />
+            <div className="relative w-12 h-12">
+              <Image
+                src={isDark ? Links.darkLogo : Links.logo}
+                alt="logo"
+                fill
+                className="object-contain"
+                sizes="48px"
+              />
+            </div>
             <div>DevGarcía</div>
           </motion.a>
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-[var(--color-foreground)]"
             whileTap={{ scale: 0.9 }}
+            aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
               <FontAwesomeIcon icon={faX} size="2x" />
@@ -104,6 +107,13 @@ export default function NavBar() {
                 className={`${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
+                aria-label={`Link to ${
+                  icon === faGithub
+                    ? "GitHub"
+                    : icon === faLinkedin
+                      ? "LinkedIn"
+                      : "Contact"
+                }`}
               >
                 <FontAwesomeIcon
                   icon={icon}
@@ -176,6 +186,13 @@ export default function NavBar() {
                         className={`${getNavItemClasses()}`}
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label={`Link to ${
+                          icon === faGithub
+                            ? "GitHub"
+                            : icon === faLinkedin
+                              ? "LinkedIn"
+                              : "Contact"
+                        }`}
                       >
                         <FontAwesomeIcon
                           icon={icon}
