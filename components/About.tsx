@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
@@ -66,7 +66,7 @@ const About = () => {
               />
               <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-[var(--color-background)]/20 to-[var(--color-primary)]/20 p-1">
                 <div className="w-full h-full rounded-2xl bg-[var(--color-primary)]/30 flex items-center justify-center relative overflow-hidden">
-                   <Image
+                  <Image
                     src={Links.profile}
                     alt={"profile picture"}
                     fill
