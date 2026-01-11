@@ -123,7 +123,7 @@ const ExperienceCard = ({
           <div className="mb-3">
             <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
               {" "}
-                <Image
+              <Image
                 src={
                   experience.pathToLogo == "/images/logo.png" && isDark
                     ? Links.darkLogo
