@@ -1,5 +1,7 @@
+"use client"
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
 import moment from "moment";
 import ScrollLettersText from "./AnimateText";
@@ -63,11 +65,13 @@ const About = () => {
                 }}
               />
               <div className="relative aspect-square rounded-2xl bg-gradient-to-br from-[var(--color-background)]/20 to-[var(--color-primary)]/20 p-1">
-                <div className="w-full h-full rounded-2xl bg-[var(--color-primary)]/30 flex items-center justify-center">
-                  <motion.img
+                <div className="w-full h-full rounded-2xl bg-[var(--color-primary)]/30 flex items-center justify-center relative overflow-hidden">
+                   <Image
                     src={Links.profile}
                     alt={"profile picture"}
-                    className="w-full h-full object-cover rounded-2xl"
+                    fill
+                    className="object-cover rounded-2xl"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
               </div>
@@ -77,7 +81,7 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
             className="space-y-6"
           >
             <div>

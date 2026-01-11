@@ -14,12 +14,16 @@ export default function MailModal({ status, onClose }: MailModalProps) {
   if (!status) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[var(--color-foreground)]/40 z-50">
+    <div
+      className="fixed inset-0 flex items-center justify-center z-50 m-4"
+      onClick={onClose}
+    >
       <motion.div
         className="bg-[var(--color-primary)] p-8 rounded-2xl shadow-xl flex flex-col items-center gap-4"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0 }}
+        onClick={(e) => e.stopPropagation()}
       >
         <motion.div
           className="w-16 h-16 text-3xl flex items-center justify-center"

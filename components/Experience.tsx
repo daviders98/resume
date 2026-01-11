@@ -123,13 +123,13 @@ const ExperienceCard = ({
           <div className="mb-3">
             <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
               {" "}
-              <Image
+                <Image
                 src={
                   experience.pathToLogo == "/images/logo.png" && isDark
                     ? Links.darkLogo
                     : experience.pathToLogo
                 }
-                alt={`Company logo ${index + 1}`}
+                alt={`${experience.company} logo`}
                 fill
                 sizes="(max-width: 768px) 64px, 128px"
                 className="object-contain rounded-full"
@@ -256,7 +256,7 @@ const Experience = () => {
                   <div className="w-16 h-16 relative rounded-full border border-border mb-1">
                     <Image
                       src={edu.pathToLogo}
-                      alt="Me typing"
+                      alt={`${edu.institution} logo`}
                       fill
                       className="rounded-full object-cover border border-border"
                       sizes="(max-width: 768px) 64px, 128px"
@@ -302,7 +302,7 @@ const Experience = () => {
                     <div className="w-16 h-16 relative rounded-full border border-border flex items-center justify-center bg-[var(--color-background)]">
                       <Image
                         src={cert.pathToLogo}
-                        alt={`Issuer Company logo ${cert.id}`}
+                        alt={`${cert.issuer} logo`}
                         fill
                         className="object-contain rounded-full"
                         sizes="(max-width: 768px) 64px, 128px"
