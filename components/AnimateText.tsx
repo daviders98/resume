@@ -75,7 +75,7 @@ const ScrollWordsText: React.FC<ScrollWordsTextProps> = ({
                 Math.max(letterProgress - letterIndex, 0),
                 1,
               );
-              const finalOpacity = Math.max(visibleOpacity, 0.2);
+              const finalOpacity = Math.max(visibleOpacity, 0.4);
 
               return (
                 <span

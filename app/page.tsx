@@ -28,7 +28,10 @@ const SettingsPanel = dynamic(() => import("@/components/SettingsPanel"));
 function App() {
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Keep the deep links coming from the standalone pages (`/#contact`) intact.
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }, []);
 
   return (

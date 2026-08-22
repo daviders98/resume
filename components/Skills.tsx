@@ -32,7 +32,7 @@ const SkillBar = ({ name, pathToLogo }: SkillData) => {
           style={{ width: "auto", height: "auto" }}
         />
       </div>
-      <span className="mt-2 text-center font-medium text-sm text-[var(--color-on-primary)]">
+      <span className="mt-2 text-center font-medium text-sm text-[var(--color-foreground)]">
         {name}
       </span>
     </motion.div>
@@ -89,7 +89,7 @@ const SkillCategory = ({ title, skills, icon }: SkillCategoryProps) => {
       initial={{ opacity: 0, y: 0 }}
       animate={isInView ? { opacity: 1, y: 30 } : { opacity: 0, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="bg-[var(--color-primary)]/20 p-6 sm:p-8 rounded-xl border border-border hover:border-[var(--color-background)] shadow-sm hover:shadow-md"
+      className="bg-[var(--color-background)]/90 p-6 sm:p-8 rounded-xl border border-border hover:border-[var(--color-primary)] shadow-sm hover:shadow-md"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -145,14 +145,16 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-4"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[var(--color-on-primary)]">
             {technicalSkillsStart[language]}
             <span className="text-[var(--color-on-primary)]">
               {technicalSkillsEnd[language]}
             </span>
           </h2>
           <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
-          <p className="text-lg max-w-2xl mx-auto">{skillsExtra[language]}</p>
+          <p className="text-lg max-w-2xl mx-auto text-[var(--color-on-primary)]">
+            {skillsExtra[language]}
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">

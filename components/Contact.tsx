@@ -1,3 +1,4 @@
+"use client";
 import { useState, useRef, ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -21,8 +22,13 @@ import {
 } from "@/data/contact";
 import sanitizeHtml from "sanitize-html";
 import { useLanguage } from "@/context/LanguageContext";
+import SectionPageLink from "./SectionPageLink";
 
-const Contact = () => {
+interface ContactProps {
+  standalone?: boolean;
+}
+
+const Contact = ({ standalone = false }: ContactProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({
@@ -33,6 +39,8 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { language } = useLanguage();
+  // A standalone page owns the document outline, so its title becomes the h1.
+  const Heading = standalone ? "h1" : "h2";
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -93,12 +101,12 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <Heading className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {letsTalkStart[language]}
             <span className="text-[var(--color-on-primary)]">
               {letsTalkEnd[language]}
             </span>
-          </h2>
+          </Heading>
           <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
           <p className="text-lg text-[var(--color-foreground)] max-w-2xl mx-auto">
             {contactExtra[language]}
@@ -245,6 +253,8 @@ const Contact = () => {
             </form>
           </motion.div>
         </div>
+
+        {!standalone && <SectionPageLink href="/contact" />}
       </div>
     </section>
   );

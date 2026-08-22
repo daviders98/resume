@@ -14,6 +14,8 @@ export interface Project {
   image: string;
   technologies: string[];
   demoUrl?: string;
+  /** Marks a project whose demo is not publicly reachable yet. */
+  comingSoon?: boolean;
   githubUrl?: GitHubURL[];
   highlights?: string[];
 }
@@ -170,7 +172,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
-        demoUrl: "https://demo-recipes.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Upload and manage personal recipes",
@@ -188,7 +190,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
-        demoUrl: "https://demo-travel.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Flight, hotel, and activity booking",
@@ -342,7 +344,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
-        demoUrl: "https://demo-recipes.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Subir y gestionar recetas personales",
@@ -360,7 +362,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
-        demoUrl: "https://demo-travel.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "Reserva de vuelos, hoteles y actividades",
@@ -512,7 +514,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&h=900&fit=crop",
         technologies: ["Angular", "Firebase", "Bootstrap"],
-        demoUrl: "https://demo-recipes.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "上传和管理个人食谱",
@@ -530,7 +532,7 @@ export const portfolioData: Record<Language, { projects: Project[] }> = {
         image:
           "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900&fit=crop",
         technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe"],
-        demoUrl: "https://demo-travel.com",
+        comingSoon: true,
         githubUrl: [{ link: "https://github.com/daviders98" }],
         highlights: [
           "航班、酒店和活动预订",
@@ -558,6 +560,12 @@ export const demoText = {
   en: "Demo",
   es: "Demo",
   zh: "演示",
+};
+
+export const comingSoonText = {
+  en: "Coming soon",
+  es: "Próximamente",
+  zh: "敬请期待",
 };
 
 export const codeText = {

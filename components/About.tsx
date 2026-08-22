@@ -14,6 +14,7 @@ import {
 } from "@/data/about";
 import { Links } from "@/data/links";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 
 const About = () => {
   const ref = useRef(null);
@@ -22,12 +23,13 @@ const About = () => {
   const birthday = moment("1998-01-01");
   const years = today.diff(birthday, "years");
   const { language } = useLanguage();
+  const { isDark } = useTheme();
 
   return (
     <section
       id="about"
       ref={ref}
-      className="py-20 bg-[var(--color-primary)]/80 w-full overflow-x-hidden"
+      className={`py-20 w-full overflow-x-hidden ${isDark ? "bg-[var(--color-primary)]/90" : "bg-[var(--color-primary)]/80"}`}
     >
       <div className="px-8">
         <motion.div
@@ -85,14 +87,14 @@ const About = () => {
             className="space-y-6"
           >
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-4">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4 text-[var(--color-on-primary)]">
                 {myData[language].title}
               </h3>
-              <p className="text-lg text-[var(--color-foreground)] leading-relaxed">
+              <p className="text-lg text-[var(--color-on-primary)] leading-relaxed">
                 {myData[language].bio.replace("{years}", `${years}`)}
               </p>
               <br />
-              <p className="text-lg text-[var(--color-foreground)] leading-relaxed">
+              <p className="text-lg text-[var(--color-on-primary)] leading-relaxed">
                 {myData[language].bioExtra}
               </p>
               <br />
@@ -100,10 +102,10 @@ const About = () => {
 
             <div className="flex gap-2">
               <div className="space-y-2">
-                <p className="text-lg text-[var(--color-foreground)] font-medium">
+                <p className="text-lg text-[var(--color-on-primary)] font-medium">
                   {codingFromText[language]}
                 </p>
-                <p className="font-medium">{myData[language].location}</p>
+                <p className="font-medium text-[var(--color-on-primary)]">{myData[language].location}</p>
               </div>
             </div>
           </motion.div>
@@ -141,7 +143,7 @@ const About = () => {
                 <h4 className="text-lg font-semibold mb-2 text-[var(--color-on-primary)]">
                   {value.title}
                 </h4>
-                <p className="text-sm text-[var(--color-foreground)]">
+                <p className="text-sm text-[var(--color-on-primary)]">
                   {value.description}
                 </p>
               </motion.div>

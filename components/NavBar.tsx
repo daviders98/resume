@@ -1,23 +1,97 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { faBars, faEnvelope, faX } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faChevronDown,
+  faEnvelope,
+  faX,
+} from "@fortawesome/free-solid-svg-icons";
 import scrollToSection from "@/utils/scroller";
 import { Links, navItems } from "@/data/links";
+import { pageLinks, pagesLabel } from "@/data/pages";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 
+const MotionLink = motion.create(Link);
+
+interface SectionLinkProps {
+  href: string;
+  className?: string;
+  children: ReactNode;
+  onNavigate?: () => void;
+  scrollDelay?: number;
+  ariaLabel?: string;
+  target?: string;
+}
+
+/**
+ * Renders an in-page smooth scroll when we are on the home page and a
+ * client-side navigation to the matching anchor (`/#contact`) when we are not.
+ */
+const SectionLink = ({
+  href,
+  className,
+  children,
+  onNavigate,
+  scrollDelay = 0,
+  ariaLabel,
+}: SectionLinkProps) => {
+  const pathname = usePathname();
+
+  if (pathname !== "/") {
+    return (
+      <MotionLink
+        href={`/${href}`}
+        className={className}
+        aria-label={ariaLabel}
+        onClick={onNavigate}
+        whileHover={{ scale: 1.1 }}
+      >
+        {children}
+      </MotionLink>
+    );
+  }
+
+  return (
+    <motion.a
+      href={href}
+      className={className}
+      aria-label={ariaLabel}
+      onClick={(e) => {
+        e.preventDefault();
+        onNavigate?.();
+        if (scrollDelay > 0) {
+          setTimeout(() => scrollToSection({ href }), scrollDelay);
+        } else {
+          scrollToSection({ href });
+        }
+      }}
+      whileHover={{ scale: 1.1 }}
+    >
+      {children}
+    </motion.a>
+  );
+};
+
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPagesOpen, setIsPagesOpen] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
+  const pagesRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const getNavItemClasses = () => {
     return "text-[var(--color-foreground)] hover:text-[var(--color-highlight)]";
   };
   const { language } = useLanguage();
   const { isDark } = useTheme();
+
   useEffect(() => {
     const handleScroll = () => {
       setIsAtTop(window.scrollY === 0);
@@ -25,6 +99,29 @@ export default function NavBar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    setIsPagesOpen(false);
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isPagesOpen) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        pagesRef.current &&
+        !pagesRef.current.contains(event.target as Node)
+      ) {
+        setIsPagesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isPagesOpen]);
+
+  const socialIcons = [faGithub, faLinkedin, faEnvelope];
+  const socialLabel = (icon: (typeof socialIcons)[number]) =>
+    icon === faGithub ? "GitHub" : icon === faLinkedin ? "LinkedIn" : "Contact";
 
   return (
     <motion.nav
@@ -35,28 +132,49 @@ export default function NavBar() {
     >
       <div className="mx-auto sm:px-2 lg:px-2">
         <div className="flex items-center justify-between h-16">
-          <motion.a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection({ href: "#hero" });
-            }}
-            className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Home"
-          >
-            <div className="relative w-12 h-12">
-              <Image
-                src={isDark ? Links.darkLogo : Links.logo}
-                alt="logo"
-                fill
-                className="object-contain"
-                sizes="48px"
-              />
-            </div>
-            <div>DevGarcía</div>
-          </motion.a>
+          {isHome ? (
+            <motion.a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection({ href: "#hero" });
+              }}
+              className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Home"
+            >
+              <div className="relative w-12 h-12">
+                <Image
+                  src={isDark ? Links.darkLogo : Links.logo}
+                  alt="logo"
+                  fill
+                  className="object-contain"
+                  sizes="48px"
+                />
+              </div>
+              <div>DevGarcía</div>
+            </motion.a>
+          ) : (
+            <MotionLink
+              href="/"
+              className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Home"
+            >
+              <div className="relative w-12 h-12">
+                <Image
+                  src={isDark ? Links.darkLogo : Links.logo}
+                  alt="logo"
+                  fill
+                  className="object-contain"
+                  sizes="48px"
+                />
+              </div>
+              <div>DevGarcía</div>
+            </MotionLink>
+          )}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-[var(--color-foreground)]"
@@ -71,56 +189,98 @@ export default function NavBar() {
           </motion.button>
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems[language].map((item) => (
-              <motion.a
+              <SectionLink
                 key={item.name}
                 href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (isMobileMenuOpen) {
-                    setIsMobileMenuOpen(false);
-                  }
-                  scrollToSection({ href: item.href });
-                }}
                 className={`px-2 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold ${getNavItemClasses()}`}
-                whileHover={{ scale: 1.1 }}
               >
                 {item.name}
-              </motion.a>
+              </SectionLink>
             ))}
+
+            <div className="relative" ref={pagesRef}>
+              <motion.button
+                onClick={() => setIsPagesOpen(!isPagesOpen)}
+                className={`px-2 py-2 text-sm lg:text-xl font-medium flex items-center gap-2 hover:font-semibold ${getNavItemClasses()}`}
+                whileHover={{ scale: 1.1 }}
+                aria-haspopup="menu"
+                aria-expanded={isPagesOpen}
+                aria-label="Open pages menu"
+              >
+                {pagesLabel[language]}
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  className={`text-xs duration-200 ${isPagesOpen ? "rotate-180" : ""}`}
+                />
+              </motion.button>
+              <AnimatePresence>
+                {isPagesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 mt-2 w-72 rounded-xl border border-border bg-[var(--color-background)] shadow-lg p-2"
+                    role="menu"
+                  >
+                    {pageLinks.map((page) => (
+                      <Link
+                        key={page.key}
+                        href={page.href}
+                        role="menuitem"
+                        onClick={() => setIsPagesOpen(false)}
+                        className={`block rounded-lg px-3 py-2 hover:bg-[var(--color-highlight)]/20 ${
+                          pathname === page.href
+                            ? "bg-[var(--color-highlight)]/20"
+                            : ""
+                        }`}
+                      >
+                        <span className="block font-semibold text-[var(--color-foreground)]">
+                          {page.name[language]}
+                        </span>
+                        <span className="block text-xs text-[var(--color-muted)]">
+                          {page.description[language]}
+                        </span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </nav>
 
           <div className="hidden md:flex items-center space-x-2">
-            {[faGithub, faLinkedin, faEnvelope].map((icon, i) => (
-              <motion.a
-                key={i}
-                href={
-                  icon === faGithub
-                    ? Links.github
-                    : icon === faLinkedin
-                      ? Links.linkedin
-                      : navItems[language].find((item) =>
-                          ["Contact", "Contacto", "联系"].includes(item.name),
-                        )?.href
-                }
-                target={`${icon == faEnvelope ? "" : "__blank"}`}
-                rel="noopener noreferrer"
-                className={`${getNavItemClasses()}`}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={`Link to ${
-                  icon === faGithub
-                    ? "GitHub"
-                    : icon === faLinkedin
-                      ? "LinkedIn"
-                      : "Contact"
-                }`}
-              >
-                <FontAwesomeIcon
-                  icon={icon}
-                  className="lg:text-4xl sm:text-3xl"
-                />
-              </motion.a>
-            ))}
+            {socialIcons.map((icon, i) =>
+              icon === faEnvelope ? (
+                <SectionLink
+                  key={i}
+                  href="#contact"
+                  className={`${getNavItemClasses()}`}
+                  ariaLabel="Link to Contact"
+                >
+                  <FontAwesomeIcon
+                    icon={icon}
+                    className="lg:text-4xl sm:text-3xl"
+                  />
+                </SectionLink>
+              ) : (
+                <motion.a
+                  key={i}
+                  href={icon === faGithub ? Links.github : Links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${getNavItemClasses()}`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Link to ${socialLabel(icon)}`}
+                >
+                  <FontAwesomeIcon
+                    icon={icon}
+                    className="lg:text-4xl sm:text-3xl"
+                  />
+                </motion.a>
+              ),
+            )}
           </div>
         </div>
       </div>
@@ -134,74 +294,73 @@ export default function NavBar() {
             className="md:hidden"
           >
             <nav className="mx-auto px-2 py-4 flex flex-col space-y-2">
-              {navItems[language].map((item, index) => (
-                <motion.a
+              {navItems[language].map((item) => (
+                <SectionLink
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-
-                    setIsMobileMenuOpen(false);
-
-                    setTimeout(() => {
-                      scrollToSection({ href: item.href });
-                    }, 200);
-                  }}
+                  scrollDelay={200}
+                  onNavigate={() => setIsMobileMenuOpen(false)}
                   className="px-2 py-3 text-[var(--color-foreground)]/80 hover:text-[var(--color-foreground)] hover:bg-[var(--color-primary)]/50 rounded-lg"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
                 >
                   {item.name}
-                </motion.a>
+                </SectionLink>
               ))}
-              <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border">
-                {[faGithub, faLinkedin, faEnvelope].map((icon, i) => {
-                  const isContact = icon === faEnvelope;
-                  const href =
-                    icon === faGithub
-                      ? Links.github
-                      : icon === faLinkedin
-                        ? Links.linkedin
-                        : navItems[language].find((item) =>
-                            ["Contact", "Contacto", "联系"].includes(item.name),
-                          )?.href;
 
-                  return (
-                    href && (
-                      <motion.a
-                        key={i}
-                        href={href}
-                        target={isContact ? "_self" : "_blank"}
-                        rel="noopener noreferrer"
-                        onClick={(e) => {
-                          if (isContact) {
-                            e.preventDefault();
-                            setIsMobileMenuOpen(false);
-                            setTimeout(() => scrollToSection({ href }), 200);
-                          } else {
-                            setIsMobileMenuOpen(false);
-                          }
-                        }}
-                        className={`${getNavItemClasses()}`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.9 }}
-                        aria-label={`Link to ${
-                          icon === faGithub
-                            ? "GitHub"
-                            : icon === faLinkedin
-                              ? "LinkedIn"
-                              : "Contact"
-                        }`}
-                      >
-                        <FontAwesomeIcon
-                          icon={icon}
-                          className="lg:text-4xl text-3xl"
-                        />
-                      </motion.a>
-                    )
-                  );
-                })}
+              <div className="pt-4 border-t border-border">
+                <p className="px-2 pb-2 text-xs uppercase tracking-wide text-[var(--color-muted)]">
+                  {pagesLabel[language]}
+                </p>
+                {pageLinks.map((page) => (
+                  <Link
+                    key={page.key}
+                    href={page.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block px-2 py-3 rounded-lg text-[var(--color-foreground)]/80 hover:text-[var(--color-foreground)] hover:bg-[var(--color-primary)]/50 ${
+                      pathname === page.href
+                        ? "bg-[var(--color-primary)]/40 text-[var(--color-foreground)]"
+                        : ""
+                    }`}
+                  >
+                    {page.name[language]}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border">
+                {socialIcons.map((icon, i) =>
+                  icon === faEnvelope ? (
+                    <SectionLink
+                      key={i}
+                      href="#contact"
+                      scrollDelay={200}
+                      onNavigate={() => setIsMobileMenuOpen(false)}
+                      className={`${getNavItemClasses()}`}
+                      ariaLabel="Link to Contact"
+                    >
+                      <FontAwesomeIcon
+                        icon={icon}
+                        className="lg:text-4xl text-3xl"
+                      />
+                    </SectionLink>
+                  ) : (
+                    <motion.a
+                      key={i}
+                      href={icon === faGithub ? Links.github : Links.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`${getNavItemClasses()}`}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
+                      aria-label={`Link to ${socialLabel(icon)}`}
+                    >
+                      <FontAwesomeIcon
+                        icon={icon}
+                        className="lg:text-4xl text-3xl"
+                      />
+                    </motion.a>
+                  ),
+                )}
               </div>
             </nav>
           </motion.div>
