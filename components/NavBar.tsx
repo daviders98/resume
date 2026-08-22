@@ -139,7 +139,7 @@ export default function NavBar() {
                 e.preventDefault();
                 scrollToSection({ href: "#hero" });
               }}
-              className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
+              className="flex items-center gap-x-1 text-xl xl:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Home"
@@ -153,12 +153,12 @@ export default function NavBar() {
                   sizes="48px"
                 />
               </div>
-              <div>DevGarcía</div>
+              <div className="block md:hidden lg:block">DevGarcía</div>
             </motion.a>
           ) : (
             <MotionLink
               href="/"
-              className="flex items-center gap-x-1 text-xl lg:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
+              className="flex items-center gap-x-1 text-xl xl:text-2xl font-bold text-[var(--color-primary)] cursor-pointer bg-[var(--color-background)]/80 rounded-2xl p-2 md:mx-0"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Home"
@@ -172,7 +172,7 @@ export default function NavBar() {
                   sizes="48px"
                 />
               </div>
-              <div>DevGarcía</div>
+              <div className="block md:hidden lg:block">DevGarcía</div>
             </MotionLink>
           )}
           <motion.button
@@ -187,12 +187,12 @@ export default function NavBar() {
               <FontAwesomeIcon icon={faBars} size="2xl" />
             )}
           </motion.button>
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <nav className="hidden md:flex items-center space-x-1 xl:space-x-2">
             {navItems[language].map((item) => (
               <SectionLink
                 key={item.name}
                 href={item.href}
-                className={`px-2 py-2 text-sm lg:text-xl relative font-medium hover:border-b-2 hover:font-semibold ${getNavItemClasses()}`}
+                className={`px-1.5 xl:px-2 py-2 text-sm xl:text-xl whitespace-nowrap relative font-medium hover:border-b-2 hover:font-semibold ${getNavItemClasses()}`}
               >
                 {item.name}
               </SectionLink>
@@ -201,7 +201,7 @@ export default function NavBar() {
             <div className="relative" ref={pagesRef}>
               <motion.button
                 onClick={() => setIsPagesOpen(!isPagesOpen)}
-                className={`px-2 py-2 text-sm lg:text-xl font-medium flex items-center gap-2 hover:font-semibold ${getNavItemClasses()}`}
+                className={`px-1.5 xl:px-2 py-2 text-sm xl:text-xl whitespace-nowrap font-medium flex items-center gap-1.5 xl:gap-2 hover:font-semibold ${getNavItemClasses()}`}
                 whileHover={{ scale: 1.1 }}
                 aria-haspopup="menu"
                 aria-expanded={isPagesOpen}
@@ -249,7 +249,7 @@ export default function NavBar() {
             </div>
           </nav>
 
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-2 shrink-0">
             {socialIcons.map((icon, i) =>
               icon === faEnvelope ? (
                 <SectionLink
@@ -260,7 +260,7 @@ export default function NavBar() {
                 >
                   <FontAwesomeIcon
                     icon={icon}
-                    className="lg:text-4xl sm:text-3xl"
+                    className="text-2xl xl:text-4xl"
                   />
                 </SectionLink>
               ) : (
@@ -276,7 +276,7 @@ export default function NavBar() {
                 >
                   <FontAwesomeIcon
                     icon={icon}
-                    className="lg:text-4xl sm:text-3xl"
+                    className="text-2xl xl:text-4xl"
                   />
                 </motion.a>
               ),
