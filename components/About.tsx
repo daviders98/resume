@@ -105,7 +105,9 @@ const About = () => {
                 <p className="text-lg text-[var(--color-on-primary)] font-medium">
                   {codingFromText[language]}
                 </p>
-                <p className="font-medium text-[var(--color-on-primary)]">{myData[language].location}</p>
+                <p className="font-medium text-[var(--color-on-primary)]">
+                  {myData[language].location}
+                </p>
               </div>
             </div>
           </motion.div>
