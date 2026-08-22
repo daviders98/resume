@@ -1,3 +1,6 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +16,7 @@ import {
   quickLinksItems,
 } from "@/data/footer";
 import { useTheme } from "@/context/ThemeContext";
+import { pageLinks, pagesLabel } from "@/data/pages";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -20,16 +24,20 @@ const Footer = () => {
   };
   const { language } = useLanguage();
   const { isDark } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const sectionHref = (href: string) => (isHome ? href : `/${href}`);
 
   return (
     <footer className="bg-[var(--color-primary)] border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 gap-4 mb-8">
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
           <div>
             <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-[var(--color-on-primary)] to-[var(--color-on-primary)]/60 bg-clip-text text-transparent flex items-center justify-between h-16 md:h-20">
               <motion.a
-                href="#hero"
+                href={sectionHref("#hero")}
                 onClick={(e) => {
+                  if (!isHome) return;
                   e.preventDefault();
                   scrollToSection({ href: "#hero" });
                 }}
@@ -56,11 +64,29 @@ const Footer = () => {
               {quickLinksItems[language].map((item, index) => (
                 <li key={item}>
                   <a
-                    href={`#${quickLinksItems["en"][index].toLowerCase()}`}
+                    href={sectionHref(
+                      `#${quickLinksItems["en"][index].toLowerCase()}`,
+                    )}
                     className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-on-primary)]"
                   >
                     {item}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4">{pagesLabel[language]}</h4>
+            <ul className="space-y-2">
+              {pageLinks.map((page) => (
+                <li key={page.key}>
+                  <Link
+                    href={page.href}
+                    className="text-sm text-[var(--color-foreground)] hover:text-[var(--color-on-primary)]"
+                  >
+                    {page.name[language]}
+                  </Link>
                 </li>
               ))}
             </ul>

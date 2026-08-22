@@ -1,3 +1,4 @@
+"use client";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "@/context/ThemeContext";
 import {
@@ -21,6 +22,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import SectionPageLink from "./SectionPageLink";
 
 const TypingIndicator = () => (
   <div className="flex items-center justify-center gap-1 bg-[var(--color-secondary)]/30 rounded-full px-2 py-2 w-fit shadow-sm mt-3">
@@ -178,10 +180,16 @@ const ExperienceCard = ({
   );
 };
 
-const Experience = () => {
+interface ExperienceProps {
+  standalone?: boolean;
+}
+
+const Experience = ({ standalone = false }: ExperienceProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { language } = useLanguage();
+  // A standalone page owns the document outline, so its title becomes the h1.
+  const Heading = standalone ? "h1" : "h2";
 
   return (
     <section
@@ -196,12 +204,12 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 px-2"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <Heading className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             {experienceTitleStart[language]}
             <span className="text-[var(--color-highlight)]">
               {experienceTitleEnd[language]}
             </span>
-          </h2>
+          </Heading>
           <div className="w-20 h-1 bg-[var(--color-highlight)] mx-auto rounded-full mb-6" />
           <p className="text-lg text-[var(--color-muted)] max-w-2xl mx-auto p-4">
             {experienceExtra[language]}
@@ -338,6 +346,8 @@ const Experience = () => {
             </div>
           </div>
         </motion.div>
+
+        {!standalone && <SectionPageLink href="/experience" />}
       </div>
     </section>
   );

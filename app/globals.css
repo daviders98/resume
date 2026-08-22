@@ -24,13 +24,13 @@
 }
 
 .dark {
-  --color-background: #0e0e11;
-  --color-foreground: #d6d5d5;
-  --color-on-primary: #0e0e11;
-  --color-primary: #318ae3;
-  --color-secondary: #e05a70;
-  --color-muted: #b3b3b3;
-  --color-highlight: #45a8c4;
+  --color-background: #0a0a0c;
+  --color-foreground: #ececec;
+  --color-on-primary: #0a0a0c;
+  --color-primary: #3b82f6;
+  --color-secondary: #f43f5e;
+  --color-muted: #94a3b8;
+  --color-highlight: #22d3ee;
 }
 
 @keyframes fadeInUp {

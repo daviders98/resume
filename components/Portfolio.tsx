@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleChevronRight,
   faCircleInfo,
+  faHourglassHalf,
   faSquareArrowUpRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
 import {
   codeText,
+  comingSoonText,
   demoText,
   GitHubURL,
   portfolioData,
@@ -21,6 +23,8 @@ import {
   seeMoreText,
 } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
+import SectionPageLink from "./SectionPageLink";
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [flipped, setFlipped] = useState(false);
@@ -102,6 +106,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       />
                       {demoText[language]}
                     </button>
+                  )}
+                  {!project.demoUrl && project.comingSoon && (
+                    <span className="flex flex-col items-center flex-1 justify-center text-[var(--color-muted)]">
+                      <FontAwesomeIcon icon={faHourglassHalf} size={"xl"} />
+                      {comingSoonText[language]}
+                    </span>
                   )}
                   {project.githubUrl && (
                     <div className="flex flex-col">
@@ -195,6 +205,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   {demoText[language]}
                 </button>
               )}
+              {!project.demoUrl && project.comingSoon && (
+                <span className="flex-1 rounded py-2 text-center text-[var(--color-muted)]">
+                  <FontAwesomeIcon icon={faHourglassHalf} />{" "}
+                  {comingSoonText[language]}
+                </span>
+              )}
               {project.githubUrl && (
                 <div className="flex-1 flex flex-col items-center">
                   {project.githubUrl.map((url, index) => {
@@ -231,20 +247,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   );
 };
 
-const Portfolio: React.FC = () => {
+interface PortfolioProps {
+  standalone?: boolean;
+}
+
+const Portfolio: React.FC<PortfolioProps> = ({ standalone = false }) => {
   const { language } = useLanguage();
+  const { isDark } = useTheme();
+  // A standalone page owns the document outline, so its title becomes the h1.
+  const Heading = standalone ? "h1" : "h2";
   return (
-    <section id="portfolio" className="py-20 bg-[var(--color-secondary)]">
+    <section
+      id="portfolio"
+      className={`py-20 ${isDark ? "bg-[var(--color-secondary)]/90" : "bg-[var(--color-secondary)]"}`}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <Heading className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[var(--color-on-primary)]">
             {portfolioTitleStart[language]}{" "}
             <span className="text-[var(--color-on-primary)]">
               {portfolioTitleEnd[language]}
             </span>
-          </h2>
+          </Heading>
           <div className="w-20 h-1 bg-[var(--color-background)] mx-auto rounded-full mb-6" />
-          <p className="text-lg text-[var(--color-foreground)] max-w-2xl mx-auto">
+          <p className="text-lg text-[var(--color-on-primary)] max-w-2xl mx-auto">
             {portfolioExtra[language]}
           </p>
         </div>
@@ -254,6 +280,8 @@ const Portfolio: React.FC = () => {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+
+        {!standalone && <SectionPageLink href="/portfolio" />}
       </div>
     </section>
   );
